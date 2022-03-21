@@ -35,5 +35,19 @@ AppDataSource.initialize().then(async () => {
     const exercises = await AppDataSource.manager.find(Exercise)
     console.log("Loaded exercises: ", exercises)
 
+    console.log("Inserting a new program into the database...")
+    const program = new Program()
+    program.name = "12 weeks to shred"
+    program.duration = 12
+    program.description = "This is a 12 week program to cut fat."
+    program.modality = "barbell-only"
+    program.equipment_type = "barbell"
+    await AppDataSource.manager.save(program)
+    console.log("Saved a new program with id: " + program.id)
+    console.log("Loading programs from the database...")
+    const programs = await AppDataSource.manager.find(Program)
+    console.log("Loaded programs: ", programs)
+
+
 
 }).catch(error => console.log(error))
