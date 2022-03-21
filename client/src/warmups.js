@@ -9,6 +9,14 @@ const closest = (counts, goal) => {
   );
 };
 
+/**
+ * Computes warmup weights rounded to the nearest nice plate milestone
+ * @param {number} workWeight - Weight of working set for that day
+ * @returns {Array} - Array of strings of warmup sets
+ * @example
+ * // returns [ 'Empty bar x 2 x 5', '155 x 5', '245 x 3', '315 x 2' ]
+ * warmups(365)
+ */
 const warmups = (workWeight) => {
   const warmup1 = closest(plateMilestones, workWeight * 0.45);
   const warmup2 = closest(plateMilestones, workWeight * 0.65);
@@ -21,5 +29,3 @@ const warmups = (workWeight) => {
     `${warmup3} x 2`,
   ];
 };
-
-// console.log(warmups(365)); => [ 'Empty bar x 2 x 5', '155 x 5', '245 x 3', '315 x 2' ]
