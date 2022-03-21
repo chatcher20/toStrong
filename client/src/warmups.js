@@ -22,4 +22,4 @@ const warmups = (workWeight) => {
   ];
 };
 
-console.log(warmups(365));
+// console.log(warmups(365)); => [ 'Empty bar x 2 x 5', '155 x 5', '245 x 3', '315 x 2' ]
