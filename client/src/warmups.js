@@ -29,3 +29,5 @@ const warmups = (workWeight) => {
     `${warmup3} x 2`,
   ];
 };
+
+export default warmups;
