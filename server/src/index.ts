@@ -2,6 +2,7 @@ import { AppDataSource } from "./data-source"
 import { User } from "./entity/User"
 import { Exercise } from "./entity/Exercise"
 import { Program } from "./entity/Program"
+import { Badge } from "./entity/Badge"
 
 AppDataSource.initialize().then(async () => {
 
@@ -47,6 +48,19 @@ AppDataSource.initialize().then(async () => {
     console.log("Loading programs from the database...")
     const programs = await AppDataSource.manager.find(Program)
     console.log("Loaded programs: ", programs)
+
+    console.log("Inserting a new badge into the database...")
+    const badge = new Badge()
+    badge.name = "500lb Deadlift Badge"
+    badge.description = "This badge is to signify that you are a beast"
+    badge.image = "placeholder for image here"
+    await AppDataSource.manager.save(badge)
+    console.log("Saved a new badge with id: " + badge.id)
+    console.log("Loading badges from the database...")
+    const badges = await AppDataSource.manager.find(Badge)
+    console.log("Loaded badges: ", badges)
+
+
 
 
 
