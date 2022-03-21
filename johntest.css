@@ -1,0 +1,22 @@
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(78, 164, 218);
+  height: 812px;
+  width: 414px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 200px;
+}
+
+footer div {
+  border-style: solid;
+  height: 75px;
+  width: 75px;
+}
