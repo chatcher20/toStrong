@@ -3,16 +3,38 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 @Entity()
 export class User {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn()       // auto-generated id column
     id: number
 
-    @Column()
-    firstName: string
+    @Column({
+        length: 50,
+    })
+    username: string
 
     @Column()
-    lastName: string
+    email: string
 
     @Column()
-    age: number
+    password: string
+
+    @Column()
+    password_confirmation: string
+
+    @Column()
+    weight: number
+
+    @Column()
+    height: number
+
+    @Column()
+    avatar: string
+
+    @Column({
+        length: 250
+    })
+    about_me: string
+
+    @Column()
+    weight_change: number
 
 }
