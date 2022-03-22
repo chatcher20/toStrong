@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn } from "typeorm"
+import { Planned_Workout } from "../entity/Planned_Workout"
 
 @Entity()
 export class Program {
@@ -23,5 +24,8 @@ export class Program {
 
   @Column()
   equipment_type: string
+
+  @OneToMany(() => Planned_Workout, (planned_workout) => planned_workout.program)      // note: we will create program property in the Planned_Workout class
+    planned_workouts: Planned_Workout[]
 
 }
