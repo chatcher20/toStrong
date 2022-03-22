@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm"
+import { Program } from "../entity/Program"
 
 @Entity()
 export class Planned_Workout {
@@ -17,5 +18,10 @@ export class Planned_Workout {
 
   @Column()
   reps: number
+
+  @ManyToOne(() => Program, (program) => program.planned_workouts)
+    program: Program
+
+
 
 }
