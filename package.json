@@ -2,6 +2,7 @@
    "dependencies": {
       "pg": "^8.4.0",
       "react": "^17.0.2",
+      "react-router-dom": "^6.2.2",
       "reflect-metadata": "^0.1.13",
       "typeorm": "0.3.0"
    },
