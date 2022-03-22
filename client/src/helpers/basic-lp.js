@@ -59,4 +59,4 @@ console.log(basicLP(fakeWorkouts, fakeInits, 2));
 console.log(basicLP(fakeWorkouts, fakeInits, 3));
 console.log(basicLP(fakeWorkouts, fakeInits, 4));
 
-export default basicLP;
+// export default basicLP;
