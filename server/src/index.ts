@@ -41,6 +41,7 @@ AppDataSource.initialize().then(async () => {
 
     console.log("Inserting a new program into the database...")
     const program = new Program()
+    program.planned_workout_id = "this is the foreign key planned_workout_id"
     program.name = "12 weeks to shred"
     program.duration = 12
     program.description = "This is a 12 week program to cut fat."

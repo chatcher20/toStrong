@@ -26,6 +26,7 @@ export class Program {
   equipment_type: string
 
   @OneToMany(() => Planned_Workout, (planned_workout) => planned_workout.program)      // note: we will create program property in the Planned_Workout class
-    planned_workouts: Planned_Workout[]
+    planned_workouts: Planned_Workout
 
 }
+
