@@ -11,5 +11,10 @@ export class Friend {
 
   // Need a second user_id to match two users as "friends" ?
 
+  @Column()
+  friend_id: number             // this is a SECOND foreign key from user... how do we ensure it is unique?
+
+
+
 
 }
