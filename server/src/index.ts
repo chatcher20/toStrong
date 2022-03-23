@@ -5,9 +5,26 @@ import { Program } from "./entity/Program"
 import { Badge } from "./entity/Badge"
 import { Planned_Workout } from "./entity/Planned_Workout"
 import { Friend } from "./entity/Friend"
+import { User_Program } from "./entity/User_Program"
+import { Initial_Weight } from "./entity/Initial_Weight"
+import { User_Badge } from "./entity/User_Badge"
 
 
 AppDataSource.initialize().then(async () => {
+
+    console.log("Inserting a new program into the database...")
+    const program = new Program()
+    program.planned_workout_id = "this is the foreign key planned_workout_id"
+    program.name = "12 weeks to shred"
+    program.duration = 12
+    program.description = "This is a 12 week program to cut fat."
+    program.modality = "barbell-only"
+    program.equipment_type = "barbell"
+    await AppDataSource.manager.save(program)
+    console.log("Saved a new program with id: " + program.id)
+    console.log("Loading programs from the database...")
+    const programs = await AppDataSource.manager.find(Program)
+    console.log("Loaded programs: ", programs)
 
     console.log("Inserting a new user into the database...")
     const user = new User()
@@ -25,8 +42,18 @@ AppDataSource.initialize().then(async () => {
     console.log("Loading users from the database...")
     const users = await AppDataSource.manager.find(User)
     console.log("Loaded users: ", users)
-
     console.log("Here you can setup and run express / fastify / any other framework.")
+
+    console.log("Inserting a new user_program into the database...")
+    const user_program = new User_Program()
+    user_program.user_id = user.id
+    user_program.program_id = program.id
+    user_program.start_date = "This is the start date."
+    await AppDataSource.manager.save(user_program)
+    console.log("Saved a new user_program with id: " + user_program.id)
+    console.log("Loading user_programs from the database...")
+    const user_programs = await AppDataSource.manager.find(User_Program)
+    console.log("Loaded user_programs: ", user_programs)
 
     console.log("Inserting a new exercise into the database...")
     const exercise = new Exercise()
@@ -39,19 +66,16 @@ AppDataSource.initialize().then(async () => {
     const exercises = await AppDataSource.manager.find(Exercise)
     console.log("Loaded exercises: ", exercises)
 
-    console.log("Inserting a new program into the database...")
-    const program = new Program()
-    program.planned_workout_id = "this is the foreign key planned_workout_id"
-    program.name = "12 weeks to shred"
-    program.duration = 12
-    program.description = "This is a 12 week program to cut fat."
-    program.modality = "barbell-only"
-    program.equipment_type = "barbell"
-    await AppDataSource.manager.save(program)
-    console.log("Saved a new program with id: " + program.id)
-    console.log("Loading programs from the database...")
-    const programs = await AppDataSource.manager.find(Program)
-    console.log("Loaded programs: ", programs)
+    console.log("Inserting a new initial_weight into the database...")
+    const initial_weight = new Initial_Weight()
+    initial_weight.user_program_id = user_program.id
+    initial_weight.exercise_id = exercise.id
+    initial_weight.weight = 90
+    await AppDataSource.manager.save(initial_weight)
+    console.log("Saved a new initial_weight with id: " + initial_weight.id)
+    console.log("Loading initial_weights from the database...")
+    const initial_weights = await AppDataSource.manager.find(Initial_Weight)
+    console.log("Loaded initial_weights: ", initial_weights)
 
     console.log("Inserting a new badge into the database...")
     const badge = new Badge()
@@ -63,6 +87,16 @@ AppDataSource.initialize().then(async () => {
     console.log("Loading badges from the database...")
     const badges = await AppDataSource.manager.find(Badge)
     console.log("Loaded badges: ", badges)
+
+    console.log("Inserting a new user_badge into the database...")
+    const user_badge = new User_Badge()
+    user_badge.user_id = user.id
+    user_badge.badge_id = badge.id
+    await AppDataSource.manager.save(user_badge)
+    console.log("Saved a new user_badge with id: " + user_badge.id)
+    console.log("Loading user_badges from the database...")
+    const user_badges = await AppDataSource.manager.find(User_Badge)
+    console.log("Loaded user_badges: ", user_badges)
 
     console.log("Inserting a new planned workout into the database...")
     const planned_workout = new Planned_Workout()
