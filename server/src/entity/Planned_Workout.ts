@@ -1,6 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
 import { Program } from "../entity/Program"
-import { Exercise } from "../entity/Exercise"
 
 @Entity()
 export class Planned_Workout {
@@ -9,7 +8,7 @@ export class Planned_Workout {
   id: number
 
   @Column()
-  day: integer
+  day: number            // day 1 has an assigned exercises of squat, bench, deadlift for example. (An object where the keys are the exercise)
 
   @Column()
   exercise_order: string
