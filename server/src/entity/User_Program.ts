@@ -1,5 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
+// Joins users and programs
+
 @Entity()
 export class User_Program {
 

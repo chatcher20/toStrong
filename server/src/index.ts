@@ -8,6 +8,7 @@ import { Friend } from "./entity/Friend"
 import { User_Program } from "./entity/User_Program"
 import { Initial_Weight } from "./entity/Initial_Weight"
 import { User_Badge } from "./entity/User_Badge"
+import { Actual_Workout } from "./entity/Actual_Workout"
 
 
 AppDataSource.initialize().then(async () => {
@@ -109,6 +110,25 @@ AppDataSource.initialize().then(async () => {
     console.log("Loading planned workouts from the database...")
     const planned_workouts = await AppDataSource.manager.find(Planned_Workout)
     console.log("Loaded planned workouts: ", planned_workouts)
+
+    console.log("Inserting a new actual_workout into the database...")
+    const actual_workout = new Actual_Workout()
+    actual_workout.user_id = user.id
+    actual_workout.planned_workout_id = planned_workout.id
+    actual_workout.exerciseIsComplete = {
+        squat: true,
+        bench: true,
+        deadlift: true,
+        press: true,
+        chinups: false,
+    }
+    await AppDataSource.manager.save(actual_workout)
+    console.log("Saved a new actual_workout with id: " + actual_workout.id)
+    console.log("Loading actual_workouts from the database...")
+    const actual_workouts = await AppDataSource.manager.find(Actual_Workout)
+    console.log("Loaded actual_workouts: ", actual_workouts)
+
+
 
     console.log("Inserting a new friend into the database...")
     const friend = new Friend()
