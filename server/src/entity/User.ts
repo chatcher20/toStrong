@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from "typeorm"
-import { Program } from "../entity/Program"
+import { Program } from "./Program"
+import { Badge } from "./Badge"
 
 @Entity()
 export class User {
@@ -37,5 +38,9 @@ export class User {
     @ManyToMany(() => Program)
     @JoinTable()
     programs: Program[];
+
+    @ManyToMany(() => Badge)
+    @JoinTable()
+    badges: Badge[];
 
 }

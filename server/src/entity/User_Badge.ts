@@ -1,7 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
+// Joins users and badges
+
 @Entity()
-export class User_Program {
+export class User_Badge {
 
     @PrimaryGeneratedColumn()
     id: number
@@ -10,9 +12,6 @@ export class User_Program {
     user_id: number
 
     @Column()
-    program_id: number
-
-    @Column()
-    start_date: string
+    badge_id: number
 
 }

@@ -7,7 +7,7 @@ import { Planned_Workout } from "./entity/Planned_Workout"
 import { Friend } from "./entity/Friend"
 import { User_Program } from "./entity/User_Program"
 import { Initial_Weight } from "./entity/Initial_Weight"
-
+import { User_Badge } from "./entity/User_Badge"
 
 
 AppDataSource.initialize().then(async () => {
@@ -87,6 +87,16 @@ AppDataSource.initialize().then(async () => {
     console.log("Loading badges from the database...")
     const badges = await AppDataSource.manager.find(Badge)
     console.log("Loaded badges: ", badges)
+
+    console.log("Inserting a new user_badge into the database...")
+    const user_badge = new User_Badge()
+    user_badge.user_id = user.id
+    user_badge.badge_id = badge.id
+    await AppDataSource.manager.save(user_badge)
+    console.log("Saved a new user_badge with id: " + user_badge.id)
+    console.log("Loading user_badges from the database...")
+    const user_badges = await AppDataSource.manager.find(User_Badge)
+    console.log("Loaded user_badges: ", user_badges)
 
     console.log("Inserting a new planned workout into the database...")
     const planned_workout = new Planned_Workout()
