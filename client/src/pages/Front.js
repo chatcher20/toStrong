@@ -17,7 +17,7 @@ export default function Front() {
     <img src={Weightlift} />
     <div />
     <div>
-      <Button word="Sign Up" path="/new"/>
+      <Button word="Sign Up" path="/users/new"/>
       <Button word="Sign in" path="/signin"/>
     </div>
   </div>

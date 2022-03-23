@@ -9,18 +9,19 @@ html {
 }
 
 .app {
-  display: flex;
-  flex-direction: column;
+  display: flex; 
+   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: center;   
   width: 400px;
   height: 812px;
   margin: 0 auto;
   padding: 40px;
-  background-color: rgb(99, 173, 241);
+  background-color: rgb(155, 198, 238);
 }
 
 nav ul {
+  position: fixed;
   list-style: none;
   display: flex;
   justify-content: space-around;
@@ -53,9 +54,29 @@ p {
 div {
   display: flex;
   justify-content: space-around;
-  gap: 30px;
+  flex-direction: column;
+  /* gap: 30px; */
+
 }
 
-img {
-  font-size: 30px;
+div img {
+  height: 300px;
+  width: fit-content;
 }
+
+
+.badge img {
+  font-size: 20px;
+  height: 200px;
+  width: fit-content;
+}
+
+li img {
+  height: 200px;
+}
+
+.friend-badge {
+  height: 50px;
+}
+
+

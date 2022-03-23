@@ -7,40 +7,31 @@ import Friends from "../pages/Friends";
 import Graphs from "../pages/Graphs";
 import ErrorPage from "../pages/ErrorPage";
 import Front from "../pages/Front";
+import New from "../pages/New";
+import SignIn from "../pages/SignIn";
+import Navigation from "./Navigation";
+import CurrentProgram from "../pages/CurrentProgram";
+import Exercise from "../pages/Exercise";
+
 
 const App = () => {
   return (
     <div className='app'>
       <Router>
         <Routes>
-          <Route path="/programs" element={<Programs />} />
+          <Route path="/programs/all" element={<Programs />} />
+          <Route path="/programs/:id" element={<CurrentProgram />} />
+          <Route path="/programs/:id/:exercise" element={<Exercise />} />
           <Route path="/library" element={<Library />} />
-          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/users/new" element={<New />} />
+          <Route path="/users/:id" element={<Profile />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/graphs" element={<Graphs />} />
-          <Route path="/front" element={<Front />} />
+          <Route path="/" element={<Front />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/programs"> Programs </Link>
-            </li>
-            <li>
-              <Link to="/library"> Library </Link>
-            </li>
-            <li>
-              {" "}
-              <Link to="/profile/:id"> Profile </Link>
-            </li>
-            <li>
-              <Link to="/friends"> Friends </Link>
-            </li>
-            <li>
-              <Link to="/graphs"> Graphs </Link>
-            </li>
-          </ul>
-        </nav>
+        <Navigation />
       </Router>
     </div>
   );
