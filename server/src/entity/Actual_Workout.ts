@@ -18,3 +18,4 @@ export class Actual_Workout {
     exerciseIsComplete: { squat: boolean; bench: boolean; deadlift: boolean; press: boolean; chinups: boolean }
     
 }
+

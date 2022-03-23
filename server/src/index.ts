@@ -128,8 +128,6 @@ AppDataSource.initialize().then(async () => {
     const actual_workouts = await AppDataSource.manager.find(Actual_Workout)
     console.log("Loaded actual_workouts: ", actual_workouts)
 
-
-
     console.log("Inserting a new friend into the database...")
     const friend = new Friend()
     friend.user_id = 347
@@ -138,9 +136,5 @@ AppDataSource.initialize().then(async () => {
     console.log("Loading friends from the database...")
     const friends = await AppDataSource.manager.find(Friend)
     console.log("Loaded friends: ", friends)
-
-
-
-
 
 }).catch(error => console.log(error))
