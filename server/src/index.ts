@@ -6,6 +6,8 @@ import { Badge } from "./entity/Badge"
 import { Planned_Workout } from "./entity/Planned_Workout"
 import { Friend } from "./entity/Friend"
 import { User_Program } from "./entity/User_Program"
+import { Initial_Weight } from "./entity/Initial_Weight"
+
 
 
 AppDataSource.initialize().then(async () => {
@@ -53,8 +55,6 @@ AppDataSource.initialize().then(async () => {
     const user_programs = await AppDataSource.manager.find(User_Program)
     console.log("Loaded user_programs: ", user_programs)
 
-
-
     console.log("Inserting a new exercise into the database...")
     const exercise = new Exercise()
     exercise.name = "pullups"
@@ -65,6 +65,17 @@ AppDataSource.initialize().then(async () => {
     console.log("Loading exercises from the database...")
     const exercises = await AppDataSource.manager.find(Exercise)
     console.log("Loaded exercises: ", exercises)
+
+    console.log("Inserting a new initial_weight into the database...")
+    const initial_weight = new Initial_Weight()
+    initial_weight.user_program_id = user_program.id
+    initial_weight.exercise_id = exercise.id
+    initial_weight.weight = 90
+    await AppDataSource.manager.save(initial_weight)
+    console.log("Saved a new initial_weight with id: " + initial_weight.id)
+    console.log("Loading initial_weights from the database...")
+    const initial_weights = await AppDataSource.manager.find(Initial_Weight)
+    console.log("Loaded initial_weights: ", initial_weights)
 
     console.log("Inserting a new badge into the database...")
     const badge = new Badge()

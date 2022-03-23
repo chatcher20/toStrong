@@ -7,6 +7,7 @@ import { Badge } from "./entity/Badge"
 import { Planned_Workout } from "./entity/Planned_Workout"
 import { Friend } from "./entity/Friend"
 import { User_Program } from "./entity/User_Program"
+import { Initial_Weight } from "./entity/Initial_Weight"
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -17,7 +18,7 @@ export const AppDataSource = new DataSource({
     database: "tostrong",
     synchronize: true,
     logging: false,
-    entities: [User, Exercise, Program, Badge, Planned_Workout, Friend, User_Program],
+    entities: [User, Exercise, Program, Badge, Planned_Workout, Friend, User_Program, Initial_Weight],
     migrations: [],
     subscribers: [],
 })
