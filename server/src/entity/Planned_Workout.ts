@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
 import { Program } from "../entity/Program"
-import { User } from "../entity/User"
+import { Exercise } from "../entity/Exercise"
 
 @Entity()
 export class Planned_Workout {
@@ -9,22 +9,13 @@ export class Planned_Workout {
   id: number
 
   @Column()
-  exercise_id: number             // this is a foreign key from Exercise
+  day: string
 
   @Column()
-  name: string
-
-  @Column()
-  sets: number
-
-  @Column()
-  reps: number
+  exercise_order: string
 
   @ManyToOne(() => Program, (program) => program.planned_workouts)
     program: Program
 
-  @ManyToMany(() => User)
-  @JoinTable()
-  users: User[];
 
 }

@@ -24,7 +24,10 @@ export class User {
     weight: number
 
     @Column()
-    height: number
+    height_feet: number
+
+    @Column()
+    height_inches: number
 
     @Column()
     avatar: string
@@ -33,7 +36,7 @@ export class User {
     about_me: string
 
     @Column()
-    weight_change: number
+    weight_change: string    // example: "bulk" or "cut"
 
     @ManyToMany(() => Program)
     @JoinTable()
