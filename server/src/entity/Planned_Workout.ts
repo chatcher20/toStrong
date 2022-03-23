@@ -9,7 +9,7 @@ export class Planned_Workout {
   id: number
 
   @Column()
-  day: string
+  day: integer
 
   @Column()
   exercise_order: string

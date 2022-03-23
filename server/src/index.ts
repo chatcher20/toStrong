@@ -53,7 +53,7 @@ AppDataSource.initialize().then(async () => {
 
     console.log("Inserting a new planned workout into the database...")
     const planned_workout = new Planned_Workout()
-    planned_workout.day = "Day 16"
+    planned_workout.day = 23       // integer starting at 1 then going to 36 or 48 or however many days the program is (assuming 1 planned workout on a given day)
     planned_workout.exercise_order = "This will be the exercise order"
     await AppDataSource.manager.save(planned_workout)
     console.log("Saved a new planned_workout with id: " + planned_workout.id)
