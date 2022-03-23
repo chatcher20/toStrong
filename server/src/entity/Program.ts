@@ -8,7 +8,7 @@ export class Program {
   id: number
 
   @Column()
-  planned_workout_id: string     // this is a foreign key from planned workout
+  planned_workout_id: number     // this is a foreign key from planned workout
 
   @Column()
   name: string

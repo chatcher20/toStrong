@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
-// Joins planned_workouts and users
+// Joins exercises and users
 
 @Entity()
 export class Actual_Workout {
@@ -12,10 +12,17 @@ export class Actual_Workout {
     user_id: number
 
     @Column()
-    planned_workout_id: number
+    exercise_id: number
 
-    @Column("simple-json")
-    exerciseIsComplete: { squat: boolean; bench: boolean; deadlift: boolean; press: boolean; chinups: boolean }
+    @Column()
+    exercise_completion: boolean
+
+    // @Column()
+    // planned_workout_id: number
+
+    // @Column("simple-json")
+    // exerciseIsComplete: { squat: boolean; bench: boolean; deadlift: boolean; press: boolean; chinups: boolean }
     
 }
+
 
