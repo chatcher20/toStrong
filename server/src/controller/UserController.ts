@@ -4,11 +4,11 @@ import {User} from "../entity/User";
 
 export class UserController {
 
-   private userRepository = getRepository(User); 
+   // private userRepository = getRepository(User); 
    
-   async all(request: Request, response: Response, next: NextFunction) { 
-      return this.userRepository.find(); 
-   } 
+   // async all(request: Request, response: Response, next: NextFunction) { 
+   //    return this.userRepository.find(); 
+   // } 
    
    // async one(request: Request, response: Response, next: NextFunction) {
    //    console.log(request.params.id);
