@@ -5,33 +5,29 @@ export default function New() {
     <div className="layout">
       SIGN UP -
       <div classsName="field forms">
-        <label class="label">Username: </label>
-        <div class="control">
-          <input class="input" type="text" placeholder="" />
-        </div>
-        <label class="label">Email: </label>
-        <div class="control">
-          <input class="input" type="text" placeholder="" />
-        </div>
-        <label class="label">Password: </label>
-        <div class="control">
-          <input class="input" type="text" placeholder="" />
-        </div>
-        <label class="label">Confirm Password: </label>
-        <div class="control">
-          <input class="input" type="text" placeholder="" />
+    
+        <div className="control">
+          <input className="input" type="text" placeholder="Username" />
         </div>
 
-        <label class="label">Height: </label>
-        <div class="control">
-          <input class="input" type="text" placeholder="" />
+        <div className="control">
+          <input className="input" type="email" placeholder="Email" />
         </div>
-        <label class="label">Weight: </label>
-        <div class="control">
-          <input class="input" type="text" placeholder="" />
+        <div className="control">
+          <input className="input" type="password" placeholder="Password" />
         </div>
-        <div class="control">
-          <button class="button is-primary">Submit</button>
+        <div className="control">
+          <input className="input" type="password" placeholder="Confirm Password" />
+        </div>
+
+        <div className="control">
+          <input className="input" type="text" placeholder="Height .ft" />
+        </div>
+        <div className="control">
+          <input className="input" type="number" placeholder="Weight .lb" />
+        </div>
+        <div className="control">
+          <button className="button is-primary">Submit</button>
         </div>
       </div>
     </div>

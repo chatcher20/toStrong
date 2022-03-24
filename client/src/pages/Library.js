@@ -1,40 +1,32 @@
-import React from 'react'
+import React, { useState } from "react";
+import LibraryList from "../components/LibraryList";
+import LibraryListItem from "../components/LibraryListItem";
 
 export default function Library() {
+  const [query, setQuery] = useState('');
+  
+
+
+
   return (
     <div>
-      <label>All workouts</label>
-      <input placeholder="search...">
-      </input>
-      <button className='button'> submit
-      </button>
-      <ul>
-        <li>
-          1
-        </li>
-        <li>
-          2
-        </li>
-        <li>
-          3
-        </li>
-        <li>
-          4
-        </li>
-        <li>
-          5
-        </li>
-        <li>
-          6
-        </li>
-        <li>
-          7
-        </li>
-        <li>
-          8
-        </li>
-
-      </ul>
+      <label className="is-size-3">All workouts</label>
+      <br />
+      <div className="search-bar">
+        <div className="control">
+          <input
+            className="input is-medium"
+            type="text"
+            placeholder='Search...'
+            onChange={event => setQuery(event.target.value)}
+          />
+        </div>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+        test: {query}
+      <br />
+      <LibraryListItem query={query}/>
+      {/* <LibraryList query={query}/> */}
     </div>
-  )
+  );
 }

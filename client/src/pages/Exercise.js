@@ -10,48 +10,48 @@ export default function Exercise() {
         <li>
           ex1
           <br />
-          <label class="checkbox">
+          <label className="checkbox">
             Complete
             <input type="checkbox" />
           </label>
         </li>
         <li>ex2
         <br />
-          <label class="checkbox">
+          <label className="checkbox">
             Complete
             <input type="checkbox" />
           </label>
         </li>
         <li>ex3
         <br />
-          <label class="checkbox">
+          <label className="checkbox">
             Complete
             <input type="checkbox" />
           </label>
         </li>
         <li>ex4
         <br />
-          <label class="checkbox">
+          <label className="checkbox">
             Complete
             <input type="checkbox" />
           </label>
         </li>
         <li>ex5
         <br />
-          <label class="checkbox">
+          <label className="checkbox">
             Complete
             <input type="checkbox" />
           </label>
         </li>
         <li>ex6
         <br />
-          <label class="checkbox">
+          <label className="checkbox">
             Complete
             <input type="checkbox" />
           </label>
         </li>
-        <div class="control">
-          <button class="button is-primary">Submit</button>
+        <div className="control">
+          <button className="button is-primary">Submit</button>
         </div>
       </ol>
     </div>
