@@ -1,0 +1,84 @@
+
+  html {
+    box-sizing: border-box;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+  }
+  
+  
+  .app {
+    
+    max-width: 375px;
+    min-height: 812px;
+    height: 812px;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin: 0 auto;
+    background-color: rgb(155, 198, 238);
+  }
+
+  .contents {
+    width: 375px;
+    display: flex; 
+     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;   
+    padding: 100px 40px;
+    height: 100%;
+  }
+  
+  
+  
+  .current {
+    border-bottom: 4px solid white;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+    font-size: 60px;
+  }
+  
+  p {
+    margin-bottom: 15px;
+  }
+  
+  div {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+  
+  div img {
+    height: 300px;
+    width: fit-content;
+  }
+  
+  
+  .badge img {
+    font-size: 20px;
+    height: 200px;
+    width: fit-content;
+  }
+  
+  li img {
+    height: 200px;
+  }
+  
+  .friend-badge {
+    height: 50px;
+  }
+  
+
+.search-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+
+

@@ -5,7 +5,7 @@ import BenchOverRaise from '../images/bench-over-head.png';
 export default function Programs() {
   return (
     <div>
-      <div class="control">
+      <div className="control">
         <strong>All Programs</strong>
         <Link to="/programs/:id"> Current Program </Link>
         <ul>

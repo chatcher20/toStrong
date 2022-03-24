@@ -7,28 +7,28 @@ export default function CurrentProgram() {
       <strong>Current Program</strong>
       <Link to="/programs/all"> All Programs </Link>
       <br />
-      <div class="table-container">
-        <lable> Program name</lable>
+      <div className="table-container">
+        <label> Program name</label>
         <ul>
           <li>
-          <Link to="/programs/:id/:exercise"> W1D1</Link>
+          <Link to="/programs/:id/:workout_id"> W1D1</Link>
           Workout 1, Push
           </li>
           <li>
-          <Link to="/programs/:id/:exercise"> W1D2</Link>
+          <Link to="/programs/:id/:workout_id"> W1D2</Link>
           Workout 2, Pull
           </li>
           <li>
-          <Link to="/programs/:id/:exercise"> W1D3</Link>
+          <Link to="/programs/:id/:workout_id"> W1D3</Link>
           Workout 3, Push
           </li>
           <li>
-          <Link to="/programs/:id/:exercise"> W1D4</Link>
+          <Link to="/programs/:id/:workout_id"> W1D4</Link>
           Workout 4, Pull
           </li>
         </ul>
-        <div class="control">
-          <button class="button is-primary">Continue</button>
+        <div className="control">
+          <button className="button is-primary">Continue</button>
         </div>
       </div>
     </div>

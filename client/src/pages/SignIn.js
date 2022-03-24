@@ -5,17 +5,17 @@ export default function SignIn() {
     <div className="layout">
       SIGN IN -
       <div classsName="field forms">
-        <label class="label">Username: </label>
-        <div class="control">
-          <input class="input" type="text" placeholder="" />
+        <label className="label">Username: </label>
+        <div className="control">
+          <input className="input" type="text" placeholder="" />
         </div>
-        <label class="label">Password: </label>
-        <div class="control">
-          <input class="input" type="text" placeholder="" />
+        <label className="label">Password: </label>
+        <div className="control">
+          <input className="input" type="text" placeholder="" />
         </div>
         
-        <div class="control">
-          <button class="button is-primary">Submit</button>
+        <div className="control">
+          <button className="button is-primary">Submit</button>
         </div>
       </div>
     </div>
