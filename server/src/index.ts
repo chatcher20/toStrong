@@ -1,3 +1,7 @@
+// index.ts is our main web application entry point.
+
+import * as express from "express"
+import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import { User } from "./entity/User"
 import { Exercise } from "./entity/Exercise"
@@ -152,3 +156,48 @@ AppDataSource.initialize().then(async () => {
     console.log("Loaded friends: ", friends)
 
 }).catch(error => console.log(error))
+
+
+
+// import * as express from "express"
+// import { Request, Response } from "express"
+
+// create and setup express app
+const app = express()
+app.use(express.json())
+
+// register routes
+
+// register routes
+app.get("/exercises", async function (req: Request, res: Response) {
+    const exercises = await AppDataSource.getRepository(Exercise).find()
+    res.json(exercises)
+})
+
+
+
+// app.get("/exercises", function (req: Request, res: Response) {
+//     // here we will have logic to return all exercisess
+// })
+
+// app.get("/users/:id", function (req: Request, res: Response) {
+//     // here we will have logic to return user by id
+// })
+
+// app.post("/users", function (req: Request, res: Response) {
+//     // here we will have logic to save a user
+// })
+
+// app.put("/users/:id", function (req: Request, res: Response) {
+//     // here we will have logic to update a user by a given user id
+// })
+
+// app.delete("/users/:id", function (req: Request, res: Response) {
+//     // here we will have logic to delete a user by a given user id
+// })
+
+// start express server
+app.listen(3000)
+
+
+
