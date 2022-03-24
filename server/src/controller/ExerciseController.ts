@@ -4,11 +4,11 @@ import {Exercise} from "../entity/Exercise";
 
 export class ExerciseController {
 
-   private exerciseRepository = getRepository(Exercise); 
+   // private exerciseRepository = getRepository(Exercise); 
    
-   async all(request: Request, response: Response, next: NextFunction) { 
-      return this.exerciseRepository.find(); 
-   } 
+   // async all(request: Request, response: Response, next: NextFunction) { 
+   //    return this.exerciseRepository.find(); 
+   // } 
    
    // async one(request: Request, response: Response, next: NextFunction) { 
    //    return this.exerciseRepository.findOne(request.params.id); 

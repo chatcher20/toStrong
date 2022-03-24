@@ -20,7 +20,7 @@ AppDataSource.initialize().then(async () => {
     console.log("Inserting a new user into the database...")
     const user = new User()
     user.username = "Freddy"
-    user.email = "Dino@apple.com"
+    user.email = "freddy@hotmail.com"
     user.password = "hello"
     user.password_confirmation = "hello"
     user.weight = 80
@@ -38,36 +38,23 @@ AppDataSource.initialize().then(async () => {
     console.log("Inserting a new user into the database...")
     const user2 = new User()
     user2.username = "Johnny"
-    user2.email = "Johnny@google.com"
-    user2.password = "hello"
-    user2.password_confirmation = "hello"
-    user2.weight = 80
+    user2.email = "johnny@google.com"
+    user2.password = "green"
+    user2.password_confirmation = "green"
+    user2.weight = 75
     user2.height_feet = 5
     user2.height_inches = 11
-    user2.avatar = "trex"
-    user2.about_me = "I have short arms."
-    user2.weight_change = "bulk"
+    user2.avatar = "stegosaur"
+    user2.about_me = "I am not a t-rex."
+    user2.weight_change = "cut"
     await AppDataSource.manager.save(user2)
     console.log("Saved a new user with id: " + user2.id)
     console.log("Loading users from the database...")
     const userRecord2 = await AppDataSource.manager.find(User)
     console.log("Loaded users: ", userRecord2)
 
-
-
-    console.log("Inserting a new planned workout into the database...")
-    const planned_workout = new Planned_Workout()
-    planned_workout.day = 23       // integer starting at 1 then going to 36 or 48 or however many days the program is (assuming 1 planned workout on a given day)
-    planned_workout.exercise_order = "This will be the exercise order"
-    await AppDataSource.manager.save(planned_workout)
-    console.log("Saved a new planned_workout with id: " + planned_workout.id)
-    console.log("Loading planned workouts from the database...")
-    const planned_workouts = await AppDataSource.manager.find(Planned_Workout)
-    console.log("Loaded planned workouts: ", planned_workouts)
-
     console.log("Inserting a new exercise into the database...")
     const exercise = new Exercise()
-    exercise.planned_workout_id = planned_workout.id
     exercise.name = "pullups"
     exercise.description = "grab the bar and pull yourself up to build back and arm muscles"
     exercise.video_url = "www.youtube.com"
@@ -76,6 +63,17 @@ AppDataSource.initialize().then(async () => {
     console.log("Loading exercises from the database...")
     const exercises = await AppDataSource.manager.find(Exercise)
     console.log("Loaded exercises: ", exercises)
+
+    console.log("Inserting a new planned workout into the database...")
+    const planned_workout = new Planned_Workout()
+    planned_workout.exercise_id = exercise.id
+    planned_workout.day = 23
+    planned_workout.exercise_order = 3
+    await AppDataSource.manager.save(planned_workout)
+    console.log("Saved a new planned_workout with id: " + planned_workout.id)
+    console.log("Loading planned workouts from the database...")
+    const planned_workouts = await AppDataSource.manager.find(Planned_Workout)
+    console.log("Loaded planned workouts: ", planned_workouts)
     
     console.log("Inserting a new program into the database...")
     const program = new Program()
@@ -158,15 +156,9 @@ AppDataSource.initialize().then(async () => {
 }).catch(error => console.log(error))
 
 
-
-// import * as express from "express"
-// import { Request, Response } from "express"
-
 // create and setup express app
 const app = express()
 app.use(express.json())
-
-// register routes
 
 // register routes
 app.get("/exercises", async function (req: Request, res: Response) {
@@ -174,30 +166,41 @@ app.get("/exercises", async function (req: Request, res: Response) {
     res.json(exercises)
 })
 
+app.get("/users", async function (req: Request, res: Response) {
+    const users = await AppDataSource.getRepository(User).find()
+    res.json(users)
+})
 
+app.get("/users/:id", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(User).findOneBy({
+        username: req.params.username,
+    })
+    return res.send(results)
+})
 
-// app.get("/exercises", function (req: Request, res: Response) {
-//     // here we will have logic to return all exercisess
-// })
+app.post("/users", async function (req: Request, res: Response) {
+    const user = await AppDataSource.getRepository(User).create(req.body)
+    const results = await AppDataSource.getRepository(User).save(user)
+    return res.send(results)
+})
 
-// app.get("/users/:id", function (req: Request, res: Response) {
-//     // here we will have logic to return user by id
-// })
+app.put("/users/:id", async function (req: Request, res: Response) {
+    const user = await AppDataSource.getRepository(User).findOneBy({
+        username: req.params.username,
+    })
+    AppDataSource.getRepository(User).merge(user, req.body)
+    const results = await AppDataSource.getRepository(User).save(user)
+    return res.send(results)
+})
 
-// app.post("/users", function (req: Request, res: Response) {
-//     // here we will have logic to save a user
-// })
-
-// app.put("/users/:id", function (req: Request, res: Response) {
-//     // here we will have logic to update a user by a given user id
-// })
-
-// app.delete("/users/:id", function (req: Request, res: Response) {
-//     // here we will have logic to delete a user by a given user id
-// })
+app.delete("/users/:id", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(User).delete(req.params.id)
+    return res.send(results)
+})
 
 // start express server
 app.listen(3000)
+console.log("Express server app is listening on port 3000.")
 
 
 

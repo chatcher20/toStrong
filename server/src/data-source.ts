@@ -25,6 +25,6 @@ export const AppDataSource = new DataSource({
     subscribers: [],
 })
 
+// find way to put the seed information currently filling up index.ts into the migrations folder and update the misgrations array inside AppDataSource here on line 24.
 
-
-// 5432 is the database port, should be different thant server port
+// 5432 is the pg database port, express server port is 3000

@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from "typeorm"
 import { Program } from "../entity/Program"
+import { Exercise } from "../entity/Exercise"
 
 @Entity()
 export class Planned_Workout {
@@ -8,13 +9,23 @@ export class Planned_Workout {
   id: number
 
   @Column()
-  day: number            // day 1 has an assigned exercises of squat, bench, deadlift for example. (An object where the keys are the exercise)
+  day: number            
 
   @Column()
-  exercise_order: string
+  exercise_order: number
 
   @ManyToOne(() => Program, (program) => program.planned_workouts)
-    program: Program
+  program: Program
 
+  @Column()
+  exercise_id: number     // this is a foreign key from exercise
+
+  @ManyToMany(() => Exercise)
+  @JoinTable()
+  exercises: Exercise[]
 
 }
+
+// A planned_workout can have multiple exercises, and each exercise can belong to multiple planned_workouts.
+
+// @JoinTable() is required for @ManyToMany relations. You must put @JoinTable on one (owning) side of relation.
