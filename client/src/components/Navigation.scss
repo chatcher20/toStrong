@@ -1,7 +1,9 @@
 
 .app .navbar {
+  display: flex;
+  align-content: space-around;
   position: fixed;
-  bottom: 230px;
+  bottom: 200px;
   width: 32.4%;
   z-index: 1000;
   min-width: 375px;

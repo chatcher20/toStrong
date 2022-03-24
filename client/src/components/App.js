@@ -4,7 +4,6 @@ import Profile from "../pages/Profile";
 import Programs from "../pages/Programs";
 import Library from "../pages/Library";
 import Friends from "../pages/Friends";
-import Graphs from "../pages/Graphs";
 import ErrorPage from "../pages/ErrorPage";
 import Front from "../pages/Index";
 import New from "../pages/New";
@@ -37,7 +36,6 @@ const App = () => {
           <Route path="/users/new" element={<New />} />
           <Route path="/users/:id" element={<Profile />} />
           <Route path="/friends" element={<Friends />} />
-          <Route path="/graphs" element={<Graphs />} />
           <Route path="/" element={<Front />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="*" element={<ErrorPage />} />
