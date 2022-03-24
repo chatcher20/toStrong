@@ -19,9 +19,12 @@ export const AppDataSource = new DataSource({
     password: "labber",
     database: "tostrong",
     synchronize: true,
-    logging: false,
+    logging: true,
     entities: [User, Exercise, Program, Badge, Planned_Workout, Friend, User_Program, Initial_Weight, User_Badge, Actual_Workout],
     migrations: [],
     subscribers: [],
 })
 
+
+
+// 5432 is the database port, should be different thant server port
