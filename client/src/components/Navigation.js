@@ -16,10 +16,10 @@ const Navigation = () => {
           <Link to="/programs/:id"> Program </Link>
         </a>
         <a className="navbar-item">
-          <Link to="/library"> Library </Link>
+          <Link to="/users/:id"> Profile </Link>
         </a>
         <a className="navbar-item">
-          <Link to="/users/:id"> Profile </Link>
+          <Link to="/library"> Library </Link>
         </a>
         <a className="navbar-item">
           <Link to="/friends"> Friends </Link>

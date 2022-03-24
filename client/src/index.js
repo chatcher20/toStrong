@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
+import "bulma/css/bulma.css";
 import reportWebVitals from "./helpers/reportWebVitals";
 
 ReactDOM.render(
