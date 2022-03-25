@@ -35,7 +35,6 @@ AppDataSource.initialize().then(async () => {
           const user = userRepository.create(userObj);
           console.log("user", user);
           const newList = await userRepository.save(user);
-          return user;
       };
 
   const exerciseRepository = AppDataSource.getRepository(Exercise);
