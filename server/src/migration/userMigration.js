@@ -26,8 +26,8 @@ module.exports = class PostRefactoringNewest1648161812833 {
         await queryRunner.query(`INSERT INTO "initial_weight" (user_program_id, exercise_id, weight)
         VALUES (5, 10, 90)`);
 
-        await queryRunner.query(`INSERT INTO "actual_workout" (user_id, exercise_id, exercise_completion)
-        VALUES (1, 4, true)`);
+        await queryRunner.query(`INSERT INTO "actual_workout" (user_id, exercise_id, planned_workout_id, exercise_completion)
+        VALUES (1, 4, 3, true)`);
 
         await queryRunner.query(`INSERT INTO "badge" (name, description, image)
         VALUES ('500lb Deadlift Badge', 'You are a beast!', 'image url here')`);

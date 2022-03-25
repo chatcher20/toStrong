@@ -15,10 +15,10 @@ export class Actual_Workout {
     exercise_id: number
 
     @Column()
-    exercise_completion: boolean
+    planned_workout_id: number
 
-    // @Column()
-    // planned_workout_id: number
+    @Column()
+    exercise_completion: boolean
 
     // @Column("simple-json")
     // exerciseIsComplete: { squat: boolean; bench: boolean; deadlift: boolean; press: boolean; chinups: boolean }
