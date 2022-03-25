@@ -4,7 +4,7 @@ export default function SignIn() {
   return (
     <div className="layout is-size-3">
       SIGN IN -
-      <div classsName="field forms">
+      <div className="field forms">
       <br/>
         <label className="label">Username: </label>
         <div className="control">

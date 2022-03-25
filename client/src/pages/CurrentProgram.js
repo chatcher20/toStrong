@@ -130,24 +130,24 @@ export default function CurrentProgram() {
         <label> Program name</label>
         <ul>
           <li>
-            <Link to="/programs/:id/:workout_id"> W1D1</Link>
+            <Link to="/programs/:id/:exercise_id"> W1D1</Link>
             Workout 1, Push
           </li>
           <li>
-            <Link to="/programs/:id/:workout_id"> W1D2</Link>
+            <Link to="/programs/:id/:exercise_id"> W1D2</Link>
             Workout 2, Pull
           </li>
           <li>
-            <Link to="/programs/:id/:workout_id"> W1D3</Link>
+            <Link to="/programs/:id/:exercise_id"> W1D3</Link>
             Workout 3, Push
           </li>
           <li>
-            <Link to="/programs/:id/:workout_id"> W1D4</Link>
+            <Link to="/programs/:id/:exercise_id"> W1D4</Link>
             Workout 4, Pull
           </li>
         </ul>
         <br/>
-        <progress class="progress is-info is-small" value="15" max="100">15%</progress>
+        <progress className="progress is-info is-small" value="15" max="100">15%</progress>
       </div>
       <NewGraph />
       <button className='button'>Last 14 Days</button>

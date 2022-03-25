@@ -1,30 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import BenchOverRaise from '../images/bench-over-head.png';
+import ProgramList from "../components/ProgramList";
 
 export default function Programs() {
+  const [query, setQuery] = useState('');
+
   return (
     <div>
       <div className="control">
         <strong>All Programs</strong>
         <Link to="/programs/:id"> Current Program </Link>
-        <ul>
-          <li>
-          <Link to="/programs/1"> Program 1</Link>
-            <img src={BenchOverRaise} />
-          </li>
-          <li>
-          <Link to="/programs/2"> Program 2</Link>
-          <img src={BenchOverRaise} />
-          </li>
-          <li>
-          <Link to="/programs/3"> Program 3</Link>
-          <img src={BenchOverRaise} />
-          </li>
-          
-
-        </ul>
+        <br/>
+        <div className="search-bar">
+        <div className="control">
+          <input
+            className="input is-medium"
+            type="text"
+            placeholder='Search...'
+            onChange={event => setQuery(event.target.value)}
+          />
+        </div>
+        <i className="fa-solid fa-magnifying-glass"></i>
       </div>
+      <br/>
+          <ProgramList query={query}/>
+          
+      </div>
+      
     </div>
   );
 }

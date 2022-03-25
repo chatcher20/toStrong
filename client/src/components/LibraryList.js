@@ -5,19 +5,23 @@ const axios = require("axios");
 
 export default function LibraryList(props) {
   const { query } = props;
-  const [listCards, setListCards] = useState([]);
-  const [lists, setLists] = useState([]);  
+  const [lists, setLists] = useState([]);
+  const [displayedList, setdisplayedList] = useState([]);
 
   useEffect(() => {
     axios
-    .get("http://localhost:3001/exercises")
-    .then((res) => {
-      setLists(res.data);
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-  }, [])
+      .get("/exercises")
+      .then((res) => {
+        setLists(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+
+  useEffect(() => {
+    setdisplayedList(lists);
+  }, [lists]);
 
   useEffect(() => {
     const searchResult = lists.filter((list) => {
@@ -28,27 +32,28 @@ export default function LibraryList(props) {
         list.description.toLowerCase().includes(query.toLowerCase())
       ) {
         return true;
-      } 
+      }
       return false;
-  
     });
 
-    setListCards(searchResult)
+    setdisplayedList(searchResult);
   }, [query]);
 
-  useEffect(() => {
-    setListCards(lists)
-  }, [lists])
 
-  console.log("query: ", query);
-
-  console.log("listcards: ", listCards);
-
-  console.log("lists: ", lists);
-
-  const listCardItem = listCards.map((list) => (
-    <LibraryListItem name={list.name} description={list.description} url={list.video_url}/>
-  ));
+  const listCardItem = displayedList
+    .map((list) => (
+      <LibraryListItem
+        key={list.id}
+        name={list.name}
+        description={list.description}
+        url={list.video_url}
+      />
+    ))
+    .sort((a, b) => {
+      if (a < b) return -1;
+      if (a > b) return 1;
+      return 0;
+    });
 
   return <ul>{listCardItem}</ul>;
 }
