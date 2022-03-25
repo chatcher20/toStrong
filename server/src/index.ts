@@ -15,27 +15,81 @@ import { User_Badge } from "./entity/User_Badge"
 import { Actual_Workout } from "./entity/Actual_Workout"
 
 
-import { exercisesToBeSeeded } from "./migration/exercisesToBeSeeded.js"
 import { usersToBeSeeded } from "./migration/usersToBeSeeded.js"
+import { exercisesToBeSeeded } from "./migration/exercisesToBeSeeded.js"
+import { planned_workoutsToBeSeeded } from "./migration/planned_workoutsToBeSeeded.js"
+import { programsToBeSeeded } from "./migration/programsToBeSeeded.js"
+import { initial_weightsToBeSeeded } from "./migration/initial_weightsToBeSeeded.js"
+import { actual_workoutsToBeSeeded } from "./migration/actual_workoutsToBeSeeded.js"
+import { badgesToBeSeeded } from "./migration/badgesToBeSeeded.js"
+import { user_badgesToBeSeeded } from "./migration/user_badgesToBeSeeded.js"
+import { friendsToBeSeeded } from "./migration/friendsToBeSeeded.js"
 
 
 AppDataSource.initialize().then(async () => {
 
     const userRepository = AppDataSource.getRepository(User);
-
-    for (const userObj of usersToBeSeeded) {
-        const user = userRepository.create(userObj);
-        console.log("user", user);
-        const newList = await userRepository.save(user);
-    }
+        for (const userObj of usersToBeSeeded) {
+            const user = userRepository.create(userObj);
+            console.log("user", user);
+            const newList = await userRepository.save(user);
+        };
 
     const exerciseRepository = AppDataSource.getRepository(Exercise);
+        for (const exerciseObj of exercisesToBeSeeded) {
+            const exercise = exerciseRepository.create(exerciseObj);
+            console.log("exercise", exercise);
+            const newList = await exerciseRepository.save(exercise);
+        };
+    
+    const planned_workoutRepository = AppDataSource.getRepository(Planned_Workout);
+        for (const planned_workoutObj of planned_workoutsToBeSeeded) {
+            const planned_workout = planned_workoutRepository.create(planned_workoutObj);
+            console.log("planned_workout", planned_workout);
+            const newList = await planned_workoutRepository.save(planned_workout);
+        };
 
-    for (const exerciseObj of exercisesToBeSeeded) {
-        const exercise = exerciseRepository.create(exerciseObj);
-        console.log("exercise", exercise);
-        const newList = await exerciseRepository.save(exercise);
-    }
+    const programRepository = AppDataSource.getRepository(Program);
+        for (const programObj of programsToBeSeeded) {
+            const program = programRepository.create(programObj);
+            console.log("program", program);
+            const newList = await programRepository.save(program);
+        };
+
+    const initial_weightRepository = AppDataSource.getRepository(Initial_Weight);
+        for (const initial_weightObj of initial_weightsToBeSeeded) {
+            const initial_weight = initial_weightRepository.create(initial_weightObj);
+            console.log("initial_weight", initial_weight);
+            const newList = await initial_weightRepository.save(initial_weight);
+        };
+
+    const actual_workoutRepository = AppDataSource.getRepository(Actual_Workout);
+        for (const actual_workoutObj of actual_workoutsToBeSeeded) {
+            const actual_workout = actual_workoutRepository.create(actual_workoutObj);
+            console.log("actual_workout", actual_workout);
+            const newList = await actual_workoutRepository.save(actual_workout);
+        };
+
+    const badgeRepository = AppDataSource.getRepository(Badge);
+        for (const badgeObj of badgesToBeSeeded) {
+            const badge = badgeRepository.create(badgeObj);
+            console.log("badge", badge);
+            const newList = await badgeRepository.save(badge);
+        };
+    
+    const user_badgeRepository = AppDataSource.getRepository(User_Badge);
+        for (const user_badgeObj of user_badgesToBeSeeded) {
+            const user_badge = user_badgeRepository.create(user_badgeObj);
+            console.log("user_badge", user_badge);
+            const newList = await user_badgeRepository.save(user_badge);
+        };
+
+     const friendRepository = AppDataSource.getRepository(Friend);
+        for (const friendObj of friendsToBeSeeded) {
+            const friend = friendRepository.create(friendObj);
+            console.log("friend", friend);
+            const newList = await friendRepository.save(friend);
+        };
 
 }).catch(error => console.log(error))
 
