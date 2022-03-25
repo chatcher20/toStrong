@@ -16,3 +16,13 @@ CREATE DATABASE tostrong; (should return => CREATE DATABASE))
 \c tostrong (to verify it was created)
 \q
 npm start
+
+
+
+
+
+To run a migration: (run this command in server folder)
+node --require ts-node/register ./node_modules/typeorm/cli.js migration:run --dataSource ./src/data-source.ts
+
+To revert a migration:
+node --require ts-node/register ./node_modules/typeorm/cli.js migration:revert --dataSource ./src/data-source.ts
