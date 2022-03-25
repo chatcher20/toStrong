@@ -19,10 +19,11 @@ export default function Library() {
             onChange={event => setQuery(event.target.value)}
           />
         </div>
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <i className="fa-solid fa-magnifying-glass"></i>
       </div>
       <br />
       <LibraryList query={query}/>
+      <br /><br />
     </div>
   );
 }

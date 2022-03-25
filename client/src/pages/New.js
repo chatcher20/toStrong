@@ -5,7 +5,7 @@ export default function New() {
   return (
     <div className="layout is-size-3">
       SIGN UP -
-      <div classsName="field forms">
+      <div className="field forms">
         <div className="control">
           <input className="input" type="text" placeholder="Username" />
         </div>
