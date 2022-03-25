@@ -37,6 +37,8 @@ module.exports = class PostRefactoringNewest1648161812833 {
 
         await queryRunner.query(`INSERT INTO "friend" (user_id, friend_id)
         VALUES (1, 2)`);
+
+        // user_program
     
 
     }
