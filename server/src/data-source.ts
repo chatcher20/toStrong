@@ -21,7 +21,7 @@ export const AppDataSource = new DataSource({
     synchronize: true,
     logging: true,
     entities: [User, Exercise, Program, Badge, Planned_Workout, Friend, User_Program, Initial_Weight, User_Badge, Actual_Workout],
-    migrations: [],
+    migrations: ["src/migration/*.js"],       // indicates that typeorm must load migrations from the given "migration" directory.
     subscribers: [],
 })
 
