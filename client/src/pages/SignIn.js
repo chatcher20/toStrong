@@ -2,20 +2,22 @@ import React from 'react'
 
 export default function SignIn() {
   return (
-    <div className="layout">
+    <div className="layout is-size-3">
       SIGN IN -
       <div classsName="field forms">
+      <br/>
         <label className="label">Username: </label>
         <div className="control">
           <input className="input" type="text" placeholder="" />
         </div>
         <label className="label">Password: </label>
         <div className="control">
-          <input className="input" type="text" placeholder="" />
+          <input className="input" type="password" placeholder="" />
         </div>
         
-        <div className="control">
-          <button className="button is-primary">Submit</button>
+        <div className="control" type="submit">
+          <br/>
+          <button className="button is-primary is-medium">Submit</button>
         </div>
       </div>
     </div>

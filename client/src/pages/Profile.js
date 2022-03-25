@@ -8,12 +8,20 @@ export default function Profile() {
   return (
     <div className="">
       <div className="profile-header">
+        <div>
         <strong>Welcome back, {id}</strong>
+        <div >
+            BMI: 
+            <br/>
+            Macros:
+          </div>
+        </div>
+        
         <button className="button is-small">
           setting &nbsp;<i className="fa-solid fa-gear"></i>
         </button>
       </div>
-      <br />
+   
       <div className="profile-content">
         <div>
           Active program:
@@ -30,7 +38,10 @@ export default function Profile() {
           <img src={rankBadge} alt="badge" />
         </div>
       </div>
-      <br/>
+      
+     
+          
+        <br/>
       <div>
         <strong>Program history:</strong>
         <br/>

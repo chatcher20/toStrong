@@ -2,21 +2,20 @@ import "./LibraryListItem.scss";
 
 const LibraryListItem = (props) => {
   return (
-    <div className="card">
-      <div className="card-content">
-        <div className="media">
-          <div className="media-content">
-            <p className="title is-4">Bicep Curls</p>
-            <p className="subtitle is-6">@Dumbells, Barbells</p>
+    <div>
+      <div className="card">
+        <div className="card-content">
+          <div className="media">
+            <div className="media-content">
+              <p className="title is-4">{props.name}</p>
+              <p className="subtitle is-6">{props.url}</p>
+            </div>
           </div>
-        </div>
-        <div className="content">
-          Trains biceps brachii, brachialis and brachioradialis
+          <div className="content">{props.description}</div>
         </div>
       </div>
+      <br />
     </div>
-
-    
   );
 };
 

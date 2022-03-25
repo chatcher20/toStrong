@@ -166,6 +166,9 @@ AppDataSource.initialize().then(async () => {
 const app = express()
 app.use(express.json())
 
+const cors = require('cors')
+
+app.use(cors())
 
 // register routes: 
 // order is:
@@ -398,9 +401,8 @@ app.post("/friends", async function (req: Request, res: Response) {
 
 
 
-
 // start express server
-app.listen(3000)
+app.listen(3001)
 console.log("Express server app is listening on port 3000.")
 
 
