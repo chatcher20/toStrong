@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinColumn } from "typeorm"
 import { Program } from "../entity/Program"
 import { Exercise } from "../entity/Exercise"
 
@@ -17,15 +17,17 @@ export class Planned_Workout {
   @ManyToOne(() => Program, (program) => program.planned_workouts)
   program: Program
 
-  @Column()
-  exercise_id: number     // this is a foreign key from exercise
+  // @Column()
+  // exercise_id: number     // this is a foreign key from exercise
 
-  @ManyToMany(() => Exercise)
-  @JoinTable()
-  exercises: Exercise[]
+  @ManyToOne(() => Exercise)
+  @JoinColumn()
+  exercise: Exercise
 
 }
 
-// A planned_workout can have multiple exercises, and each exercise can belong to multiple planned_workouts.
 
-// @JoinTable() is required for @ManyToMany relations. You must put @JoinTable on one (owning) side of relation.
+
+// @ManyToOne(type => Category)
+// @JoinColumn() // this decorator is optional for @ManyToOne, but required for @OneToOne
+// category: Category;
