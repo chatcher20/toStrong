@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import LibraryList from "../components/LibraryList";
-import LibraryListItem from "../components/LibraryListItem";
+
+
 
 export default function Library() {
   const [query, setQuery] = useState('');
-  
-
-
 
   return (
     <div>
@@ -23,10 +21,8 @@ export default function Library() {
         </div>
         <i class="fa-solid fa-magnifying-glass"></i>
       </div>
-        test: {query}
       <br />
-      <LibraryListItem query={query}/>
-      {/* <LibraryList query={query}/> */}
+      <LibraryList query={query}/>
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./components/App";
+import App from "./components/App.js";
 import "bulma/css/bulma.css";
-import reportWebVitals from "./helpers/reportWebVitals";
+import reportWebVitals from "./helpers/reportWebVitals.js";
 
 ReactDOM.render(
   <React.StrictMode>

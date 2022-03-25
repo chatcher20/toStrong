@@ -1,18 +1,18 @@
 import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 import "./App.scss";
-import Profile from "../pages/Profile";
-import Programs from "../pages/Programs";
-import Library from "../pages/Library";
-import Friends from "../pages/Friends";
-import ErrorPage from "../pages/ErrorPage";
-import Front from "../pages/Index";
-import New from "../pages/New";
-import SignIn from "../pages/SignIn";
-import Navigation from "./Navigation";
-import CurrentProgram from "../pages/CurrentProgram";
-import Exercise from "../pages/Exercise";
-import View from "../pages/View";
-import Header from './Header';
+import Profile from "../pages/Profile.js";
+import Programs from "../pages/Programs.js";
+import Library from "../pages/Library.js";
+import Friends from "../pages/Friends.js";
+import ErrorPage from "../pages/ErrorPage.js";
+import Front from "../pages/Index.js";
+import New from "../pages/New.js";
+import SignIn from "../pages/SignIn.js";
+import Navigation from "./Navigation.js";
+import CurrentProgram from "../pages/CurrentProgram.js";
+import Exercise from "../pages/Exercise.js";
+import View from "../pages/View.js";
+import Header from './Header.js';
 
 
 
