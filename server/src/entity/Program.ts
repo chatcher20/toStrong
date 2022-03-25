@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
 import { Planned_Workout } from "../entity/Planned_Workout"
 
 @Entity()
@@ -8,7 +8,7 @@ export class Program {
   id: number
 
   @Column()
-  planned_workout_id: string     // this is a foreign key from planned workout
+  planned_workout_id: number     // this is a foreign key from planned workout
 
   @Column()
   name: string
@@ -26,6 +26,7 @@ export class Program {
   equipment_type: string
 
   @OneToMany(() => Planned_Workout, (planned_workout) => planned_workout.program)      // note: we will create program property in the Planned_Workout class
-    planned_workouts: Planned_Workout[]
+    planned_workouts: Planned_Workout
 
 }
+

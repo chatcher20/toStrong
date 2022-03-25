@@ -1,3 +1,7 @@
+// index.ts is our main web application entry point.
+
+import * as express from "express"
+import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import { User } from "./entity/User"
 import { Exercise } from "./entity/Exercise"
@@ -5,87 +9,287 @@ import { Program } from "./entity/Program"
 import { Badge } from "./entity/Badge"
 import { Planned_Workout } from "./entity/Planned_Workout"
 import { Friend } from "./entity/Friend"
+import { User_Program } from "./entity/User_Program"
+import { Initial_Weight } from "./entity/Initial_Weight"
+import { User_Badge } from "./entity/User_Badge"
+import { Actual_Workout } from "./entity/Actual_Workout"
 
 
-AppDataSource.initialize().then(async () => {
-
-    console.log("Inserting a new user into the database...")
-    const user = new User()
-    user.username = "Freddy"
-    user.email = "Dino"
-    user.password = "hello"
-    user.password_confirmation = "hello"
-    user.weight = 80
-    user.height = 180
-    user.avatar = "trex"
-    user.about_me = "I have short arms."
-    user.weight_change = 5
-    await AppDataSource.manager.save(user)
-    console.log("Saved a new user with id: " + user.id)
-    console.log("Loading users from the database...")
-    const users = await AppDataSource.manager.find(User)
-    console.log("Loaded users: ", users)
-
-    console.log("Here you can setup and run express / fastify / any other framework.")
-
-    console.log("Inserting a new exercise into the database...")
-    const exercise = new Exercise()
-    exercise.name = "pullups"
-    exercise.description = "grab the bar and pull yourself up to build back and arm muscles"
-    exercise.video_url = "www.youtube.com"
-    await AppDataSource.manager.save(exercise)
-    console.log("Saved a new exercise with id: " + exercise.id)
-    console.log("Loading exercises from the database...")
-    const exercises = await AppDataSource.manager.find(Exercise)
-    console.log("Loaded exercises: ", exercises)
-
-    console.log("Inserting a new program into the database...")
-    const program = new Program()
-    program.name = "12 weeks to shred"
-    program.duration = 12
-    program.description = "This is a 12 week program to cut fat."
-    program.modality = "barbell-only"
-    program.equipment_type = "barbell"
-    await AppDataSource.manager.save(program)
-    console.log("Saved a new program with id: " + program.id)
-    console.log("Loading programs from the database...")
-    const programs = await AppDataSource.manager.find(Program)
-    console.log("Loaded programs: ", programs)
-
-    console.log("Inserting a new badge into the database...")
-    const badge = new Badge()
-    badge.name = "500lb Deadlift Badge"
-    badge.description = "This badge is to signify that you are a beast"
-    badge.image = "placeholder for image here"
-    await AppDataSource.manager.save(badge)
-    console.log("Saved a new badge with id: " + badge.id)
-    console.log("Loading badges from the database...")
-    const badges = await AppDataSource.manager.find(Badge)
-    console.log("Loaded badges: ", badges)
-
-    console.log("Inserting a new planned workout into the database...")
-    const planned_workout = new Planned_Workout()
-    planned_workout.exercise_id = 47
-    planned_workout.name = "Day 16"
-    planned_workout.sets = 3
-    planned_workout.reps = 5
-    await AppDataSource.manager.save(planned_workout)
-    console.log("Saved a new planned_workout with id: " + planned_workout.id)
-    console.log("Loading planned workouts from the database...")
-    const planned_workouts = await AppDataSource.manager.find(Planned_Workout)
-    console.log("Loaded planned workouts: ", planned_workouts)
-
-    console.log("Inserting a new friend into the database...")
-    const friend = new Friend()
-    friend.user_id = 347
-    await AppDataSource.manager.save(friend)
-    console.log("Saved a new friend with id: " + friend.id)
-    console.log("Loading friends from the database...")
-    const friends = await AppDataSource.manager.find(Friend)
-    console.log("Loaded friends: ", friends)
+import { usersToBeSeeded } from "./migration/usersToBeSeeded.js"
+import { exercisesToBeSeeded } from "./migration/exercisesToBeSeeded.js"
+import { planned_workoutsToBeSeeded } from "./migration/planned_workoutsToBeSeeded.js"
+import { programsToBeSeeded } from "./migration/programsToBeSeeded.js"
+import { initial_weightsToBeSeeded } from "./migration/initial_weightsToBeSeeded.js"
+import { actual_workoutsToBeSeeded } from "./migration/actual_workoutsToBeSeeded.js"
+import { badgesToBeSeeded } from "./migration/badgesToBeSeeded.js"
+import { user_badgesToBeSeeded } from "./migration/user_badgesToBeSeeded.js"
+import { friendsToBeSeeded } from "./migration/friendsToBeSeeded.js"
+import { user_programsToBeSeeded } from "./migration/user_programsToBeSeeded.js"
 
 
+// create and setup express app
+const app = express()
+app.use(express.json())
+
+const cors = require('cors')
+
+app.use(cors())
+AppDataSource.initialize()
+// register routes: 
+// order is:
+// user
+// exercise
+// planned_workout
+// program
+// initial_weight
+// actual_workout
+// badge
+// user_badge
+// friend
+// user_program
+
+
+// user
+app.get("/users", async function (req: Request, res: Response) {
+    const users = await AppDataSource.getRepository(User).find()
+    res.json(users)
+})
+
+app.get("/users/:id", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(User).findOneBy({
+        id: Number(req.params.id),
+    })
+    return res.send(results)
+})
+
+app.get("/users/:username", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(User).findOneBy({
+        username: req.params.username,
+    })
+    return res.send(results)
+})
+
+app.post("/users", async function (req: Request, res: Response) {
+    const user = await AppDataSource.getRepository(User).create(req.body)
+    const results = await AppDataSource.getRepository(User).save(user)
+    return res.send(results)
+})
+
+app.put("/users/:username", async function (req: Request, res: Response) {
+    const user = await AppDataSource.getRepository(User).findOneBy({
+        username: req.params.username,
+    })
+    AppDataSource.getRepository(User).merge(user, req.body)
+    const results = await AppDataSource.getRepository(User).save(user)
+    return res.send(results)
+})
+
+app.delete("/users/:username", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(User).delete(req.params.id)
+    return res.send(results)
+})
+
+
+// exercise
+app.get("/exercises", async function (req: Request, res: Response) {
+    const exercises = await AppDataSource.getRepository(Exercise).find()
+    res.json(exercises)
+})
+
+app.get("/exercises/:name", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(Exercise).findOneBy({
+        name: req.params.name,
+    })
+    return res.send(results)
+})
+
+app.get("/exercises/:id", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(Exercise).findOneBy({
+        id: Number(req.params.id),
+    })
+    return res.send(results)
+})
+
+app.post("/exercises", async function (req: Request, res: Response) {
+    const exercise = await AppDataSource.getRepository(Exercise).create(req.body)
+    const results = await AppDataSource.getRepository(Exercise).save(exercise)
+    return res.send(results)
+})
+
+
+// planned_workout
+app.get("/planned_workouts", async function (req: Request, res: Response) {
+    const planned_workouts = await AppDataSource.getRepository(Planned_Workout).find()
+    res.json(planned_workouts)
+})
+
+app.get("/planned_workouts/:day", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(Planned_Workout).findOneBy({
+        day: Number(req.params.day),
+    })
+    return res.send(results)
+})
+
+app.post("/planned_workouts", async function (req: Request, res: Response) {
+    const planned_workout = await AppDataSource.getRepository(Planned_Workout).create(req.body)
+    const results = await AppDataSource.getRepository(Planned_Workout).save(planned_workout)
+    return res.send(results)
+})
+
+
+// program
+app.get("/programs", async function (req: Request, res: Response) {
+    const programs = await AppDataSource.getRepository(Program).find()
+    res.json(programs)
+})
+
+app.get("/programs/:name", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(Program).findOneBy({
+        name: req.params.name,
+    })
+    return res.send(results)
+})
+
+app.post("/programs", async function (req: Request, res: Response) {
+    const program = await AppDataSource.getRepository(Program).create(req.body)
+    const results = await AppDataSource.getRepository(Program).save(program)
+    return res.send(results)
+})
+
+
+// initial_weight
+app.get("/initial_weights", async function (req: Request, res: Response) {
+    const initial_weights = await AppDataSource.getRepository(Initial_Weight).find()
+    res.json(initial_weights)
+})
+
+app.get("/initial_weights/:user_program_id", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(Initial_Weight).findOneBy({
+        user_program_id: Number(req.params.user_program_id),
+    })
+    return res.send(results)
+})
+
+app.post("/initial_weights", async function (req: Request, res: Response) {
+    const initial_weight = await AppDataSource.getRepository(Initial_Weight).create(req.body)
+    const results = await AppDataSource.getRepository(Initial_Weight).save(initial_weight)
+    return res.send(results)
+})
+
+
+// actual_workout
+app.get("/actual_workouts", async function (req: Request, res: Response) {
+    const actual_workouts = await AppDataSource.getRepository(Actual_Workout).find()
+    res.json(actual_workouts)
+})
+
+app.get("/actual_workouts/:user_id", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(Actual_Workout).findOneBy({
+        user_id: Number(req.params.user_id),
+    })
+    return res.send(results)
+})
+
+app.post("/actual_workouts", async function (req: Request, res: Response) {
+    const actual_workout = await AppDataSource.getRepository(Actual_Workout).create(req.body)
+    const results = await AppDataSource.getRepository(Actual_Workout).save(actual_workout)
+    return res.send(results)
+})
+
+
+// badge
+app.get("/badges", async function (req: Request, res: Response) {
+    const badges = await AppDataSource.getRepository(Badge).find()
+    res.json(badges)
+})
+
+app.get("/badges/:id", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(Badge).findOneBy({
+        id: Number(req.params.id),
+    })
+    return res.send(results)
+})
+
+app.get("/badges/:name", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(Badge).findOneBy({
+        name: req.params.name,
+    })
+    return res.send(results)
+})
+
+app.post("/badges", async function (req: Request, res: Response) {
+    const badge = await AppDataSource.getRepository(Badge).create(req.body)
+    const results = await AppDataSource.getRepository(Badge).save(badge)
+    return res.send(results)
+})
+
+
+// user_badge
+app.get("/user_badges", async function (req: Request, res: Response) {
+    const user_badges = await AppDataSource.getRepository(User_Badge).find()
+    res.json(user_badges)
+})
+
+app.get("/user_badges/:badge_id", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(User_Badge).findOneBy({
+        badge_id: Number(req.params.badge_id),
+    })
+    return res.send(results)
+})
+
+app.post("/user_badges", async function (req: Request, res: Response) {
+    const user_badge = await AppDataSource.getRepository(User_Badge).create(req.body)
+    const results = await AppDataSource.getRepository(User_Badge).save(user_badge)
+    return res.send(results)
+})
+
+
+// friend
+app.get("/friends", async function (req: Request, res: Response) {
+    const friends = await AppDataSource.getRepository(Friend).find()
+    res.json(friends)
+})
+
+app.get("/friends/:user_id", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(Friend).findOneBy({
+        user_id: Number(req.params.user_id),
+    })
+    return res.send(results)
+})
+
+app.post("/friends", async function (req: Request, res: Response) {
+    const friend = await AppDataSource.getRepository(Friend).create(req.body)
+    const results = await AppDataSource.getRepository(Friend).save(friend)
+    return res.send(results)
+})
+
+
+// user_program
+app.get("/user_programs", async function (req: Request, res: Response) {
+    const user_programs = await AppDataSource.getRepository(User_Program).find()
+    res.json(user_programs)
+})
+
+app.get("/user_programs/:user_id", async function (req: Request, res: Response) {
+    const results = await AppDataSource.getRepository(User_Program).findOneBy({
+        user_id: Number(req.params.user_id),
+    })
+    return res.send(results)
+})
+
+app.post("/user_programs", async function (req: Request, res: Response) {
+    const user_program = await AppDataSource.getRepository(User_Program).create(req.body)
+    const results = await AppDataSource.getRepository(User_Program).save(user_program)
+    return res.send(results)
+})
 
 
 
-}).catch(error => console.log(error))
+
+
+// start express server
+app.listen(3001)
+console.log("Express server app is listening on port 3001.")
+
+
+

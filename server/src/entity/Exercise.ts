@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany, JoinTable } from "typeorm"
+import { User_Program } from "../entity/User_Program"
+import { User } from "../entity/User"
 
 @Entity()
 export class Exercise {
@@ -16,5 +18,13 @@ export class Exercise {
 
   @Column()
   video_url: string
+  
+  @ManyToMany(() => User_Program)
+    @JoinTable()
+    user_programs: User_Program[];
+
+  @ManyToMany(() => User)
+    @JoinTable()
+    users: User[];
 
 }
