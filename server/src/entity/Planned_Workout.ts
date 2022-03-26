@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinColumn } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, ManyToMany, JoinColumn } from "typeorm"
 import { Program } from "../entity/Program"
 import { Exercise } from "../entity/Exercise"
 
@@ -14,20 +14,28 @@ export class Planned_Workout {
   @Column()
   exercise_order: number
 
+  @Column()
+  program_id: number
+
+  @Column()
+  exercise_id: number  // join on exercise.name
+
+  @OneToOne(() => Exercise, (exercise) => exercise.name) // specify inverse side as a second parameter
+    @JoinColumn()
+    exercise: Exercise
+
   @ManyToOne(() => Program, (program) => program.planned_workouts)
   program: Program
-
-  // @Column()
-  // exercise_id: number     // this is a foreign key from exercise
-
-  @ManyToOne(() => Exercise)
-  @JoinColumn()
-  exercise: Exercise
 
 }
 
 
 
-// @ManyToOne(type => Category)
-// @JoinColumn() // this decorator is optional for @ManyToOne, but required for @OneToOne
-// category: Category;
+
+/*
+SELECT Planned_Workouts.day AS day, Planned_Workouts.exercise_order AS order, Exercises.name as exercise
+FROM Planned_Workouts
+JOIN Exercises ON Planned_Workouts.exercise_id = Exercises.id
+GROUP BY day
+ORDER BY order;
+*/

@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany, JoinTable } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToOne, JoinTable } from "typeorm"
 import { User_Program } from "../entity/User_Program"
 import { User } from "../entity/User"
+import { Planned_Workout } from "./Planned_Workout"
 
 @Entity()
 export class Exercise {
@@ -26,5 +27,8 @@ export class Exercise {
   @ManyToMany(() => User)
     @JoinTable()
     users: User[];
+
+  @OneToOne(() => Planned_Workout, (planned_workout) => planned_workout.exercise) // specify inverse side as a second parameter
+  planned_workout: Planned_Workout
 
 }
