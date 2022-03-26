@@ -43,12 +43,14 @@ AppDataSource.initialize().then(async () => {
   .delete()
   .from(Exercise)
   .execute()
-      for (const exerciseObj of exercisesToBeSeeded) {
-          const exercise = exerciseRepository.create(exerciseObj);
-          console.log("exercise", exercise);
-          const newList = await exerciseRepository.save(exercise);
-      };
-  
+        const exercises = []
+        exercisesToBeSeeded.forEach(e => {
+        exercises.push(exerciseRepository.create(e));
+        });
+        for (const e of exercises) {
+        await exerciseRepository.save(e);
+        }
+
   const planned_workoutRepository = AppDataSource.getRepository(Planned_Workout);
   await AppDataSource
   .createQueryBuilder()
