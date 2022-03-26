@@ -1,5 +1,6 @@
 import React from "react";
 import "./ProgramListItem.scss"
+import icon from '../images/icon.png'
 
 export default function ProgramListItem(props) {
   return (
@@ -12,8 +13,8 @@ export default function ProgramListItem(props) {
                 <div className="media-left">
                   <figure className="image is-48x48">
                     <img
-                      src="https://bulma.io/images/placeholders/96x96.png"
-                      alt="Placeholder image"
+                      src={icon}
+                      alt="toStrong icon"
                     />
                   </figure>
                 </div>

@@ -61,10 +61,10 @@ const basicLP = (workouts, initWeights, day) => {
   };
 };
 
-console.log(basicLP(fakeWorkouts, fakeInits, 1));
-console.log(basicLP(fakeWorkouts, fakeInits, 2));
-console.log(basicLP(fakeWorkouts, fakeInits, 3));
-console.log(basicLP(fakeWorkouts, fakeInits, 4));
+// console.log(basicLP(fakeWorkouts, fakeInits, 1));
+// console.log(basicLP(fakeWorkouts, fakeInits, 2));
+// console.log(basicLP(fakeWorkouts, fakeInits, 3));
+// console.log(basicLP(fakeWorkouts, fakeInits, 4));
 
-// modules.exports = { basicLP };
-module.exports = { basicLP }
+
+module.exports = { basicLP };
