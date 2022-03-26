@@ -8,7 +8,7 @@ export default function Library() {
 
   return (
     <div>
-      <label className="is-size-3">All workouts</label>
+      <label className="is-size-3"><strong>All workouts</strong></label>
       <br />
       <div className="search-bar">
         <div className="control">
