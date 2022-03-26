@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinColumn } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, ManyToMany, JoinColumn } from "typeorm"
 import { Program } from "../entity/Program"
 import { Exercise } from "../entity/Exercise"
 
@@ -14,20 +14,23 @@ export class Planned_Workout {
   @Column()
   exercise_order: number
 
-  @ManyToOne(() => Program, (program) => program.planned_workouts)
-  program: Program
+  @Column()
+  exercise_name: string
+
+  @Column()
+  program_name: string
 
   // @Column()
-  // exercise_id: number     // this is a foreign key from exercise
+  // program_id: number
 
-  @ManyToOne(() => Exercise)
+  // @Column()
+  // exercise_name: string
+
+  @OneToOne(() => Exercise, (exercise) => exercise.name) // specify inverse side as a second parameter
   @JoinColumn()
   exercise: Exercise
 
-}
+  @ManyToOne(() => Program, (program) => program.planned_workouts)
+  program: Program
 
-
-
-// @ManyToOne(type => Category)
-// @JoinColumn() // this decorator is optional for @ManyToOne, but required for @OneToOne
-// category: Category;
+};

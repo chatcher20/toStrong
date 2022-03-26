@@ -1,14 +1,29 @@
 Steps:
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+1. Run `npm start` in your terminal inside the server folder. This will seed the initial data for each entity into the tables, and start the express server running on port 3000.
+=======
 1. Run `npm run seeding` in your terminal inside the server folder. This will seed the initial data for each entity into the tables, after deleting any pre-existing data.
 
 2. Run `npm start` in your terminal inside the server folder. This will start the express server running on port 3000.
+>>>>>>> main
+=======
+1. Run `npm run seeding` in your terminal inside the server folder. This will seed the initial data for each entity into the tables, after deleting any pre-existing data.
+
+2. Run `npm start` in your terminal inside the server folder. This will start the express server running on port 3000.
+>>>>>>> main
 
 2. Type http://localhost:3000/exercises into the browser to view the exercises.
 
 
 
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> main
 
 
 
@@ -17,6 +32,10 @@ Steps:
 
 
 
+<<<<<<< HEAD
+>>>>>>> main
+=======
+>>>>>>> main
 To clear the database in psql:
 
 psql -U labber
@@ -27,6 +46,11 @@ CREATE DATABASE tostrong; (should return => CREATE DATABASE))
 \q
 npm start
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> main
 
 
 
@@ -57,3 +81,7 @@ node --require ts-node/register ./node_modules/typeorm/cli.js migration:run --da
 
 To revert a migration:
 node --require ts-node/register ./node_modules/typeorm/cli.js migration:revert --dataSource ./src/data-source.ts
+<<<<<<< HEAD
+>>>>>>> main
+=======
+>>>>>>> main
