@@ -17,7 +17,7 @@ for (let day = 1; day <= 36; day++) {
       day,
       exercise_order,
       exercise_name,
-      program_name: "basic-lp",
+      program_name: "Basic LP",
     });
   }
 }
