@@ -24,7 +24,3 @@ export const AppDataSource = new DataSource({
     migrations: ["src/migration/*.js"],       // indicates that typeorm must load migrations from the given "migration" directory.
     subscribers: [],
 })
-
-// find way to put the seed information currently filling up index.ts into the migrations folder and update the misgrations array inside AppDataSource here on line 24.
-
-// 5432 is the pg database port, express server port is 3000
