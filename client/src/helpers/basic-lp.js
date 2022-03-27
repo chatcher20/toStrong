@@ -2,20 +2,20 @@
 // Workout B:  Squat, Shoulder Press, Chins
 
 // fake data
-const fakeWorkouts = [
-  { squat: false, bench: true, deadlift: true },
-  { squat: true, press: false, chinup: false },
-  { squat: true, bench: true, deadlift: true },
-  { squat: true, press: true, chinup: true },
-];
+// const fakeWorkouts = [
+//   { squat: false, bench: true, deadlift: true },
+//   { squat: true, press: false, chinup: false },
+//   { squat: true, bench: true, deadlift: true },
+//   { squat: true, press: true, chinup: true },
+// ];
 
-const fakeInits = {
-  squat: 100,
-  bench: 85,
-  press: 55,
-  deadlift: 145,
-  chinup: 0,
-};
+// const fakeInits = {
+//   squat: 100,
+//   bench: 85,
+//   press: 55,
+//   deadlift: 145,
+//   chinup: 0,
+// };
 
 const convertToWeights = (exercises, init, increment) => {
   let weight = init;
@@ -38,18 +38,18 @@ const basicLP = (workouts, initWeights, day) => {
   let chinups = new Array(36).fill(null);
 
   workouts.forEach((workout, i) => {
-    squats[i] = workout.squat;
-    benches[i] = workout.bench;
-    presses[i] = workout.press;
-    deadlifts[i] = workout.deadlift;
-    chinups[i] = workout.chinup;
+    squats[i] = workout["Squat"];
+    benches[i] = workout["Bench Press"];
+    presses[i] = workout["Overhead Press"];
+    deadlifts[i] = workout["Deadlift"];
+    chinups[i] = workout["Chin Up"];
   });
 
-  squats = convertToWeights(squats, initWeights.squat, 5);
-  benches = convertToWeights(benches, initWeights.bench, 5);
-  presses = convertToWeights(presses, initWeights.press, 2.5);
-  deadlifts = convertToWeights(deadlifts, initWeights.deadlift, 10);
-  chinups = convertToWeights(chinups, initWeights.chinup, 2.5);
+  squats = convertToWeights(squats, initWeights["Squat"], 5);
+  benches = convertToWeights(benches, initWeights["Bench Press"], 5);
+  presses = convertToWeights(presses, initWeights["Overhead Press"], 2.5);
+  deadlifts = convertToWeights(deadlifts, initWeights["Deadlift"], 10);
+  chinups = convertToWeights(chinups, initWeights["Chin Up"], 2.5);
 
   return {
     squat: squats[day - 1] && `3x5 @ ${squats[day - 1]}`,
@@ -65,6 +65,5 @@ const basicLP = (workouts, initWeights, day) => {
 // console.log(basicLP(fakeWorkouts, fakeInits, 2));
 // console.log(basicLP(fakeWorkouts, fakeInits, 3));
 // console.log(basicLP(fakeWorkouts, fakeInits, 4));
-
 
 module.exports = { basicLP };
