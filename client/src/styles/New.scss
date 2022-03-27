@@ -1,0 +1,34 @@
+
+.input {
+  margin: 12px 0;
+  font-size: 0.5rem;
+  .confirm {
+    width: 60%;
+  }
+}
+
+.input-bottom {
+  margin: 12px 0 25px 0;
+}
+
+.password {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+#new-select {
+  display: flex;
+  align-items: center;
+}
+
+.bmi-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  .bmi {
+    display: flex;
+    flex-grow: 10;
+    align-items: center;
+  }
+}

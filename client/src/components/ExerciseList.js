@@ -21,7 +21,6 @@ export default function ExerciseList() {
 
   return (
     <div>
-      
       <ExerciseListItem />
     </div>
   );

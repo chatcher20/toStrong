@@ -1,6 +1,7 @@
 import React from "react";
-import "./ProgramListItem.scss"
-import icon from '../images/icon.png'
+import "../styles/ProgramListItem.scss";
+import icon from '../images/icon.png';
+import Button from "../components/Button";
 
 export default function ProgramListItem(props) {
   return (
@@ -18,11 +19,19 @@ export default function ProgramListItem(props) {
                     />
                   </figure>
                 </div>
-                <p className="title is-4">{props.name}</p>
+                <div className="program-card">
+              
+                <Button word='select' size='is-small'/>
+                <p className="program-title title is-5">{props.name}</p>
+                </div>
               </div>
               <br/>
               <label>
                 Workout type - 
+                </label>
+                <p className="subtitle is-6">{props.modality}</p>
+                <label>
+                equipment(s) - 
                 </label>
                 <p className="subtitle is-6">{props.type}</p>
                 <label>
