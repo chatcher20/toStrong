@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./Exercise.scss";
+import "../styles/Exercise.scss";
 import ExerciseList from "../components/ExerciseList";
 const axios = require("axios");
 

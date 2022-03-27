@@ -13,16 +13,16 @@ const round = (value, precision) => {
 };
 
 const bmi = (stats) => {
-  const height = 12 * stats.height_feet + stats.height_inches;
+  const height = (12 * Number(stats.feet)) + Number(stats.inches);
   return round((703 * stats.weight) / (height * height), 1);
 };
 
-const macros = (stats) => {
-  let bmr = stats.weight * 15;
-  if (stats.weight_change === "bulk") bmr += 300;
-  if (stats.weight_change === "cut") bmr -= 300;
+const macros = (state, weight) => {
+  let bmr = weight * 15;
+  if (state === "bulk") bmr += 300;
+  if (state === "cut") bmr -= 300;
 
-  const protein = stats.weight;
+  const protein = weight;
   const fat = round((bmr * 0.3) / 9, 0);
   const carbs = round((bmr - protein * 4 - fat * 9) / 4, 0);
 
@@ -32,4 +32,4 @@ const macros = (stats) => {
 // console.log(bmi(fakeStats));
 // console.log(macros(fakeStats));
 
-// export { bmi, macros };
+export { bmi, macros };

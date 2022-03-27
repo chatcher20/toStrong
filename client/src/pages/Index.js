@@ -1,4 +1,4 @@
-import "../components/App.scss";
+import "../styles/App.scss";
 import Button from "../components/Button";
 import Weightlift from "../images/weightlift.png";
 

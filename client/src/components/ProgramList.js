@@ -48,6 +48,7 @@ export default function ProgramList(props) {
         name={program.name}
         description={program.description}
         duration={program.duration}
+        modality={program.modality}
         type={program.equipment_type}
       />
     ))
