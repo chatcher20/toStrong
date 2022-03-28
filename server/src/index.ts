@@ -186,12 +186,12 @@ app.get("/initial_weights", async function (req: Request, res: Response) {
     res.json(initial_weights)
 })
 
-app.get("/initial_weights/:user_program_id", async function (req: Request, res: Response) {
-    const results = await AppDataSource.getRepository(Initial_Weight).findOneBy({
-        user_program_id: Number(req.params.user_program_id),
-    })
-    return res.send(results)
-})
+// app.get("/initial_weights/:user_program_id", async function (req: Request, res: Response) {
+//     const results = await AppDataSource.getRepository(Initial_Weight).findOneBy({
+//         user_program_id: Number(req.params.user_program_id),
+//     })
+//     return res.send(results)
+// })
 
 // app.post("/initial_weights", async function (req: Request, res: Response) {
 //     const initial_weight = await AppDataSource.getRepository(Initial_Weight).create(req.body)
@@ -222,7 +222,9 @@ app.get("/actual_workouts/:user_id", async function (req: Request, res: Response
 })
 
 app.post("/actual_workouts", async function (req: Request, res: Response) {
-    const actual_workout = await AppDataSource.getRepository(Actual_Workout).create(req.body)
+    const bodyWithID = {...req.body, user_id: req.cookies.id};
+    console.log("req.cookies.id is: ", req.cookies.id);
+    const actual_workout = await AppDataSource.getRepository(Actual_Workout).create(bodyWithID);
     const results = await AppDataSource.getRepository(Actual_Workout).save(actual_workout)
     return res.send(results)
 })
@@ -249,7 +251,9 @@ app.get("/badges/:name", async function (req: Request, res: Response) {
 })
 
 app.post("/badges", async function (req: Request, res: Response) {
-    const badge = await AppDataSource.getRepository(Badge).create(req.body)
+    const bodyWithID = {...req.body, user_id: req.cookies.id};
+    console.log("req.cookies.id is: ", req.cookies.id);
+    const badge = await AppDataSource.getRepository(Badge).create(bodyWithID)
     const results = await AppDataSource.getRepository(Badge).save(badge)
     return res.send(results)
 })
@@ -269,7 +273,9 @@ app.get("/user_badges/:badge_id", async function (req: Request, res: Response) {
 })
 
 app.post("/user_badges", async function (req: Request, res: Response) {
-    const user_badge = await AppDataSource.getRepository(User_Badge).create(req.body)
+    const bodyWithID = {...req.body, user_id: req.cookies.id};
+    console.log("req.cookies.id is: ", req.cookies.id);
+    const user_badge = await AppDataSource.getRepository(User_Badge).create(bodyWithID)
     const results = await AppDataSource.getRepository(User_Badge).save(user_badge)
     return res.send(results)
 })
@@ -289,6 +295,8 @@ app.get("/friends/:user_id", async function (req: Request, res: Response) {
 })
 
 app.post("/friends", async function (req: Request, res: Response) {
+    const bodyWithID = {...req.body, user_id: req.cookies.id};
+    console.log("req.cookies.id is: ", req.cookies.id);
     const friend = await AppDataSource.getRepository(Friend).create(req.body)
     const results = await AppDataSource.getRepository(Friend).save(friend)
     return res.send(results)
@@ -315,10 +323,6 @@ app.post("/user_programs", async function (req: Request, res: Response) {
     const results = await AppDataSource.getRepository(User_Program).save(user_program)
     return res.send(results)
 })
-
-
-
-
 
 
 // start express server
