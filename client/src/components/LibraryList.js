@@ -28,8 +28,8 @@ export default function LibraryList(props) {
       if (query === "") {
         return true;
       } else if (
-        list.name.toLowerCase().includes(query.toLowerCase()) ||
-        list.description.toLowerCase().includes(query.toLowerCase())
+        list.name.toLowerCase().includes(query.toLowerCase()) 
+        // list.description.toLowerCase().includes(query.toLowerCase())
       ) {
         return true;
       }

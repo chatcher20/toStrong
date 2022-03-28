@@ -32,7 +32,7 @@ const App = () => {
           <Route path="/programs/all" element={<Programs />} />
           <Route path="/programs/:id" element={<CurrentProgram />} />
           <Route path="/programs/:id/initweight" element={<InitWeight />} />
-          <Route path="/programs/:id/:exercise_id" element={<Exercise />} />
+          <Route path="/programs/:id/:day" element={<Exercise />} />
           <Route path="/library" element={<Library />} />
           <Route path="/library/:name" element={<View />} />
           <Route path="/users/new" element={<New />} />

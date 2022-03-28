@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "../styles/Exercise.scss";
-import ExerciseList from "../components/ExerciseList";
+import ExerciseListItem from "../components/ExerciseListItem";
+import formatDate from "../helpers/formatDay";
 const axios = require("axios");
 
 export default function Exercise() {
-  const { exercise_id } = useParams();
-  const [plannedWorkout, setPlannedWorkout] = useState([""]);
-  const [exercises, setExercises] = useState([]);
-  const [program, setProgram] = useState([""]);
-
-  const formatDate = (day) => {
-    const week = "W" + Math.floor(1 + day / 7);
-    const date = "D" + (day % 7);
-    return week + date;
-  };
+  const { id, day } = useParams();
+  const navigate = useNavigate();
+  const [plannedWorkout, setPlannedWorkout] = useState([]);
+  const [programs, setPrograms] = useState([]);
+  const [completed, setCompleted] = useState({});
 
   useEffect(() => {
     axios
@@ -29,46 +25,66 @@ export default function Exercise() {
 
   useEffect(() => {
     axios
-      .get("/exercises")
-      .then((res) => {
-        setExercises(res.data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios
       .get("/programs")
       .then((res) => {
-        setProgram(res.data);
+        setPrograms(res.data);
       })
       .catch((err) => {
         console.log(err.message);
       });
   }, []);
 
-  console.log("planned workoug: ", plannedWorkout);
-  console.log("exercises: ", exercises);
-  console.log("program: ", program);
+  const selectedPrograms = programs.find((x) => x.id === Number(id));
+  const workoutsOfTheDay = plannedWorkout.filter((x) => x.day === Number(day));
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+  
+    axios.post("/users", completed)
+    .then(() => {
+      navigate(`/programs/${id}`)
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+  };
+
+  const onChange = ({ target: { name, value } }) => {
+    setCompleted((prev) => ({ ...prev, [name]: value }));
+  };
+
+  console.log(completed)
+
+  const eachExercise = workoutsOfTheDay.map((workout) => (
+    <ExerciseListItem
+      key={workout.id}
+      name={workout.exercise_name}
+      program={workout.program_name}
+      onChange={onChange}
+    />
+  ));
 
   return (
     <div class="workout">
-      <div>
-        {/* need to fix, this is hardcoded*/}
-        {program[0].name} - {formatDate(plannedWorkout[0].day)}
+      <form onSubmit={onSubmit}>
+        <div>
+          <br />
+          <div className="subtitle is-4">
+            {programs.length !== 0 ? selectedPrograms.name : ""}
+          </div>
+          <div className="title is-5">
+            Today's workout ({formatDate(day)}) -
+          </div>
+          {eachExercise}
+        </div>
         <br />
-        <br />
-        <div className="title is-5">Today's workout -</div>
-        <ExerciseList />
-      </div>
-
-      <div className="control">
-        <button className="button is-primary is-medium" action="submit">
-          Complete Workout
-        </button>
-      </div>
+        <div className="control">
+          <button className="button is-primary is-medium" action="submit">
+            Complete Workout
+          </button>
+        </div>
+      </form>
+      <br />
     </div>
   );
 }
