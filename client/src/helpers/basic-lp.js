@@ -1,22 +1,6 @@
 // Workout A:  Squat, Bench Press, Deadlift
 // Workout B:  Squat, Shoulder Press, Chins
 
-// fake data
-// const fakeWorkouts = [
-//   { squat: false, bench: true, deadlift: true },
-//   { squat: true, press: false, chinup: false },
-//   { squat: true, bench: true, deadlift: true },
-//   { squat: true, press: true, chinup: true },
-// ];
-
-// const fakeInits = {
-//   squat: 100,
-//   bench: 85,
-//   press: 55,
-//   deadlift: 145,
-//   chinup: 0,
-// };
-
 const convertToWeights = (exercises, init, increment) => {
   let weight = init;
   const weights = exercises.slice();
@@ -60,10 +44,5 @@ const basicLP = (workouts, initWeights, day) => {
       chinups[day - 1] === undefined ? undefined : `3x8 @ ${chinups[day - 1]}`,
   };
 };
-
-// console.log(basicLP(fakeWorkouts, fakeInits, 1));
-// console.log(basicLP(fakeWorkouts, fakeInits, 2));
-// console.log(basicLP(fakeWorkouts, fakeInits, 3));
-// console.log(basicLP(fakeWorkouts, fakeInits, 4));
 
 module.exports = { basicLP };

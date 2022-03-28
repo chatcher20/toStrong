@@ -8,20 +8,20 @@
 // Week 3:  1 x 90%, 5 x 5 x 75%
 
 // fake data
-const fakeWorkouts = [
-  { lowBarSquatx5: true, closeGripBench: true, row: true, curls: false },
-  { press: true, rdl: true, legPress: false, dips: true },
-  { squat: true, bench: true, deadlift: true },
-  { pauseSquat: true, benchx5: true, chinups: true, tricepExtensions: true },
-  { lowBarSquatx3: true, closeGripBench: true, row: true, curls: false },
-];
+// const fakeWorkouts = [
+//   { lowBarSquat: true, closeGripBench: true, row: true, curls: false },
+//   { press: true, rdl: true, legPress: false, dips: true },
+//   { squat: true, bench: true, deadlift: true },
+//   { pauseSquat: true, benchx5: true, chinups: true, tricepExtensions: true },
+//   { lowBarSquat: true, closeGripBench: true, row: true, curls: false },
+// ];
 
-const fakeInits = {
-  lowBarSquat: 275,
-  bench: 210,
-  press: 145,
-  deadlift: 345,
-  row: 185,
-  curls: 80,
-  tricepExtensions: 85,
-};
+// const fakeInits = {
+//   lowBarSquat: 275,
+//   bench: 210,
+//   press: 145,
+//   deadlift: 345,
+//   row: 185,
+//   curls: 80,
+//   tricepExtensions: 85,
+// };
