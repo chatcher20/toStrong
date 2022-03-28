@@ -27,13 +27,25 @@ import { friendsToBeSeeded } from "./migration/friendsToBeSeeded.js"
 import { user_programsToBeSeeded } from "./migration/user_programsToBeSeeded.js"
 
 
+
+
+
 // create and setup express app
 const app = express()
 app.use(express.json())
 
 const cors = require('cors')
-
 app.use(cors())
+
+const cookieSession = require('cookie-session');
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+app.use(cookieParser());
+app.use(cookieSession({
+    name: "session",
+    keys: ["key1", "key2"],
+  }));
+
 AppDataSource.initialize()
 // register routes: 
 // order is:
@@ -49,6 +61,14 @@ AppDataSource.initialize()
 // user_program
 
 
+// login
+app.get("/auth/:id/", (req, res) => {
+    const { id } = req.params;
+    res.cookie("user_id", id);
+    res.redirect("/");
+  });
+
+
 // user
 app.get("/users", async function (req: Request, res: Response) {
     const users = await AppDataSource.getRepository(User).find()
@@ -56,9 +76,12 @@ app.get("/users", async function (req: Request, res: Response) {
 })
 
 app.get("/users/:id", async function (req: Request, res: Response) {
+    console.log("/users/:id");
     const results = await AppDataSource.getRepository(User).findOneBy({
-        id: Number(req.params.id),
+        // id: Number(req.params.id),
+        id: Number(req.cookies.id)
     })
+    console.log("results: ", results);
     return res.send(results)
 })
 
@@ -170,8 +193,16 @@ app.get("/initial_weights/:user_program_id", async function (req: Request, res: 
     return res.send(results)
 })
 
+// app.post("/initial_weights", async function (req: Request, res: Response) {
+//     const initial_weight = await AppDataSource.getRepository(Initial_Weight).create(req.body)
+//     const results = await AppDataSource.getRepository(Initial_Weight).save(initial_weight)
+//     return res.send(results)
+// })
+
 app.post("/initial_weights", async function (req: Request, res: Response) {
-    const initial_weight = await AppDataSource.getRepository(Initial_Weight).create(req.body)
+    const bodyWithID = {...req.body, user_id: req.cookies.id};
+    console.log("req.cookies.id is: ", req.cookies.id);
+    const initial_weight = await AppDataSource.getRepository(Initial_Weight).create(bodyWithID);
     const results = await AppDataSource.getRepository(Initial_Weight).save(initial_weight)
     return res.send(results)
 })
@@ -278,10 +309,13 @@ app.get("/user_programs/:user_id", async function (req: Request, res: Response) 
 })
 
 app.post("/user_programs", async function (req: Request, res: Response) {
-    const user_program = await AppDataSource.getRepository(User_Program).create(req.body)
+    const bodyWithID = {...req.body, user_id: req.cookies.id};
+    console.log("req.cookies.id is: ", req.cookies.id);
+    const user_program = await AppDataSource.getRepository(User_Program).create(bodyWithID)
     const results = await AppDataSource.getRepository(User_Program).save(user_program)
     return res.send(results)
 })
+
 
 
 
