@@ -93,6 +93,7 @@ app.get("/users/:username", async function (req: Request, res: Response) {
 })
 
 app.post("/users", async function (req: Request, res: Response) {
+    console.log('test: ', req.body) ////////////////////////////////////////////////////
     const user = await AppDataSource.getRepository(User).create(req.body)
     const results = await AppDataSource.getRepository(User).save(user)
     return res.send(results)

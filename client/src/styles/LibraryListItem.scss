@@ -3,7 +3,11 @@
   overflow: hidden;
   padding-bottom: 100%;
   position: relative;
-  height: 0;
+  height: 10px;
+}
+
+.small {
+  padding-bottom: 56%;
 }
 
 .video-responsive iframe {
@@ -16,4 +20,8 @@
 
 .media-content {
   overflow: hidden;
+}
+
+.card-content {
+  z-index: 1000;
 }

@@ -24,7 +24,7 @@ export default function View() {
 
   return (
     <div>
-      <YoutubeEmbed embedId={embededId} />
+      <YoutubeEmbed embedId={embededId} class="video-responsive"/>
       <br/>
        <div className="card">
         <figure>

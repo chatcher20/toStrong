@@ -17,7 +17,7 @@ export class User {
     @Column()
     password: string
 
-    @Column()
+    @Column({nullable: true})
     password_confirmation: string
 
     @Column()
@@ -29,10 +29,10 @@ export class User {
     @Column()
     height_inches: number
 
-    @Column()
+    @Column({nullable: true})
     avatar: string
 
-    @Column()
+    @Column({nullable: true})
     about_me: string
 
     @Column()

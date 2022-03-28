@@ -6,15 +6,15 @@ const axios = require("axios");
 
 export default function Exercise() {
   const { exercise_id } = useParams();
-  const [plannedWorkout, setPlannedWorkout] = useState(['']);
+  const [plannedWorkout, setPlannedWorkout] = useState([""]);
   const [exercises, setExercises] = useState([]);
-  const [program, setProgram] = useState(['']);
+  const [program, setProgram] = useState([""]);
 
   const formatDate = (day) => {
-    const week = 'W' + Math.floor(day / 7);
-    const date = 'D' + (day % 7) 
-    return week + date
-  }
+    const week = "W" + Math.floor(1 + day / 7);
+    const date = "D" + (day % 7);
+    return week + date;
+  };
 
   useEffect(() => {
     axios
@@ -49,11 +49,9 @@ export default function Exercise() {
       });
   }, []);
 
-
-
-  console.log('planned workoug: ', plannedWorkout)
-  console.log('exercises: ', exercises)
-  console.log('program: ', program)
+  console.log("planned workoug: ", plannedWorkout);
+  console.log("exercises: ", exercises);
+  console.log("program: ", program);
 
   return (
     <div class="workout">
