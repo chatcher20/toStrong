@@ -1,9 +1,28 @@
 const initial_weightsToBeSeeded = [
   {
-    user_program_id: 5,
-    exercise_id: 10,
-    weight: 90
+    weights: { "Squat": 100, "Bench Press": 300 },
+    user_id: 1,
+    program_name: "Basic-LP"
   },
 ]
 
 module.exports = { initial_weightsToBeSeeded }
+
+
+
+
+
+
+// @Column('simple-json')
+//     weights: object[]
+
+//     @Column()
+//     user_id: number
+
+//     @Column()
+//     program_name: string
+
+
+// user_id: 1,
+// program_name: "basic-lp",
+// weights: {"Squat": 100, "Bench Press": 80}

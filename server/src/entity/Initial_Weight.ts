@@ -8,13 +8,23 @@ export class Initial_Weight {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column()
-    user_program_id: number
+    // @Column()
+    // user_program_id: number
+
+    // @Column()
+    // exercise_id: number
+
+    // @Column()
+    // weight: number
+
+    @Column('simple-json')
+    weights: object[]
 
     @Column()
-    exercise_id: number
+    user_id: number
 
     @Column()
-    weight: number
+    program_name: string
 
 }
+
