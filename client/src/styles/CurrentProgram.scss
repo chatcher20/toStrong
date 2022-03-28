@@ -1,0 +1,13 @@
+.current-program {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#current-select {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 12px;
+  gap: 20px;
+}

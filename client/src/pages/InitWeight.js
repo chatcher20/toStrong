@@ -13,8 +13,8 @@ export default function InitWeight() {
   const selectedProgram = programs.find((x) => x.id === Number(id));
   const uniqueExercises = [];
   const data = {};
-  data.weights = form;
-  data.program_name = selectedProgram.name;
+  data.weights = form;  
+  data.program_name = (selectedProgram === undefined ? '' : selectedProgram.name);
 
   plannedWOs.forEach((x) => {
     if (!uniqueExercises.includes(x.exercise_name)) {
@@ -60,11 +60,9 @@ export default function InitWeight() {
       });
   };
 
-  console.log("form", form);
-  console.log('data', data);
 
   const exerciseList = uniqueExercises.map((name) => {
-    return <InitWeightItem name={name} onChange={onChange} />;
+    return <InitWeightItem name={name} value={form.name} onChange={onChange} />;
   });
 
   return (

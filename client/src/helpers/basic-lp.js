@@ -2,20 +2,20 @@
 // Workout B:  Squat, Shoulder Press, Chins
 
 // fake data
-// const fakeWorkouts = [
-//   { squat: false, bench: true, deadlift: true },
-//   { squat: true, press: false, chinup: false },
-//   { squat: true, bench: true, deadlift: true },
-//   { squat: true, press: true, chinup: true },
-// ];
+const fakeWorkouts = [
+  { squat: false, bench: true, deadlift: true },
+  { squat: true, press: false, chinup: false },
+  { squat: true, bench: true, deadlift: true },
+  { squat: true, press: true, chinup: true },
+];
 
-// const fakeInits = {
-//   squat: 100,
-//   bench: 85,
-//   press: 55,
-//   deadlift: 145,
-//   chinup: 0,
-// };
+const fakeInits = {
+  squat: 100,
+  bench: 85,
+  press: 55,
+  deadlift: 145,
+  chinup: 0,
+};
 
 const convertToWeights = (exercises, init, increment) => {
   let weight = init;
@@ -52,11 +52,11 @@ const basicLP = (workouts, initWeights, day) => {
   chinups = convertToWeights(chinups, initWeights["Chin Up"], 2.5);
 
   return {
-    squat: squats[day - 1] && `3x5 @ ${squats[day - 1]}`,
-    bench: benches[day - 1] && `3x5 @ ${benches[day - 1]}`,
-    press: presses[day - 1] && `3x5 @ ${presses[day - 1]}`,
-    deadlift: deadlifts[day - 1] && `1x5 @ ${deadlifts[day - 1]}`,
-    chinup:
+    Squat: squats[day - 1] && `3x5 @ ${squats[day - 1]}`,
+    Bench_Press: benches[day - 1] && `3x5 @ ${benches[day - 1]}`,
+    Overhead_Press: presses[day - 1] && `3x5 @ ${presses[day - 1]}`,
+    Deadlift: deadlifts[day - 1] && `1x5 @ ${deadlifts[day - 1]}`,
+    Chin_Up:
       chinups[day - 1] === undefined ? undefined : `3x8 @ ${chinups[day - 1]}`,
   };
 };

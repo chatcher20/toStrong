@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import {
   Chart,
   ChartAxis,
@@ -10,8 +10,42 @@ import {
   createContainer,
 } from "@patternfly/react-charts";
 import Button from "../components/Button";
+import "../styles/CurrentProgram.scss";
+import axios from "axios";
+import formatDate from "../helpers/formatDay";
 
 export default function CurrentProgram() {
+  const [programs, setPrograms] = useState([]);
+  const [plannedWorkouts, setPlannedWorkouts] = useState([]);
+  const [selected, setSelected] = useState("");
+  const { id } = useParams();
+
+  useEffect(() => {
+    axios.get("/programs").then((res) => {
+      setPrograms(res.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get("/planned_workouts").then((res) => {
+      setPlannedWorkouts(res.data);
+    });
+  }, []);
+
+  const selectedProgram = programs.find((x) => x.id === Number(id));
+  const uniqueDays = [];
+
+  plannedWorkouts.forEach((x) => {
+    if (!uniqueDays.includes(x.day)) {
+      uniqueDays.push(x.day);
+    }
+  });
+
+  const selectList = uniqueDays.map((x) => {
+    return <option value={x}>{formatDate(x)}</option>;
+  });
+
+
   class BottomAlignedLegend extends React.Component {
     render() {
       // Note: Container order is important
@@ -23,7 +57,7 @@ export default function CurrentProgram() {
       ];
 
       return (
-        <div style={{ height: "405px", width: "350px" }}>
+        <div style={{ height: "355px", width: "350px" }}>
           <Chart
             ariaDesc="weightlift progress"
             ariaTitle="workout progress"
@@ -116,46 +150,52 @@ export default function CurrentProgram() {
 
   return (
     <div>
-      <div className='current-program'>
+      <br/>
+      <div className="current-program">
         <div>
-        <strong>Current Program</strong>
-        <Link to="/programs/all"> All Programs </Link>
+          <Button word="All Programs" path="/programs/all" />
         </div>
-        <Button word="Continue" path="/programs/:id/:workout_id" />
+        <div id="current-select">
+          <div className="select is-medium-small input-bottom">
+            <select
+              name="workout_list"
+              value={selected}
+              onChange={(x) => {
+                setSelected(x.target.value);
+              }}
+            >
+              <option>Continue Workout</option>
+              {selectList}
+            </select>
+          </div>
+          <div>
+            <button className="button is-light">
+              <Link to={`/programs/${id}/${selected}`}> Confirm </Link>
+            </button>
+          </div>
+        </div>
       </div>
-
-      
       <br />
-      <div className="table-container">
-        <label> Program name</label>
-        <ul>
-          <li>
-            <Link to="/programs/:id/:exercise_id"> W1D1</Link>
-            Workout 1, Push
-          </li>
-          <li>
-            <Link to="/programs/:id/:exercise_id"> W1D2</Link>
-            Workout 2, Pull
-          </li>
-          <li>
-            <Link to="/programs/:id/:exercise_id"> W1D3</Link>
-            Workout 3, Push
-          </li>
-          <li>
-            <Link to="/programs/:id/:exercise_id"> W1D4</Link>
-            Workout 4, Pull
-          </li>
-        </ul>
-        <br/>
-        <progress className="progress is-info is-small" value="15" max="100">15%</progress>
+      <div className="subtitle is-5">
+        Current Program -
+        <br />
+        <div className="title is-4">
+          {selectedProgram ? selectedProgram.name : ""}
+        </div>
       </div>
+      <br />
+      <progress
+        className="progress is-info is-small"
+        value="40"
+        max="100"
+      ></progress>
       <NewGraph />
-      <button className='button'>Last 14 Days</button>
-  <button className='button'>Last 30 Days</button>
-  <button className='button'>From Start</button>
-  <br/>
-  <br/>
-  <br/>
+      <button className="button">Last 14 Days</button>
+      <button className="button">Last 30 Days</button>
+      <button className="button">From Start</button>
+      <br />
+      <br />
+      <br />
     </div>
   );
 }
