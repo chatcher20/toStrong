@@ -17,7 +17,7 @@ const LibraryListItem = (props) => {
     <div>
       <div className="card">
         <figure>
-          <YoutubeEmbed embedId={embededId} />
+          <YoutubeEmbed embedId={embededId} class="video-responsive small"/>
         </figure>
 
         <div className="card-content">

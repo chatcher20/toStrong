@@ -45,6 +45,7 @@ export default function ProgramList(props) {
     .map((program) => (
       <ProgramListItem
         key={program.id}
+        id={program.id}
         name={program.name}
         description={program.description}
         duration={program.duration}

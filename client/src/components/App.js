@@ -13,6 +13,7 @@ import CurrentProgram from "../pages/CurrentProgram.js";
 import Exercise from "../pages/Exercise.js";
 import View from "../pages/View.js";
 import Header from './Header.js';
+import InitWeight from "../pages/InitWeight";
 
 
 
@@ -30,6 +31,7 @@ const App = () => {
         <Routes>
           <Route path="/programs/all" element={<Programs />} />
           <Route path="/programs/:id" element={<CurrentProgram />} />
+          <Route path="/programs/:id/initweight" element={<InitWeight />} />
           <Route path="/programs/:id/:exercise_id" element={<Exercise />} />
           <Route path="/library" element={<Library />} />
           <Route path="/library/:name" element={<View />} />
