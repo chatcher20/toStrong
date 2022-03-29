@@ -16,7 +16,7 @@ const Navigation = () => {
       <Link to="/programs/1"> Program </Link>
     </a>
     <a className="navbar-item">
-      <Link to="/users/John"> Profile </Link>
+      <Link to="/users/Johnny"> Profile </Link>
     </a>
     <a className="navbar-item">
       <Link to="/library"> Library </Link>
