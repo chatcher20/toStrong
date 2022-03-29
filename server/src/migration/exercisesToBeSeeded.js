@@ -71,6 +71,24 @@ const exercisesToBeSeeded = [
       "A squat performed with no rebound out of the bottom position. Instead, the athlete comes to a dead stop and holds the position before standing back up.",
     video_url: "https://www.youtube.com/watch?v=nknf16JJTZo",
   },
+  {
+    name: "Box Squat",
+    description:
+      "At the bottom of the motion the squatter will sit down on a bench or other type of support then rise again. The box squat is commonly utilized by powerlifters to train the squat.",
+    video_url: "https://www.youtube.com/watch?v=hIE6FQJaS7k",
+  },
+  {
+    name: "Rack Pull",
+    description:
+      "A partial range of motion deadlift where the bar is set on the pins (or on blocks) in a power rack.",
+    video_url: "https://www.youtube.com/watch?v=0nJs6Cnfv3M",
+  },
+  {
+    name: "Power Clean",
+    description:
+      "he power clean, a weight training exercise not used in competition, refers to any variant of the clean in which the lifter does not catch the bar in a full squat position (commonly accepted as thighs parallel to the floor or below).",
+    video_url: "https://www.youtube.com/watch?v=mLoPwZx90SI",
+  },
 ];
 
 module.exports = { exercisesToBeSeeded };

@@ -45,7 +45,7 @@ const programsToBeSeeded = [
     equipment_type: "Commercial Gym",
   },
   {
-    planned_workout_id: 5,
+    planned_workout_id: 6,
     name: "Arm Specialization",
     duration: 36,
     description: "The ideal plan for those looking to add size to their arms!",
@@ -53,7 +53,7 @@ const programsToBeSeeded = [
     equipment_type: "Commercial Gym",
   },
   {
-    planned_workout_id: 6,
+    planned_workout_id: 7,
     name: "Matt Kroc's Simple Deadlift Program",
     duration: 17,
     description:
@@ -62,13 +62,31 @@ const programsToBeSeeded = [
     equipment_type: "Commercial Gym",
   },
   {
-    planned_workout_id: 7,
-    name: "Old Russian Calisthenics",
+    planned_workout_id: 8,
+    name: "Old-School Russian Calisthenics",
     duration: 17,
     description:
       "Through simple bodyweight exercises, you too can be as jacked as Czar Nicholas II.",
     modality: "Full-body",
     equipment_type: "Bodyweight",
+  },
+  {
+    planned_workout_id: 9,
+    name: "Conjugate Program",
+    duration: 48,
+    description:
+      "Popularized by Westside Barbell, a combination of a max effort, dynamic effort, and repition method program.",
+    modality: "Full-body",
+    equipment_type: "Commercial Gym",
+  },
+  {
+    planned_workout_id: 10,
+    name: "Garage Gym Warrior",
+    duration: 36,
+    description:
+      "A simplified program that requires only a barbell, rack, and bench, for the garage gym warrior.",
+    modality: "Full-body",
+    equipment_type: "Barbell",
   },
 ];
 
