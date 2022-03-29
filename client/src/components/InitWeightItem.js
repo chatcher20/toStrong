@@ -12,6 +12,7 @@ export default function InitWeightItem(props) {
         type="number"
         placeholder=".lb"
         name={props.name}
+        value={props.value}
         onChange={props.onChange}
       ></input>
     </div>

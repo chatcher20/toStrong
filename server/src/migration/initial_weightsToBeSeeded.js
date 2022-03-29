@@ -1,8 +1,8 @@
 const initial_weightsToBeSeeded = [
   {
-    weights: { "Squat": 100, "Bench Press": 300 },
+    weights: { "Squat": 100, "Bench Press": 100, "Overhead Press": 100, "Deadlift": 100, "Chin Up": 100 },
     user_id: 1,
-    program_name: "Basic-LP"
+    program_name: "Basic LP"
   },
 ]
 

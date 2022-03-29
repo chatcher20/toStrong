@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/New.scss";
 import { bmi, macros } from "../helpers/bmi-macros";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function New() {
@@ -111,7 +111,6 @@ export default function New() {
 
           <div id="new-select">
             <div className="select is-primary is-rounded is-medium input-bottom">
-              <input type="hidden" name="macro" />
               <select name="weight_change" onChange={onChange}>
                 <option>Your goal is to...</option>
                 <option value="bulk">Bulk</option>
