@@ -13,10 +13,10 @@ const Navigation = () => {
     aria-label="main navigation"
   >
     <a className="navbar-item">
-      <Link to="/programs/:id"> Program </Link>
+      <Link to="/programs/1"> Program </Link>
     </a>
     <a className="navbar-item">
-      <Link to="/users/:id"> Profile </Link>
+      <Link to="/users/John"> Profile </Link>
     </a>
     <a className="navbar-item">
       <Link to="/library"> Library </Link>

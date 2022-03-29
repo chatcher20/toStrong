@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import {
-  Chart,
-  ChartAxis,
-  ChartGroup,
-  ChartLine,
-  ChartThemeColor,
-  ChartLegendTooltip,
-  createContainer,
-} from "@patternfly/react-charts";
+import { Link, useParams, Outlet } from "react-router-dom";
+import Graph from "../components/Graph";
 import Button from "../components/Button";
 import "../styles/CurrentProgram.scss";
 import axios from "axios";
@@ -45,115 +37,12 @@ export default function CurrentProgram() {
     return <option value={x}>{formatDate(x)}</option>;
   });
 
-
-  class BottomAlignedLegend extends React.Component {
-    render() {
-      // Note: Container order is important
-      const CursorVoronoiContainer = createContainer("voronoi", "cursor");
-      const legendData = [
-        { childName: "deadlift", name: "DL" },
-        { childName: "bench", name: "Bench" },
-        { childName: "squat", name: "Squat" },
-      ];
-
-      return (
-        <div style={{ height: "355px", width: "350px" }}>
-          <Chart
-            ariaDesc="weightlift progress"
-            ariaTitle="workout progress"
-            containerComponent={
-              <CursorVoronoiContainer
-                cursorDimension="x"
-                labels={({ datum }) => `${datum.y}`}
-                labelComponent={
-                  <ChartLegendTooltip
-                    legendData={legendData}
-                    title={(datum) => datum.x}
-                  />
-                }
-                mouseFollowTooltips
-                voronoiDimension="x"
-                voronoiPadding={50}
-              />
-            }
-            legendData={legendData}
-            legendPosition="bottom"
-            height={500}
-            maxDomain={{ y: 350 }}
-            minDomain={{ y: 50 }}
-            padding={{
-              bottom: 50, // Adjusted to accommodate legend
-              left: 50,
-              right: 50,
-              top: 10,
-            }}
-            themeColor={ChartThemeColor.green}
-            width={550}
-          >
-            <ChartAxis tickValues={[2, 3, 4]} />
-            <ChartAxis
-              dependentAxis
-              showGrid
-              tickValues={[100, 125, 150, 175, 200, 225, 250, 275, 300]}
-            />
-            <ChartGroup>
-              <ChartLine
-                data={[
-                  { x: "2015", y: 200 },
-                  { x: "2016", y: 215 },
-                  { x: "2017", y: 230 },
-                  { x: "2018", y: 200 },
-                  { x: "2019", y: 215 },
-                  { x: "2020", y: 230 },
-                  { x: "2021", y: 200 },
-                  { x: "2022", y: 215 },
-                  { x: "2023", y: 230 },
-                ]}
-                name="deadlift"
-              />
-              <ChartLine
-                data={[
-                  { x: "2015", y: 180 },
-                  { x: "2016", y: 215 },
-                  { x: "2017", y: 230 },
-                  { x: "2018", y: 100 },
-                  { x: "2019", y: 215 },
-                  { x: "2020", y: 230 },
-                  { x: "2021", y: 250 },
-                  { x: "2022", y: 215 },
-                  { x: "2023", y: 230 },
-                ]}
-                name="bench"
-              />
-              <ChartLine
-                data={[
-                  { x: "2015", y: 200 },
-                  { x: "2016", y: 225 },
-                  { x: "2017", y: 230 },
-                  { x: "2018", y: 230 },
-                  { x: "2019", y: 215 },
-                  { x: "2020", y: 230 },
-                  { x: "2021", y: 180 },
-                  { x: "2022", y: 215 },
-                  { x: "2023", y: 200 },
-                ]}
-                name="squat"
-              />
-            </ChartGroup>
-          </Chart>
-        </div>
-      );
-    }
-  }
-
-  const NewGraph = BottomAlignedLegend;
-
   return (
     <div>
-      <br/>
+      <br />
       <div className="current-program">
         <div>
-          <Button word="All Programs" path="/programs/all" />
+          <Button word="All Programs" path="/programs" />
         </div>
         <div id="current-select">
           <div className="select is-medium-small input-bottom">
@@ -189,10 +78,13 @@ export default function CurrentProgram() {
         value="40"
         max="100"
       ></progress>
-      <NewGraph />
-      <button className="button">Last 14 Days</button>
-      <button className="button">Last 30 Days</button>
-      <button className="button">From Start</button>
+      {/* <Graph program={selectedProgram ? selectedProgram.name : ""} /> */}
+      <Outlet />
+      <div className='graph-btns'>
+      <Button size='is-small'word='Last 14 Days' path={`/programs/${id}/14days`}/>
+      <Button size='is-small'word='Last 30 Days' path={`/programs/${id}/30days`}/>
+      <Button size='is-small'word='From Start' path={`/programs/${id}`}/>
+      </div>
       <br />
       <br />
       <br />

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/ExerciseListItem.scss";
 import warmups from "../helpers/warmups";
 import { basicLP } from '../helpers/basic-lp';
 
 export default function ExerciseListItem(props) {
+  const initWeight = props.init[props.name];
+
   return (
     <div className="content exercise-item">
       <div className="exercise-item-header">
@@ -16,15 +18,15 @@ export default function ExerciseListItem(props) {
 
       <div className="exercise-item-content">
         <div>
-          need to change weight
+        hardcoded to program 1
           <strong>Warm Up Sets - </strong>
-          {warmups(100)[0]}
+          {warmups(initWeight)[0]}
           <br />
-          {warmups(100)[1]}
+          {warmups(initWeight)[1]}
           <br />
-          {warmups(100)[2]}
+          {warmups(initWeight)[2]}
           <br />
-          {warmups(100)[3]}
+          {warmups(initWeight)[3]}
         </div>
         <br />
         <div>

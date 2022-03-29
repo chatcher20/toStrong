@@ -27,7 +27,7 @@ export default function Profile() {
           Active program:
           <br />
           example program name
-          <Link to="/programs/:id"> Resume </Link>
+          <Link to="/programs/1"> Resume </Link>
         </div>
 
         <br />
