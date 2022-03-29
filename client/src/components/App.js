@@ -12,36 +12,36 @@ import Navigation from "./Navigation.js";
 import CurrentProgram from "../pages/CurrentProgram.js";
 import Exercise from "../pages/Exercise.js";
 import View from "../pages/View.js";
-import Header from './Header.js';
+import Header from "./Header.js";
 import InitWeight from "../pages/InitWeight";
-
-
-
-
+import Graph from "./Graph";
+import Graph14 from "./Graph14";
+import Graph30 from "./Graph30";
 
 const App = () => {
-
-
-
   return (
-    <div className='app'>
+    <div className="app">
       <Router>
         <Header />
-        <div className='contents'>
-        <Routes>
-          <Route path="/programs/all" element={<Programs />} />
-          <Route path="/programs/:id" element={<CurrentProgram />} />
-          <Route path="/programs/:id/initweight" element={<InitWeight />} />
-          <Route path="/programs/:id/:day" element={<Exercise />} />
-          <Route path="/library" element={<Library />} />
-          <Route path="/library/:name" element={<View />} />
-          <Route path="/users/new" element={<New />} />
-          <Route path="/users/:id" element={<Profile />} />
-          <Route path="/friends" element={<Friends />} />
-          <Route path="/" element={<Front />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
+        <div className="contents">
+          <Routes>
+            <Route path="/programs" element={<Programs />} />
+            <Route path="/programs/:id" element={<CurrentProgram />}>
+              <Route path='/programs/:id' element={<Graph />} />
+              <Route path='14days' element={<Graph14 />} />
+              <Route path='30days' element={<Graph30 />} />
+            </Route>
+            <Route path="/programs/:id/initweight" element={<InitWeight />} />
+            <Route path="/programs/:id/:day" element={<Exercise />} />
+            <Route path="/library" element={<Library />} />
+            <Route path="/library/:name" element={<View />} />
+            <Route path="/users/new" element={<New />} />
+            <Route path="/users/:id" element={<Profile />} />
+            <Route path="/friends" element={<Friends />} />
+            <Route path="/" element={<Front />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
         </div>
         <Navigation />
       </Router>
