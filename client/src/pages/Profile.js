@@ -1,13 +1,14 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import rankBadge from "../images/badges/20.png";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import "../styles/Header.scss";
 import logo from "../images/️toStrong-logos_black.png";
-// import { UserContext } from "../UserContext";
-// import { login } from "../login";
+import { UserContext } from "../UserContext";
+import { login } from "../Login";
 import { bmi, macros } from "../helpers/bmi-macros";
-import { New } from "../pages/New";
+import { New } from "../pages/New.js";
+import axios from "axios";
 
 export default function Profile() {
   const { id } = useParams();
@@ -15,17 +16,69 @@ export default function Profile() {
   // const message = useContext(UserContext);
   // console.log("message is: ", message);
 
-  // import stat info from New to display info on profile page:
-  const stat = {
-    // feet: New(form.height_feet),
-    // inches: form.height_inches,
-    // weight: form.weight,
-    feet: 5,
-    inches: 6,
-    weight: 175,
-  };
+  const [user, setUser] = useState();
 
-  const { program } = useParams();
+  useEffect(() => {
+    axios
+      .get("/users")
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+  console.log("user = ", user);
+
+  const selectedUser = user
+    ? user.find((x) => x.username === id)
+    : "I am an empty string!";
+  console.log("selectedUser = ", selectedUser);
+
+  const stat = {
+    feet: selectedUser.height_feet,
+    inches: selectedUser.height_inches,
+    weight: selectedUser.weight,
+    state: selectedUser.weight_change,
+  };
+  console.log("stat = ", stat);
+  console.log(bmi(stat));
+  console.log(macros(stat.state, stat.weight));
+
+  const [userprogram, setUserprogram] = useState();
+
+  useEffect(() => {
+    axios
+      .get("/user_programs")
+      .then((response) => {
+        setUserprogram(response.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+  console.log("userprogram = ", userprogram);
+
+  const [programs, setPrograms] = useState();
+
+  useEffect(() => {
+    axios
+      .get("/programs")
+      .then((response) => {
+        setPrograms(response.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+  console.log("programs = ", programs);
+
+  const selectedProgram = programs && userprogram
+    ? programs.find((x) => x.id === userprogram[0].program_id)
+    : "I am an empty string!";
+  console.log("selectedProgram = ", selectedProgram);
+
+  
 
   return (
     <div className="">
@@ -52,21 +105,17 @@ export default function Profile() {
 
       <div className="profile-header">
         <div>
-          <strong>Welcome back, <Link to="/:id">Chris!</Link></strong>
+          <strong>Welcome back, {id}!</strong>
           <div>
             BMI:
-            <div className="bmi">{isNaN(bmi(stat)) ? "" : bmi(stat)}</div>
+            <div className="bmi">{bmi(stat)}</div>
             <br />
             Macros (g/day):
           </div>
           <div className="bmi">
-          P: 100, F: 80, C: 200
-            {/* {macros(form.weight_change, form.weight).protein === undefined}
-              ? ""
-              :
-              `P: ${macros(form.weight_change, form.weight).protein}, 
-              F: ${macros(form.weight_change, form.weight).fat}, 
-              C: ${macros(form.weight_change, form.weight).carbs}` */}
+            Protein: {macros(stat.state, stat.weight).protein}
+            Fat: {macros(stat.state, stat.weight).fat}
+            Carbohydrates: {macros(stat.state, stat.weight).carbs}
           </div>
         </div>
 
@@ -79,7 +128,7 @@ export default function Profile() {
         <div>
           Active program:
           <br />
-          Basic LP<Link to="/programs/:id">Resume Program</Link>
+          {selectedProgram.name}<Link to={`/programs/${selectedProgram.id}`}>Resume Program</Link>
         </div>
 
         <br />
@@ -101,7 +150,10 @@ export default function Profile() {
           <br />
           <li>Program 1 - {Date()}</li>
           <br />
-          <li>"if {Date()} > program end_date then it goes into past programs, otherwise it is a current program." </li>
+          <li>
+            "if {Date()} > program end_date then it goes into past programs,
+            otherwise it is a current program."{" "}
+          </li>
           <br />
           Past (Completed) Programs:
           <br />
@@ -116,5 +168,3 @@ export default function Profile() {
     </div>
   );
 }
-
-
