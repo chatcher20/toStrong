@@ -15,5 +15,14 @@
 .graph-btns {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   gap: 10px;
+}
+.progress-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .progress-content {
+    margin-bottom: 10px;
+  }
 }

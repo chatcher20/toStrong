@@ -4,25 +4,14 @@ import Graph from "../components/Graph";
 import Button from "../components/Button";
 import "../styles/CurrentProgram.scss";
 import axios from "axios";
-import formatDate from "../helpers/formatDay";
+import { formatDate } from "../helpers/helperFunctions";
 
 export default function CurrentProgram() {
-  const [programs, setPrograms] = useState([]);
   const [plannedWorkouts, setPlannedWorkouts] = useState([]);
+  const [programs, setPrograms] = useState([]);
+  const [actual, setActual] = useState([]);
   const [selected, setSelected] = useState("");
   const { id } = useParams();
-
-  useEffect(() => {
-    axios.get("/programs").then((res) => {
-      setPrograms(res.data);
-    });
-  }, []);
-
-  useEffect(() => {
-    axios.get("/planned_workouts").then((res) => {
-      setPlannedWorkouts(res.data);
-    });
-  }, []);
 
   const selectedProgram = programs.find((x) => x.id === Number(id));
   const uniqueDays = [];
@@ -36,6 +25,33 @@ export default function CurrentProgram() {
   const selectList = uniqueDays.map((x) => {
     return <option value={x}>{formatDate(x)}</option>;
   });
+
+  useEffect(() => {
+    axios
+      .get("/programs")
+      .then((res) => {
+        setPrograms(res.data);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("/planned_workouts")
+      .then((res) => {
+        setPlannedWorkouts(res.data);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("/actual_workouts")
+      .then((res) => {
+        setActual(res.data);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
 
   return (
     <div>
@@ -72,18 +88,30 @@ export default function CurrentProgram() {
           {selectedProgram ? selectedProgram.name : ""}
         </div>
       </div>
-      <br />
+      <div className="progress-container">
+        <div className="progress-content">Program Progress:</div>
+        <div className="progress-content">{Math.ceil(actual.length / 36 * 100)+'%'}</div>
+      </div>
       <progress
         className="progress is-info is-small"
-        value="40"
+        value={Math.ceil(actual.length / 36 * 100)}
         max="100"
       ></progress>
+
       {/* <Graph program={selectedProgram ? selectedProgram.name : ""} /> */}
       <Outlet />
-      <div className='graph-btns'>
-      <Button size='is-small'word='Last 14 Days' path={`/programs/${id}/14days`}/>
-      <Button size='is-small'word='Last 30 Days' path={`/programs/${id}/30days`}/>
-      <Button size='is-small'word='From Start' path={`/programs/${id}`}/>
+      <div className="graph-btns">
+        <Button
+          size="is-small"
+          word="Last 14 Days"
+          path={`/programs/${id}/14days`}
+        />
+        <Button
+          size="is-small"
+          word="Last 30 Days"
+          path={`/programs/${id}/30days`}
+        />
+        <Button size="is-small" word="From Start" path={`/programs/${id}`} />
       </div>
       <br />
       <br />
