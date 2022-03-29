@@ -16,14 +16,15 @@ export default function New() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-  
-    axios.post("/users", form)
-    .then(() => {
-      navigate(`/users/${form.username}`)
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
+
+    axios
+      .post("/users", form)
+      .then(() => {
+        navigate(`/users/${form.username}`);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   const onChange = ({ target: { name, value } }) => {
@@ -32,7 +33,7 @@ export default function New() {
 
   return (
     <div className="layout is-size-3">
-      SIGN UP -
+      SIGN UP
       <form onSubmit={onSubmit}>
         <div className="field forms">
           <div className="control">
@@ -82,7 +83,7 @@ export default function New() {
               <input
                 className="input"
                 type="number"
-                placeholder="ft."
+                placeholder="ft"
                 name="height_feet"
                 onChange={onChange}
               />
@@ -91,7 +92,7 @@ export default function New() {
               <input
                 className="input"
                 type="number"
-                placeholder="in."
+                placeholder="in"
                 name="height_inches"
                 onChange={onChange}
               />
@@ -100,22 +101,20 @@ export default function New() {
               <input
                 className="input"
                 type="number"
-                placeholder="lb."
+                placeholder="lbs"
                 name="weight"
                 onChange={onChange}
               />
             </div>
           </div>
 
-          <br />
-
           <div id="new-select">
             <div className="select is-primary is-rounded is-medium input-bottom">
               <select name="weight_change" onChange={onChange}>
                 <option>Your goal is to...</option>
-                <option value="bulk">Bulk</option>
+                <option value="bulk">Gain Weight</option>
                 <option value="maintain">Maintain</option>
-                <option value="cut">Cut</option>
+                <option value="cut">Lose Weight</option>
               </select>
             </div>
           </div>
@@ -134,22 +133,30 @@ export default function New() {
               <br />
               <div className="bmi-container">
                 <div>
-                  <strong>Macros:</strong> (g/day){" "}
+                  <strong>Macros:</strong> (g/day)
                 </div>
                 {/* mouseover popup */}
                 <div className="bmi">
                   {macros(form.weight_change, form.weight).protein === undefined
                     ? ""
-                    : `P: ${macros(form.weight_change, form.weight).protein}, 
-                    F: ${macros(form.weight_change, form.weight).fat}, 
-                    C: ${macros(form.weight_change, form.weight).carbs}`}
+                    : `Protein: ${
+                        macros(form.weight_change, form.weight).protein
+                      }`}
+                  <br></br>
+                  {macros(form.weight_change, form.weight).protein === undefined
+                    ? ""
+                    : `Fats: ${macros(form.weight_change, form.weight).fat}`}
+                  <br></br>
+                  {macros(form.weight_change, form.weight).protein === undefined
+                    ? ""
+                    : `Carbs: ${macros(form.weight_change, form.weight).carbs}`}
                 </div>
               </div>
             </div>
           </article>
 
           <div className="control">
-            <button className="button is-primary">Submit</button>
+            <button className="button is-primary is-size-4">Submit</button>
           </div>
         </div>
         <br />

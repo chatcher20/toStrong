@@ -7,10 +7,11 @@ export default function Front() {
     <div>
       <br />
       <h1 className="title is-size-2 has-text-black">
-        The <strong className="has-text-black">.toStrong()</strong>
+        <strong className="has-text-black">.toStrong()</strong>
       </h1>
       <p className="has-text-black is-size-4">
-        method takes an object and returns a strong version of the object"
+        A method that takes an object and returns a strong version of the
+        object"
       </p>
       <div />
       <br />
