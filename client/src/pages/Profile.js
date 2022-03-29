@@ -45,19 +45,19 @@ export default function Profile() {
   console.log(bmi(stat));
   console.log(macros(stat.state, stat.weight));
 
-  const [userprogram, setUserprogram] = useState();
+  const [userprograms, setuserprograms] = useState();
 
   useEffect(() => {
     axios
       .get("/user_programs")
       .then((response) => {
-        setUserprogram(response.data);
+        setuserprograms(response.data);
       })
       .catch((err) => {
         console.log(err.message);
       });
   }, []);
-  console.log("userprogram = ", userprogram);
+  console.log("userprograms = ", userprograms);
 
   const [programs, setPrograms] = useState();
 
@@ -73,12 +73,33 @@ export default function Profile() {
   }, []);
   console.log("programs = ", programs);
 
-  const selectedProgram = programs && userprogram
-    ? programs.find((x) => x.id === userprogram[0].program_id)
-    : "I am an empty string!";
+  const selectedProgram =
+    programs && userprograms
+      ? programs.find((x) => x.id === userprograms[0].program_id)
+      : "I am an empty string!";
   console.log("selectedProgram = ", selectedProgram);
 
-  
+  const completedPrograms = function (userprograms) {
+    console.log(userprograms);
+    if (!userprograms || !programs) {
+      return;
+    } else {
+      for (let obj of userprograms) {
+        console.log(obj);
+        console.log(obj.end_date);
+        if (obj.end_date < Date()) {
+          console.log("this program has ended");
+          const program = programs.find(
+            (x) => x.id === obj.program_id
+          );
+          console.log("program = ", program);
+          return program.name;
+        }
+      }
+    }
+  };
+
+  // user.find((x) => x.username === id)
 
   return (
     <div className="">
@@ -128,7 +149,8 @@ export default function Profile() {
         <div>
           Active program:
           <br />
-          {selectedProgram.name}<Link to={`/programs/${selectedProgram.id}`}>Resume Program</Link>
+          {selectedProgram.name}
+          <Link to={`/programs/${selectedProgram.id}`}>Resume Program</Link>
         </div>
 
         <br />
@@ -147,16 +169,18 @@ export default function Profile() {
         <ol>
           Current Program:
           <br />
+          <li>{`/programs/${selectedProgram.name}`}</li>
           <br />
           <li>Program 1 - {Date()}</li>
           <br />
           <li>
-            "if {Date()} > program end_date then it goes into past programs,
-            otherwise it is a current program."{" "}
+            {/* "if {Date()} > program end_date then it goes into past programs,
+            otherwise it is a current program."{" "} */}
           </li>
           <br />
           Past (Completed) Programs:
           <br />
+          <li>{completedPrograms(userprograms)}</li>
           <br />
           <li>Program 4</li>
           <li>Program 7</li>
