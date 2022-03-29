@@ -1,6 +1,6 @@
 import { basicLP } from "./basic-lp";
 
-const programSelector = (name) => {
+export default function programSelector(name) {
   if (name === "Basic LP") return basicLP;
   if (name === "Heavy Light Medium (HLM)") return;
   if (name === "Four-day Split (Upper/Lower)") return;
@@ -11,5 +11,3 @@ const programSelector = (name) => {
   if (name === "Old Russian Calisthenics") return;
   // if (name === "") return;
 };
-
-module.exports = programSelector;

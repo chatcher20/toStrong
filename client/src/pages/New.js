@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/New.scss";
 import { bmi, macros } from "../helpers/bmi-macros";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function New() {

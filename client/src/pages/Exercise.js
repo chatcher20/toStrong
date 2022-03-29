@@ -1,21 +1,29 @@
-import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "../styles/Exercise.scss";
+import React, { useEffect, useState } from "react";
+import { formatDate, toTrue, obtainObj } from "../helpers/helperFunctions";
 import ExerciseListItem from "../components/ExerciseListItem";
-import formatDate from "../helpers/formatDay";
+import { basicLP } from "../helpers/basic-lp";
+import "../styles/Exercise.scss";
 const axios = require("axios");
 
 export default function Exercise() {
+  const [plannedWorkout, setPlannedWorkout] = useState([]);
+  const [initialWeight, setInitialWeight] = useState([]);
+  const [actualWOs, setActualWOs] = useState([]);
+  const [completed, setCompleted] = useState({});
+  const [programs, setPrograms] = useState([]);
+  const [submit, setSubmit] = useState({});
   const { id, day } = useParams();
   const navigate = useNavigate();
-  const [plannedWorkout, setPlannedWorkout] = useState([]);
-  const [programs, setPrograms] = useState([]);
-  const [completed, setCompleted] = useState({});
-  const [initialWeight, setInitialWeight] = useState();
 
-  const selectedPrograms = programs.find((x) => x.id === Number(id));
-  const workoutsOfTheDay = plannedWorkout.filter((x) => x.day === Number(day));
+  const selectedPrograms = programs.find(x => x.id === Number(id));
+  const workoutsOfTheDay = plannedWorkout.filter(x => x.day === Number(day));
+  const selectedProgramName = selectedPrograms ? selectedPrograms.name : '';
+  const programInitWeightObj = initialWeight.find(x => x.program_name === selectedProgramName);
+  const programInitWeight = programInitWeightObj ? programInitWeightObj.weights : '' ;
+  const trackWO = obtainObj(actualWOs);
 
+  // for rendering what exercise the selected day contains
   useEffect(() => {
     axios
       .get("/planned_workouts")
@@ -27,6 +35,19 @@ export default function Exercise() {
       });
   }, []);
 
+  // for computing weight
+  useEffect(() => {
+    axios
+      .get("/actual_workouts")
+      .then((res) => {
+        setActualWOs(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+
+  // for comupting weight
   useEffect(() => {
     axios
       .get("/initial_weights")
@@ -38,6 +59,7 @@ export default function Exercise() {
       });
   }, []);
 
+  // to determine the selected program and get its name
   useEffect(() => {
     axios
       .get("/programs")
@@ -49,6 +71,7 @@ export default function Exercise() {
       });
   }, []);
 
+  // to set toggle complete
   useEffect(() => {
     const obj = {};
     workoutsOfTheDay.forEach((x) => {
@@ -57,20 +80,19 @@ export default function Exercise() {
     setCompleted(obj);
   }, [plannedWorkout]);
 
-  const toTrue = (obj) => {
-    for (const key in obj) {
-      if (obj[key] === "on") {
-        obj[key] = true;
-      }
-    }
-    return obj;
-  };
+  // to set final POST route data
+  useEffect(() => {
+    const finalObj = {};
+    finalObj.program_name = selectedProgramName;
+    finalObj.day = Number(day);
+    finalObj.exercisesCompleted = toTrue(completed);
+    setSubmit(finalObj);
+  }, [completed]);
 
   const onSubmit = (event) => {
     event.preventDefault();
-
     axios
-      .post("/users", toTrue(completed))
+      .post("/actual_workouts", submit)
       .then(() => {
         navigate(`/programs/${id}`);
       })
@@ -83,33 +105,31 @@ export default function Exercise() {
     setCompleted((prev) => ({ ...prev, [name]: value }));
   };
 
-
-  const eachExercise = workoutsOfTheDay.map((workout) => (
+  // map over array containing today's exercises
+  const eachExercise = workoutsOfTheDay.map((exercise) => (
     <ExerciseListItem
-      key={workout.id}
-      name={workout.exercise_name}
-      program={workout.program_name}
-      init={initialWeight ? initialWeight[1].weights : '' /* HARD CODED */}
+      key={exercise.id}
+      name={exercise.exercise_name}
+      program={exercise.program_name}
+      weight={basicLP(trackWO, programInitWeight, day)}
       onChange={onChange}
     />
   ));
 
   return (
     <div className="workout">
-      <form onSubmit={onSubmit}>
-        <div>
-          <br />
-          <div className="subtitle is-4">
-            {programs.length !== 0 ? selectedPrograms.name : ""}
-          </div>
-          <div className="title is-5">
-            Today's workout ({formatDate(day)}) -
-          </div>
-          {eachExercise}
-        </div>
+      <div>
         <br />
+        <div className="subtitle is-4">
+          {programs.length !== 0 ? selectedPrograms.name : ""}
+        </div>
+        <div className="title is-5">Today's workout ({formatDate(day)}) -</div>
+        {eachExercise}
+      </div>
+      <br />
+      <form onSubmit={onSubmit}>
         <div className="control">
-          <button className="button is-primary is-medium" action="submit">
+          <button className="button is-success is-medium" action="submit">
             Complete Workout
           </button>
         </div>

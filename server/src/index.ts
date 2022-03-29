@@ -97,7 +97,6 @@ app.get("/users/:username", async function (req: Request, res: Response) {
 });
 
 app.post("/users", async function (req: Request, res: Response) {
-  console.log("test: ", req.body); ////////////////////////////////////////////////////
   const user = await AppDataSource.getRepository(User).create(req.body);
   const results = await AppDataSource.getRepository(User).save(user);
   return res.send(results);
@@ -211,7 +210,6 @@ app.get("/initial_weights", async function (req: Request, res: Response) {
 app.post("/initial_weights", async function (req: Request, res: Response) {
   const bodyWithID = { ...req.body, user_id: req.cookies.user_id }; // changed id to user_id
   console.log("req.cookies.id is: ", req.cookies.user_id);
-  console.log("test: ", req.body); ////////////////////////////////////////////////////
   const initial_weight = await AppDataSource.getRepository(
     Initial_Weight
   ).create(bodyWithID);
@@ -242,8 +240,8 @@ app.get(
 );
 
 app.post("/actual_workouts", async function (req: Request, res: Response) {
-  const bodyWithID = { ...req.body, user_id: req.cookies.id };
-  console.log("req.cookies.id is: ", req.cookies.id);
+  const bodyWithID = { ...req.body, user_id: req.cookies.user_id };
+  console.log("req.cookies.id is: ", req.cookies.user_id);
   const actual_workout = await AppDataSource.getRepository(
     Actual_Workout
   ).create(bodyWithID);

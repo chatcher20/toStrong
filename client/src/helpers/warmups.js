@@ -24,9 +24,9 @@ const warmups = (workWeight) => {
 
   return [
     "Empty bar x 2 x 5",
-    `${warmup1} x 5`,
-    `${warmup2} x 3`,
-    `${warmup3} x 2`,
+    `${warmup1} lb x 5`,
+    `${warmup2} lb x 3`,
+    `${warmup3} lb x 2`,
   ];
 };
 
