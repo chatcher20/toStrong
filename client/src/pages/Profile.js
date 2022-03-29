@@ -9,6 +9,7 @@ import { login } from "../login";
 import { bmi, macros } from "../helpers/bmi-macros";
 import { New } from "../pages/New";
 
+
 export default function Profile() {
   const { id } = useParams();
   const { user, setUser } = useContext(UserContext);
