@@ -72,9 +72,9 @@ export default function Profile() {
   };
 
   const loadBMI = bmi(stat) ? bmi(stat) : "-" ;
-  const loadProtein = macros(stat.state, stat.weight).protein ? macros(stat.state, stat.weight).protein : "-" ;
-  const loadFat = macros(stat.state, stat.weight).fat ? macros(stat.state, stat.weight).fat : "=" ;
-  const loadCarbs = macros(stat.state, stat.weight).carbs ? macros(stat.state, stat.weight).carbs : "-" ;
+  const loadProtein = macros(stat.state, stat.weight).protein ? `${macros(stat.state, stat.weight).protein} g`  : "-" ;
+  const loadFat = macros(stat.state, stat.weight).fat ? `${macros(stat.state, stat.weight).fat} g` : "-" ;
+  const loadCarbs = macros(stat.state, stat.weight).carbs ? `${macros(stat.state, stat.weight).carbs} g` : "-" ;
 
   return (
     <div>
@@ -100,9 +100,7 @@ export default function Profile() {
           <div className="level-item has-text-centered">
             <div>
               <p className="heading">Macros - Protein</p>
-              <p className="title">
-                {loadProtein} g
-              </p>
+              <p className="title">{loadProtein}</p>
             </div>
           </div>
         </div>
@@ -110,13 +108,13 @@ export default function Profile() {
           <div className="level-item has-text-centered">
             <div>
               <p className="heading">Macros - Fat</p>
-              <p className="title">{loadFat} g</p>
+              <p className="title">{loadFat}</p>
             </div>
           </div>
           <div className="level-item has-text-centered">
             <div>
               <p className="heading">Macros - Carbs</p>
-              <p className="title">{loadCarbs} g</p>
+              <p className="title">{loadCarbs}</p>
             </div>
           </div>
         </div>
