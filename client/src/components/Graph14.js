@@ -120,7 +120,7 @@ export default function Graph14(props) {
               right: 50,
               top: 30,
             }}
-            themeColor={ChartThemeColor.green}
+            themeColor={ChartThemeColor.multi}
             width={500}
           >
             <ChartAxis />

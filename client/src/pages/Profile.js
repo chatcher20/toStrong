@@ -77,7 +77,6 @@ export default function Profile() {
         <div>
           <div className="title is-2">
             {id}
-            <div className="subtitle is-3">Welcome Back!</div>
           </div>
         </div>
         <button className="button is-small is-link is-rounded has-text-weight-bold">
@@ -89,7 +88,7 @@ export default function Profile() {
         <div className="level health-matrix top">
           <div className="level-item has-text-centered">
             <div>
-              <p className="heading">BMI -</p>
+              <p className="heading">BMI</p>
               <p className="title">{bmi(stat)}</p>
             </div>
           </div>
