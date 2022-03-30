@@ -6,10 +6,12 @@ export default function Library() {
 
   return (
     <div>
-      <label className="is-size-3">
-        <strong>All workouts</strong>
-      </label>
-      <br />
+      <div className="title is-size-3"> 
+        All Workouts - 
+        <div className='subtitle is-size-5'>
+          Exercise Library
+        </div>
+      </div>
       <div className="search-bar">
         <div className="control">
           <input
@@ -22,7 +24,10 @@ export default function Library() {
         <i className="fas fa-magnifying-glass"></i>
       </div>
       <br />
+      <br />
       <LibraryList query={query} />
+      <br />
+      <br />
       <br />
       <br />
     </div>

@@ -11,13 +11,14 @@ html {
 }
 
 .app {
-  max-width: 390px;
-  min-height: 844px;
+  min-width: 500px;
+  min-height: 975px;
   height: 812px;
   overflow: hidden;
   overflow-y: auto;
   margin: 0;
   background-color: white;
+  font-family: 'Montserrat';
 }
 
 .app::-webkit-scrollbar {
@@ -30,9 +31,8 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  padding: 90px 50px;
-  height: 100%;
+  padding: 125px 50px;
+  height: 60%;
   z-index: 1;
 }
 
@@ -49,11 +49,6 @@ p {
   margin-bottom: 15px;
 }
 
-div {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-}
 
 div img {
   height: 300px;
@@ -70,21 +65,25 @@ li img {
   height: 200px;
 }
 
+// friends
 .friend-badge {
   height: 50px;
 }
 
+// program & library
 .search-bar {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 30px;
+  justify-content: center;
+  input {
+    width: 340px;
+  }
 }
 
-.root-btns {
-  flex-direction: row;
-  gap: 30px;
-}
+
+
 
 .profile-header {
   display: flex;

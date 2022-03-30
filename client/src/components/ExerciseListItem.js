@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/ExerciseListItem.scss";
 import warmups from "../helpers/warmups";
+import "../styles/ExerciseListItem.scss";
 
 export default function ExerciseListItem(props) {
-  const weight = props.weight[props.name] ? props.weight[props.name].split(' @ ')[1].slice(0, 3) : '';
-
+  const weight = props.weight[props.name] ? props.weight[props.name].split(' ')[4] : '';
+  const LinkStyle = {
+    color: 'rgb(40, 40, 40)',
+  }
   return (
-    <div className="content exercise-item">
+    <div className="notification exercise-item">
       <div className="exercise-item-header">
-        <div className="tag title is-6 is-info is-light ">
-          <Link to={`/library/${props.name}`}>{props.name}</Link>
+        <div className="tag title is-5 is-light">
+          <Link to={`/library/${props.name}`} style={LinkStyle}>{props.name}</Link>
         </div>
         <label className="switch">
           <input type="checkbox" name={props.name} onChange={props.onChange} />
@@ -34,7 +36,7 @@ export default function ExerciseListItem(props) {
           <div className="dropdown-menu" id="dropdown-menu4" role="menu">
             <div className="dropdown-content">
               <div className="dropdown-item">
-                <p className="dropdown-items">
+                <p className="dropdown-items is-size-6">
                   <li>Warm Up Sets</li>
                   <hr className="dropdown-divider" />
                   <li>{warmups(weight)[0]}</li>

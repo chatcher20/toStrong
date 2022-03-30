@@ -31,12 +31,17 @@ export default function New() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  console.log(stat)
+  console.log(stat);
 
   return (
     <div className="layout is-size-3">
+      <div className='title'>
+
       SIGN UP
+      </div>
+     
       <form onSubmit={onSubmit}>
+
         <div className="field forms">
           <div className="control">
             <input
@@ -73,7 +78,7 @@ export default function New() {
               <input
                 className="input confirm"
                 type="password"
-                placeholder="Confirm"
+                placeholder="Confirm Password"
                 name="password_confirmation"
                 onChange={onChange}
               />
@@ -109,7 +114,7 @@ export default function New() {
               />
             </div>
           </div>
-
+     
           <div id="new-select">
             <div className="select is-primary is-rounded is-medium input-bottom">
               <select name="weight_change" onChange={onChange}>
@@ -134,35 +139,63 @@ export default function New() {
               </div>
               <br />
               <div className="bmi-container">
-                <div>
+                <div className="macro">
                   <strong>Macros:</strong> (g/day)
                 </div>
-                {/* mouseover popup */}
                 <div className="bmi">
-                  {macros(form.weight_change, form.weight).protein === undefined
-                    ? ""
-                    : `Protein: ${
-                        macros(form.weight_change, form.weight).protein
-                      }`}
-                  <br></br>
-                  {macros(form.weight_change, form.weight).protein === undefined
-                    ? ""
-                    : `Fats: ${macros(form.weight_change, form.weight).fat}`}
-                  <br></br>
-                  {macros(form.weight_change, form.weight).protein === undefined
-                    ? ""
-                    : `Carbs: ${macros(form.weight_change, form.weight).carbs}`}
+                  <div className="bmi-content">
+                    <div>
+                      {macros(form.weight_change, form.weight).protein ===
+                      undefined
+                        ? ""
+                        : `Protein:`}
+                    </div>
+                    <div>
+                      {macros(form.weight_change, form.weight).protein ===
+                      undefined
+                        ? ""
+                        : `${macros(form.weight_change, form.weight).protein}`}
+                    </div>
+                  </div>
+                  <div className="bmi-content">
+                    <div>
+                      {macros(form.weight_change, form.weight).protein ===
+                      undefined
+                        ? ""
+                        : `Fat:`}
+                    </div>
+                    <div>
+                      {macros(form.weight_change, form.weight).protein ===
+                      undefined
+                        ? ""
+                        : `${macros(form.weight_change, form.weight).fat}`}
+                    </div>
+                  </div>
+                  <div className="bmi-content">
+                    <div>
+                      {macros(form.weight_change, form.weight).protein ===
+                      undefined
+                        ? ""
+                        : `Carbs:`}
+                    </div>
+                    <div>
+                      {macros(form.weight_change, form.weight).protein ===
+                      undefined
+                        ? ""
+                        : `${macros(form.weight_change, form.weight).carbs}`}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </article>
-
-          <div className="control">
+          <div className="control bmi">
             <button className="button is-primary is-size-4">Submit</button>
           </div>
         </div>
         <br />
         <br />
+      
       </form>
     </div>
   );
