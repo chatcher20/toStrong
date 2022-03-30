@@ -7,14 +7,21 @@
   }
 }
 
+#content {
+  align-items: baseline;
+}
+
 .health-matrix {
   display: flex;
-  justify-content: space-around !important;  
+  justify-content: space-around !important;
+  align-items: baseline;
 }
 
 .top {
   margin-top: 20px;
 }
+
+
 
 .profile-programs {
   display: flex;

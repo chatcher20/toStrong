@@ -9,8 +9,8 @@ export default function Front() {
         <strong className="has-text-black">.toStrong()</strong>
       </h1>
       <p className="has-text-black is-size-4 root-p">
-        A method that takes an object and returns a strong version of the
-        object"
+        "A method that takes in an object and returns a stronger version of the
+        object."
       </p>
       <br/>
       <div className="root-content">
@@ -19,7 +19,7 @@ export default function Front() {
         <div />
         <div className="root-btns buttons are-large">
           <Button word="Sign Up" path="/users/new" />
-          <Button word="Sign in" path="/signin" />
+          <Button word="Sign In" path="/signin" />
         </div>
       </div>
     </div>
