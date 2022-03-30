@@ -27,9 +27,9 @@ const App = () => {
           <Routes>
             <Route path="/programs" element={<Programs />} />
             <Route path="/programs/:id" element={<CurrentProgram />}>
-              <Route path='/programs/:id' element={<Graph />} />
-              <Route path='14days' element={<Graph14 />} />
-              <Route path='30days' element={<Graph30 />} />
+              <Route path="/programs/:id" element={<Graph />} />
+              <Route path="14days" element={<Graph14 />} />
+              <Route path="30days" element={<Graph30 />} />
             </Route>
             <Route path="/programs/:id/initweight" element={<InitWeight />} />
             <Route path="/programs/:id/:day" element={<Exercise />} />

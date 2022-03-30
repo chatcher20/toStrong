@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
 import axios from "axios";
+import { obtainObj, createGraphData } from "../helpers/helperFunctions";
+import { basicLP } from "../helpers/basic-lp";
 import {
   Chart,
   ChartAxis,
@@ -11,23 +14,59 @@ import {
 } from "@patternfly/react-charts";
 
 export default function Graph(props) {
-  const [init, setInit] = useState([]);
+  const [initialWeight, setInitialWeight] = useState([]);
+  const [programs, setPrograms] = useState([]);
+  const [actual, setActual] = useState([]);
+  const [id] = useOutletContext();
+  const selectedProgram = programs.find((x) => x.id === Number(id));
+  const selectedProgramName = selectedProgram ? selectedProgram.name : "";
+  const programInitWeightObj = initialWeight.find(
+    (x) => x.program_name === selectedProgramName
+  );
+  const programInitWeight = programInitWeightObj
+    ? programInitWeightObj.weights
+    : "";
+  const trackWO = obtainObj(actual);
 
   useEffect(() => {
     axios
       .get("/initial_weights")
       .then((res) => {
-        setInit(res.data);
+        setInitialWeight(res.data);
       })
       .catch((err) => {
         console.log(err.message);
       });
   }, []);
 
-  // const filteredInit = init.filter( x => 
-  // )
+  useEffect(() => {
+    axios
+      .get("/programs")
+      .then((res) => {
+        setPrograms(res.data);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
 
-  console.log('init:', init)
+  useEffect(() => {
+    axios
+      .get("/actual_workouts")
+      .then((res) => {
+        setActual(res.data);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
+
+  const results =
+    trackWO && programInitWeight && actual
+      ? createGraphData(basicLP, trackWO, programInitWeight, actual.length)
+      : "";
+
+  const listItems = [];
+
+  for (const result in results) {
+    listItems.push(<ChartLine data={results[result]} name={result} />);
+  }
 
   class BottomAlignedLegend extends React.Component {
     render() {
@@ -58,80 +97,30 @@ export default function Graph(props) {
                 }
                 mouseFollowTooltips
                 voronoiDimension="x"
-                voronoiPadding={50}
+                voronoiPadding={20}
               />
             }
             legendData={legendData}
             legendPosition="bottom"
             height={400}
-            maxDomain={{ y: 300 }}
-            minDomain={{ y: 75 }}
+            maxDomain={{ y: 250 }}
+            minDomain={{ y: 100 }}
             padding={{
               bottom: 50, // Adjusted to accommodate legend
               left: 50,
               right: 50,
-              top: 10,
+              top: 0,
             }}
-            themeColor={ChartThemeColor.green}
-            width={550}
+            themeColor={ChartThemeColor.purple}
+            width={600}
           >
-            <ChartAxis tickValues={[2, 3, 4]} />
+            <ChartAxis />
             <ChartAxis
               dependentAxis
               showGrid
-              tickValues={[0, 100, 125, 150, 175, 200, 225, 250, 275, 300]}
+              tickValues={[100, 125, 150, 175, 200, 225, 250]}
             />
-            <ChartGroup>
-              <ChartLine
-                data={[
-                  { x: "2015", y: 200 },
-                  { x: "2016", y: 215 },
-                  { x: "2017", y: 230 },
-
-                ]}
-                name="Deadlift"
-              />
-              <ChartLine
-                data={[
-                  { x: "2015", y: 180 },
-                  { x: "2016", y: 215 },
-                  { x: "2017", y: 230 },
-                ]}
-                name="Bench Press"
-              />
-              <ChartLine
-                data={[
-                  { x: "2015", y: 200 },
-                  { x: "2016", y: 225 },
-                  { x: "2017", y: 230 },
-                  { x: "2018", y: 230 },
-
-                ]}
-                name="Squat"
-              />
-              <ChartLine
-                data={[
-
-                  { x: "2018", y: 230 },
-                  { x: "2019", y: 215 },
-                  { x: "2020", y: 230 },
-                  { x: "2021", y: 180 },
-                  { x: "2022", y: 215 },
-                  { x: "2023", y: 200 },
-                ]}
-                name="Overhead Press"
-              />
-              <ChartLine
-                data={[
-                  { x: "2015", y: 200 },
-                  { x: "2020", y: 230 },
-                  { x: "2021", y: 180 },
-                  { x: "2022", y: 215 },
-                  { x: "2023", y: 200 },
-                ]}
-                name="Chin Up"
-              />
-            </ChartGroup>
+            <ChartGroup>{listItems}</ChartGroup>
           </Chart>
         </div>
       );

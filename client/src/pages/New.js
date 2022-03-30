@@ -31,6 +31,8 @@ export default function New() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  console.log(stat)
+
   return (
     <div className="layout is-size-3">
       SIGN UP

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, Outlet } from "react-router-dom";
-import Graph from "../components/Graph";
 import Button from "../components/Button";
 import "../styles/CurrentProgram.scss";
 import axios from "axios";
@@ -90,25 +89,26 @@ export default function CurrentProgram() {
       </div>
       <div className="progress-container">
         <div className="progress-content">Program Progress:</div>
-        <div className="progress-content">{Math.ceil(actual.length / 36 * 100)+'%'}</div>
+        <div className="progress-content">
+          {Math.ceil((actual.length / 36) * 100) + "%"}
+        </div>
       </div>
       <progress
         className="progress is-info is-small"
-        value={Math.ceil(actual.length / 36 * 100)}
+        value={Math.ceil((actual.length / 36) * 100)}
         max="100"
       ></progress>
 
-      {/* <Graph program={selectedProgram ? selectedProgram.name : ""} /> */}
-      <Outlet />
+      <Outlet context={[id]} />
       <div className="graph-btns">
         <Button
           size="is-small"
-          word="Last 14 Days"
+          word="Last 2 Weeks"
           path={`/programs/${id}/14days`}
         />
         <Button
           size="is-small"
-          word="Last 30 Days"
+          word="Last Month"
           path={`/programs/${id}/30days`}
         />
         <Button size="is-small" word="From Start" path={`/programs/${id}`} />
