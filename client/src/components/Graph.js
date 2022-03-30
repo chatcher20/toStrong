@@ -111,7 +111,7 @@ export default function Graph(props) {
               right: 50,
               top: 30,
             }}
-            themeColor={ChartThemeColor.purple}
+            themeColor={ChartThemeColor.multi}
             width={500}
           >
             <ChartAxis />

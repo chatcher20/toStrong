@@ -11,13 +11,8 @@ export default function Front() {
       <p className="has-text-black is-size-4 root-p">
         A method that takes an object and returns a strong version of the
         object"
-        <div className="MDN is-italic">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - MDN Web Docs
-        </div>
       </p>
+      <br/>
       <div className="root-content">
         <br/>
         <img src={Weightlift} alt="weightlift-img" />

@@ -120,7 +120,7 @@ export default function Graph30(props) {
               right: 50,
               top: 30,
             }}
-            themeColor={ChartThemeColor.gold}
+            themeColor={ChartThemeColor.multi}
             width={500}
           >
             <ChartAxis />
