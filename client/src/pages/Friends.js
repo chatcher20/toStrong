@@ -10,32 +10,32 @@ export default function Friends() {
       <ul>
         <br />
         <li>
-          <Link to="/users/:id"> Bob Vance </Link>
+          <Link to="/users/:username"> Bob Vance </Link>
           <img src={Badge} className="friend-badge"/>
         </li>
         <br />
         <li>
-          <Link to="/users/:id"> Michael Scott </Link>
+          <Link to="/users/:username"> Michael Scott </Link>
           <img src={Badge} className="friend-badge"/>
         </li>
         <br />
         <li>
-          <Link to="/users/:id"> Jim Halpert </Link>
+          <Link to="/users/:username"> Jim Halpert </Link>
           <img src={Badge} className="friend-badge" />
         </li>
         <br />
         <li>
-          <Link to="/users/:id"> Monkey Fuzz </Link>
+          <Link to="/users/:username"> Monkey Fuzz </Link>
           <img src={Badge} className="friend-badge"/>
         </li>
         <br />
         <li>
-          <Link to="/users/:id"> Pam Beesley </Link>
+          <Link to="/users/:username"> Pam Beesley </Link>
           <img src={Badge} className="friend-badge"/>
         </li>
         <br />
         <li>
-          <Link to="/users/:id"> Kevin Malone </Link>
+          <Link to="/users/:username"> Kevin Malone </Link>
           <img src={Badge} className="friend-badge"/>
         </li>
       </ul>
