@@ -71,13 +71,16 @@ export default function Profile() {
     }
   };
 
+  const loadBMI = bmi(stat) ? bmi(stat) : "-" ;
+  const loadProtein = macros(stat.state, stat.weight).protein ? `${macros(stat.state, stat.weight).protein} g`  : "-" ;
+  const loadFat = macros(stat.state, stat.weight).fat ? `${macros(stat.state, stat.weight).fat} g` : "-" ;
+  const loadCarbs = macros(stat.state, stat.weight).carbs ? `${macros(stat.state, stat.weight).carbs} g` : "-" ;
+
   return (
     <div>
       <div className="profile-header">
         <div>
-          <div className="title is-2">
-            {id}
-          </div>
+          <div className="title is-2">{id}</div>
         </div>
         <button className="button is-small is-link is-rounded has-text-weight-bold">
           Settings &nbsp;<i className="fa-solid fa-gear"></i>
@@ -85,33 +88,33 @@ export default function Profile() {
       </div>
       <hr />
       <div className="profile-content">
-        <div className="level health-matrix top">
+        <div id="content" className="level health-matrix top">
           <div className="level-item has-text-centered">
             <div>
               <p className="heading">BMI</p>
-              <p className="title">{bmi(stat)}</p>
+              <p className="title">
+                {loadBMI}
+              </p>
             </div>
           </div>
           <div className="level-item has-text-centered">
             <div>
               <p className="heading">Macros - Protein</p>
-              <p className="title">
-                {macros(stat.state, stat.weight).protein} g
-              </p>
+              <p className="title">{loadProtein}</p>
             </div>
           </div>
         </div>
-        <div className="level health-matrix">
+        <div id="content" className="level health-matrix">
           <div className="level-item has-text-centered">
             <div>
               <p className="heading">Macros - Fat</p>
-              <p className="title">{macros(stat.state, stat.weight).fat} g</p>
+              <p className="title">{loadFat}</p>
             </div>
           </div>
           <div className="level-item has-text-centered">
             <div>
               <p className="heading">Macros - Carbs</p>
-              <p className="title">{macros(stat.state, stat.weight).carbs} g</p>
+              <p className="title">{loadCarbs}</p>
             </div>
           </div>
         </div>
@@ -125,17 +128,17 @@ export default function Profile() {
           <Button word="Resume" path={`/programs/${selectedProgram.id}`} />
         </div>
         <br />
-        <div>
-          <ol>
-            <label className="subtitle is-6">Completed Program(s):</label>
-            <li className="title is-5">{completedPrograms(userprograms)}</li>
+        <div className="profile-programs">
+          <div>
+            <div className="subtitle is-5">Completed Programs:</div>
+            <div className="title is-4">{completedPrograms(userprograms)}</div>
             <br />
-          </ol>
+          </div>
         </div>
       </div>
       <div className="badge">
         <hr />
-        <div className="title is-6">Badge(s):</div>
+        <div className="title is-6">Badges:</div>
 
         <img src={rankBadge} alt="badge" />
       </div>
