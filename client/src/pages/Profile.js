@@ -45,19 +45,19 @@ export default function Profile() {
   console.log(bmi(stat));
   console.log(macros(stat.state, stat.weight));
 
-  const [userprogram, setUserprogram] = useState();
+  const [userprograms, setuserprograms] = useState();
 
   useEffect(() => {
     axios
       .get("/user_programs")
       .then((response) => {
-        setUserprogram(response.data);
+        setuserprograms(response.data);
       })
       .catch((err) => {
         console.log(err.message);
       });
   }, []);
-  console.log("userprogram = ", userprogram);
+  console.log("userprograms = ", userprograms);
 
   const [programs, setPrograms] = useState();
 
@@ -73,12 +73,36 @@ export default function Profile() {
   }, []);
   console.log("programs = ", programs);
 
-  const selectedProgram = programs && userprogram
-    ? programs.find((x) => x.id === userprogram[0].program_id)
-    : "I am an empty string!";
+  const selectedProgram =
+    programs && userprograms
+      ? programs.find((x) => x.id === userprograms[0].program_id)
+      : "I am an empty string!";
   console.log("selectedProgram = ", selectedProgram);
 
-  
+  const completedPrograms = function (userprograms) {
+    // console.log("userprograms = ", userprograms);
+    if (!userprograms || !programs) {
+      return;
+    } else {
+      // for (let obj of userprograms) {
+      //   // console.log("obj = ", obj);
+      //   console.log("obj.end_date =", obj.end_date);
+      //   const today = new Date().toISOString().slice(0, 10);
+      //   console.log("today = ", today);
+      //   if (obj.end_date < today) {
+      //     console.log("this program has ended");
+      //     const program = programs.find((x) => x.id === obj.program_id);
+      //     console.log("program = ", program);
+      //     return program.name;
+      //   }
+      // }
+      const today = new Date().toISOString().slice(0, 10);
+      return userprograms
+        .filter(program => program.end_date < today)
+        .map(program => programs.find((x) => x.id === program.program_id))
+        .map(program => <div>{program.name}</div>);
+    }
+  };
 
   return (
     <div className="">
@@ -117,6 +141,7 @@ export default function Profile() {
             Fat: {macros(stat.state, stat.weight).fat}
             Carbohydrates: {macros(stat.state, stat.weight).carbs}
           </div>
+          <br />
         </div>
 
         <button className="button is-small">
@@ -126,14 +151,14 @@ export default function Profile() {
 
       <div className="profile-content">
         <div>
-          Active program:
-          <br />
-          {selectedProgram.name}<Link to={`/programs/${selectedProgram.id}`}>Resume Program</Link>
+          <strong>Current Program:</strong>
+          <li>{selectedProgram.name}</li>
+          <Link to={`/programs/${selectedProgram.id}`}>Resume</Link>
         </div>
 
         <br />
         <div className="badge">
-          Current Badge:
+          <strong>Current Badge:</strong>
           <br />
           <br />
           <img src={rankBadge} alt="badge" />
@@ -142,24 +167,14 @@ export default function Profile() {
 
       <br />
       <div>
-        <strong>Program History:</strong>
         <br />
         <ol>
-          Current Program:
           <br />
           <br />
-          <li>Program 1 - {Date()}</li>
+          <strong>Completed Programs:</strong>
           <br />
-          <li>
-            "if {Date()} > program end_date then it goes into past programs,
-            otherwise it is a current program."{" "}
-          </li>
+          <li>{completedPrograms(userprograms)}</li>
           <br />
-          Past (Completed) Programs:
-          <br />
-          <br />
-          <li>Program 4</li>
-          <li>Program 7</li>
         </ol>
       </div>
       <br />
