@@ -9,6 +9,7 @@ import { login } from "../Login";
 import { bmi, macros } from "../helpers/bmi-macros";
 import { New } from "../pages/New.js";
 import axios from "axios";
+import Button from "../components/Button";
 
 export default function Profile() {
   const { id } = useParams();
@@ -98,9 +99,9 @@ export default function Profile() {
       // }
       const today = new Date().toISOString().slice(0, 10);
       return userprograms
-        .filter(program => program.end_date < today)
-        .map(program => programs.find((x) => x.id === program.program_id))
-        .map(program => <div>{program.name}</div>);
+        .filter((program) => program.end_date < today)
+        .map((program) => programs.find((x) => x.id === program.program_id))
+        .map((program) => <div>{program.name}</div>);
     }
   };
 
@@ -131,20 +132,21 @@ export default function Profile() {
         <div>
           <strong>Welcome back, {id}!</strong>
           <div>
-            BMI:
+            <br />
+            <b>BMI:</b>
             <div className="bmi">{bmi(stat)}</div>
             <br />
-            Macros (g/day):
+            <b>Macros (g/day):</b>
           </div>
           <div className="bmi">
-            Protein: {macros(stat.state, stat.weight).protein}
-            Fat: {macros(stat.state, stat.weight).fat}
-            Carbohydrates: {macros(stat.state, stat.weight).carbs}
+            <div>Protein: {macros(stat.state, stat.weight).protein}</div>
+            <div>Fat: {macros(stat.state, stat.weight).fat}</div>
+            <div>Carbohydrates: {macros(stat.state, stat.weight).carbs}</div>
           </div>
           <br />
         </div>
 
-        <button className="button is-small">
+        <button className="button is-small is-link"  >
           Settings &nbsp;<i className="fa-solid fa-gear"></i>
         </button>
       </div>
@@ -153,33 +155,25 @@ export default function Profile() {
         <div>
           <strong>Current Program:</strong>
           <li>{selectedProgram.name}</li>
-          <Link to={`/programs/${selectedProgram.id}`}>Resume</Link>
+          <Button  word="Resume" path={`/programs/${selectedProgram.id}`} />
+          <br />
         </div>
-
-        <br />
-        <div className="badge">
-          <strong>Current Badge:</strong>
-          <br />
-          <br />
-          <img src={rankBadge} alt="badge" />
+        <div>
+          <ol>
+            <strong>Completed Programs:</strong>
+            <br />
+            <li>{completedPrograms(userprograms)}</li>
+            <br />
+          </ol>
         </div>
       </div>
-
-      <br />
-      <div>
+      <div className="badge">
+        <hr />
+        <strong>Latest Badge:</strong>
         <br />
-        <ol>
-          <br />
-          <br />
-          <strong>Completed Programs:</strong>
-          <br />
-          <li>{completedPrograms(userprograms)}</li>
-          <br />
-        </ol>
+        <img src={rankBadge} alt="badge" />
+        <br />
       </div>
-      <br />
-      <br />
-      <br />
     </div>
   );
 }
