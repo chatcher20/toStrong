@@ -80,26 +80,29 @@ export default function Profile() {
   console.log("selectedProgram = ", selectedProgram);
 
   const completedPrograms = function (userprograms) {
-    console.log(userprograms);
+    // console.log("userprograms = ", userprograms);
     if (!userprograms || !programs) {
       return;
     } else {
-      for (let obj of userprograms) {
-        console.log(obj);
-        console.log(obj.end_date);
-        if (obj.end_date < Date()) {
-          console.log("this program has ended");
-          const program = programs.find(
-            (x) => x.id === obj.program_id
-          );
-          console.log("program = ", program);
-          return program.name;
-        }
-      }
+      // for (let obj of userprograms) {
+      //   // console.log("obj = ", obj);
+      //   console.log("obj.end_date =", obj.end_date);
+      //   const today = new Date().toISOString().slice(0, 10);
+      //   console.log("today = ", today);
+      //   if (obj.end_date < today) {
+      //     console.log("this program has ended");
+      //     const program = programs.find((x) => x.id === obj.program_id);
+      //     console.log("program = ", program);
+      //     return program.name;
+      //   }
+      // }
+      const today = new Date().toISOString().slice(0, 10);
+      return userprograms
+        .filter(program => program.end_date < today)
+        .map(program => programs.find((x) => x.id === program.program_id))
+        .map(program => <div>{program.name}</div>);
     }
   };
-
-  // user.find((x) => x.username === id)
 
   return (
     <div className="">
@@ -138,6 +141,7 @@ export default function Profile() {
             Fat: {macros(stat.state, stat.weight).fat}
             Carbohydrates: {macros(stat.state, stat.weight).carbs}
           </div>
+          <br />
         </div>
 
         <button className="button is-small">
@@ -147,15 +151,14 @@ export default function Profile() {
 
       <div className="profile-content">
         <div>
-          Active program:
-          <br />
-          {selectedProgram.name}
-          <Link to={`/programs/${selectedProgram.id}`}>Resume Program</Link>
+          <strong>Current Program:</strong>
+          <li>{selectedProgram.name}</li>
+          <Link to={`/programs/${selectedProgram.id}`}>Resume</Link>
         </div>
 
         <br />
         <div className="badge">
-          Current Badge:
+          <strong>Current Badge:</strong>
           <br />
           <br />
           <img src={rankBadge} alt="badge" />
@@ -164,26 +167,14 @@ export default function Profile() {
 
       <br />
       <div>
-        <strong>Program History:</strong>
         <br />
         <ol>
-          Current Program:
           <br />
-          <li>{`/programs/${selectedProgram.name}`}</li>
           <br />
-          <li>Program 1 - {Date()}</li>
-          <br />
-          <li>
-            {/* "if {Date()} > program end_date then it goes into past programs,
-            otherwise it is a current program."{" "} */}
-          </li>
-          <br />
-          Past (Completed) Programs:
+          <strong>Completed Programs:</strong>
           <br />
           <li>{completedPrograms(userprograms)}</li>
           <br />
-          <li>Program 4</li>
-          <li>Program 7</li>
         </ol>
       </div>
       <br />
