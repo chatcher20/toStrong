@@ -1,23 +1,16 @@
-import React from "react";
-import { useParams, Link } from "react-router-dom";
-import rankBadge from "../images/badges/20.png";
-import { useContext, useState, useEffect } from "react";
-import "../styles/Header.scss";
-import logo from "../images/️toStrong-logos_black.png";
-import { UserContext } from "../UserContext";
-import { login } from "../Login";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { bmi, macros } from "../helpers/bmi-macros";
-import { New } from "../pages/New.js";
-import axios from "axios";
 import Button from "../components/Button";
+import rankBadge from "../images/badges/20.png";
+import axios from "axios";
+import "../styles/Profile.scss";
 
 export default function Profile() {
-  const { id } = useParams();
-  // const { user, setUser } = useContext(UserContext);
-  // const message = useContext(UserContext);
-  // console.log("message is: ", message);
-
+  const [userprograms, setuserprograms] = useState();
+  const [programs, setPrograms] = useState();
   const [user, setUser] = useState();
+  const { id } = useParams();
 
   useEffect(() => {
     axios
@@ -29,24 +22,6 @@ export default function Profile() {
         console.log(err.message);
       });
   }, []);
-  console.log("user = ", user);
-
-  const selectedUser = user
-    ? user.find((x) => x.username === id)
-    : "I am an empty string!";
-  console.log("selectedUser = ", selectedUser);
-
-  const stat = {
-    feet: selectedUser.height_feet,
-    inches: selectedUser.height_inches,
-    weight: selectedUser.weight,
-    state: selectedUser.weight_change,
-  };
-  console.log("stat = ", stat);
-  console.log(bmi(stat));
-  console.log(macros(stat.state, stat.weight));
-
-  const [userprograms, setuserprograms] = useState();
 
   useEffect(() => {
     axios
@@ -58,9 +33,6 @@ export default function Profile() {
         console.log(err.message);
       });
   }, []);
-  console.log("userprograms = ", userprograms);
-
-  const [programs, setPrograms] = useState();
 
   useEffect(() => {
     axios
@@ -72,31 +44,25 @@ export default function Profile() {
         console.log(err.message);
       });
   }, []);
-  console.log("programs = ", programs);
+
+  const selectedUser = user ? user.find((x) => x.username === id) : "";
+
+  const stat = {
+    feet: selectedUser.height_feet,
+    inches: selectedUser.height_inches,
+    weight: selectedUser.weight,
+    state: selectedUser.weight_change,
+  };
 
   const selectedProgram =
     programs && userprograms
       ? programs.find((x) => x.id === userprograms[0].program_id)
-      : "I am an empty string!";
-  console.log("selectedProgram = ", selectedProgram);
+      : "";
 
   const completedPrograms = function (userprograms) {
-    // console.log("userprograms = ", userprograms);
     if (!userprograms || !programs) {
       return;
     } else {
-      // for (let obj of userprograms) {
-      //   // console.log("obj = ", obj);
-      //   console.log("obj.end_date =", obj.end_date);
-      //   const today = new Date().toISOString().slice(0, 10);
-      //   console.log("today = ", today);
-      //   if (obj.end_date < today) {
-      //     console.log("this program has ended");
-      //     const program = programs.find((x) => x.id === obj.program_id);
-      //     console.log("program = ", program);
-      //     return program.name;
-      //   }
-      // }
       const today = new Date().toISOString().slice(0, 10);
       return userprograms
         .filter((program) => program.end_date < today)
@@ -106,73 +72,73 @@ export default function Profile() {
   };
 
   return (
-    <div className="">
-      {/* <pre>{JSON.stringify(user, null, 2)}</pre>
-        {user ? (
-          <button
-            onClick={() => {
-              // call logout
-              setUser(null);
-            }}
-          >
-            logout
-          </button>
-        ) : (
-          <button
-            onClick={async () => {
-              const user = await login();
-              setUser(user);
-            }}
-          >
-            login
-          </button>
-        )} */}
-
+    <div>
       <div className="profile-header">
         <div>
-          <strong>Welcome back, {id}!</strong>
-          <div>
-            <br />
-            <b>BMI:</b>
-            <div className="bmi">{bmi(stat)}</div>
-            <br />
-            <b>Macros (g/day):</b>
+          <div className="title is-2">
+            {id}
+            <div className="subtitle is-3">Welcome Back!</div>
           </div>
-          <div className="bmi">
-            <div>Protein: {macros(stat.state, stat.weight).protein}</div>
-            <div>Fat: {macros(stat.state, stat.weight).fat}</div>
-            <div>Carbohydrates: {macros(stat.state, stat.weight).carbs}</div>
-          </div>
-          <br />
         </div>
-
-        <button className="button is-small is-link"  >
+        <button className="button is-small is-link is-rounded has-text-weight-bold">
           Settings &nbsp;<i className="fa-solid fa-gear"></i>
         </button>
       </div>
-
+      <hr />
       <div className="profile-content">
-        <div>
-          <strong>Current Program:</strong>
-          <li>{selectedProgram.name}</li>
-          <Button  word="Resume" path={`/programs/${selectedProgram.id}`} />
-          <br />
+        <div className="level health-matrix top">
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="heading">BMI -</p>
+              <p className="title">{bmi(stat)}</p>
+            </div>
+          </div>
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="heading">Macros - Protein</p>
+              <p className="title">
+                {macros(stat.state, stat.weight).protein} g
+              </p>
+            </div>
+          </div>
         </div>
+        <div className="level health-matrix">
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="heading">Macros - Fat</p>
+              <p className="title">{macros(stat.state, stat.weight).fat} g</p>
+            </div>
+          </div>
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="heading">Macros - Carbs</p>
+              <p className="title">{macros(stat.state, stat.weight).carbs} g</p>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <br />
+        <div className="profile-programs">
+          <div>
+            <div className="subtitle is-5">Current Program:</div>
+            <div className="title is-4">{selectedProgram.name}</div>
+          </div>
+          <Button word="Resume" path={`/programs/${selectedProgram.id}`} />
+        </div>
+        <br />
         <div>
           <ol>
-            <strong>Completed Programs:</strong>
-            <br />
-            <li>{completedPrograms(userprograms)}</li>
+            <label className="subtitle is-6">Completed Program(s):</label>
+            <li className="title is-5">{completedPrograms(userprograms)}</li>
             <br />
           </ol>
         </div>
       </div>
       <div className="badge">
         <hr />
-        <strong>Latest Badge:</strong>
-        <br />
+        <div className="title is-6">Badge(s):</div>
+
         <img src={rankBadge} alt="badge" />
-        <br />
       </div>
     </div>
   );

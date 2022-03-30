@@ -52,10 +52,10 @@ const basicLP = (workouts, initWeights, day) => {
   chinups = convertToWeights(chinups, initWeights["Chin Up"], 2.5);
 
   return {
-    Squat: squats[day - 1] && `3 x 5 @ ${squats[day - 1]} lb`,
+    "Squat": squats[day - 1] && `3 x 5 @ ${squats[day - 1]} lb`,
     "Bench Press": benches[day - 1] && `3 x 5 @ ${benches[day - 1]} lb`,
     "Overhead Press": presses[day - 1] && `3 x 5 @ ${presses[day - 1]} lb`,
-    Deadlift: deadlifts[day - 1] && `1 x 5 @ ${deadlifts[day - 1]} lb`,
+    "Deadlift": deadlifts[day - 1] && `1 x 5 @ ${deadlifts[day - 1]} lb`,
     "Chin Up":
       chinups[day - 1] === undefined
         ? undefined

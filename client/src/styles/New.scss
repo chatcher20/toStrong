@@ -14,7 +14,8 @@
 
 #new-select {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
 }
 
 .bmi-container {
@@ -26,4 +27,31 @@
     flex-grow: 10;
     align-items: center;
   }
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.macro {
+  display: flex;
+  flex-direction: column;
+}
+
+.bmi {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+
+.bmi-content {
+  width: 120px;
+  display:flex;
+  justify-content: space-between;
+}
+
+.message-body {
+  height: 160px;
 }

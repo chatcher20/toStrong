@@ -12,6 +12,10 @@ const LibraryListItem = (props) => {
       props.description.substring(0, maxLength) + '...';
   }
 
+  const LinkStyle = {
+    color: 'black'
+  }
+
   return (
     <div>
       <div className="card">
@@ -23,7 +27,7 @@ const LibraryListItem = (props) => {
           <div className="media">
             <div className="media-content">
               <p className='title is-4'>
-              <Link to={`/library/${props.name}`}>{props.name}</Link>
+              <Link to={`/library/${props.name}`} style={LinkStyle}>{props.name}</Link>
               </p>
             </div>
           </div>

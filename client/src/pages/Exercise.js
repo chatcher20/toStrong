@@ -16,11 +16,15 @@ export default function Exercise() {
   const { id, day } = useParams();
   const navigate = useNavigate();
 
-  const selectedPrograms = programs.find(x => x.id === Number(id));
-  const workoutsOfTheDay = plannedWorkout.filter(x => x.day === Number(day));
-  const selectedProgramName = selectedPrograms ? selectedPrograms.name : '';
-  const programInitWeightObj = initialWeight.find(x => x.program_name === selectedProgramName);
-  const programInitWeight = programInitWeightObj ? programInitWeightObj.weights : '' ;
+  const selectedPrograms = programs.find((x) => x.id === Number(id));
+  const workoutsOfTheDay = plannedWorkout.filter((x) => x.day === Number(day));
+  const selectedProgramName = selectedPrograms ? selectedPrograms.name : "";
+  const programInitWeightObj = initialWeight.find(
+    (x) => x.program_name === selectedProgramName
+  );
+  const programInitWeight = programInitWeightObj
+    ? programInitWeightObj.weights
+    : "";
   const trackWO = obtainObj(actualWOs);
 
   // for rendering what exercise the selected day contains
@@ -119,17 +123,18 @@ export default function Exercise() {
   return (
     <div className="workout">
       <div>
-        <br />
-        <div className="subtitle is-4">
+        <div className="workout-header title is-3">
           {programs.length !== 0 ? selectedPrograms.name : ""}
+          <div className="subtitle is-4">
+            {programs.length !== 0 ? selectedPrograms.modality : ""} ({formatDate(day)}) -
+          </div>
         </div>
-        <div className="title is-5">Today's workout ({formatDate(day)}) -</div>
         {eachExercise}
       </div>
       <br />
       <form onSubmit={onSubmit}>
-        <div className="control">
-          <button className="button is-success is-medium" action="submit">
+        <div className="control WOfooter">
+          <button className="button is-primary is-medium has-text-weight-bold" action="submit">
             Complete Workout
           </button>
         </div>

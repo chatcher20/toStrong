@@ -26,8 +26,8 @@ export default function ProgramList(props) {
         return true;
       } else if (
         list.name.toLowerCase().includes(query.toLowerCase()) ||
-        // list.description.toLowerCase().includes(query.toLowerCase()) ||
-        list.equipment_type.toLowerCase().includes(query.toLowerCase()) 
+        list.equipment_type.toLowerCase().includes(query.toLowerCase()) ||
+        list.modality.toLowerCase().includes(query.toLowerCase())
       ) {
         return true;
       }
@@ -59,5 +59,10 @@ export default function ProgramList(props) {
       return 0;
     });
 
-  return <div>{listCardItem}</div>;
+  return (
+    <div>
+      {listCardItem}
+      <br />
+    </div>
+  );
 }

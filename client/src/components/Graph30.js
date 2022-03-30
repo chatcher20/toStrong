@@ -90,18 +90,18 @@ export default function Graph30(props) {
       ];
 
       return (
-        <div style={{ height: "355px", width: "350px" }}>
+        <div style={{ height: "380px", width: "430px" }}>
           <Chart
             ariaDesc="weightlift progress"
             ariaTitle="workout progress"
             containerComponent={
               <CursorVoronoiContainer
                 cursorDimension="x"
-                labels={({ datum }) => `${datum.y}`}
+                labels={({ datum }) => `${datum.y} lb`}
                 labelComponent={
                   <ChartLegendTooltip
                     legendData={legendData}
-                    title={(datum) => datum.x}
+                    title={(datum) => `Day ${datum.x}`}
                   />
                 }
                 mouseFollowTooltips
@@ -118,10 +118,10 @@ export default function Graph30(props) {
               bottom: 50, // Adjusted to accommodate legend
               left: 50,
               right: 50,
-              top: 0,
+              top: 30,
             }}
             themeColor={ChartThemeColor.gold}
-            width={600}
+            width={500}
           >
             <ChartAxis />
             <ChartAxis

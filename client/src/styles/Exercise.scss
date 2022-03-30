@@ -2,8 +2,13 @@
 
 .workout{
   display: flex;
+  flex-direction: column;
   height: 100%;
-  justify-content: space-between;
+
+    .WOfooter {
+      display: flex;
+      justify-content: center;
+    }
 }
 
 

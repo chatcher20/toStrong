@@ -1,0 +1,24 @@
+.badge {
+  margin-bottom: 120px;
+  img {
+    font-size: 20px;
+    height: 100px;
+    width: fit-content;
+  }
+}
+
+.health-matrix {
+  display: flex;
+  justify-content: space-around !important;  
+}
+
+.top {
+  margin-top: 20px;
+}
+
+.profile-programs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}

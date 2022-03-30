@@ -52,15 +52,39 @@ export default function CurrentProgram() {
       .catch((err) => console.log(err.message));
   }, []);
 
+  const linkStyle = {
+    color: "black",
+  };
+
   return (
     <div>
-      <br />
-      <div className="current-program">
+      
+      <div className="current-program-header">
         <div>
-          <Button word="All Programs" path="/programs" />
+          <div className="subtitle is-4">Current Program -</div>
+          <div className="title is-3">
+            {selectedProgram ? selectedProgram.name : ""}
+          </div>
         </div>
+        <Button word="All Programs" path="/programs" />
+      </div>
+      <br />
+      <br />
+      <div className="progress-container">
+        <div className="progress-content">Program Progress:</div>
+        <div className="progress-content">
+          <strong>{Math.ceil((actual.length / 36) * 100) + "%"}</strong>
+        </div>
+      </div>
+      <progress
+        className="progress is-link is-small"
+        value={Math.ceil((actual.length / 36) * 100)}
+        max="100"
+      ></progress>
+
+      <div className="current-program">
         <div id="current-select">
-          <div className="select is-medium-small input-bottom">
+          <div className="select is-medium input-bottom">
             <select
               name="workout_list"
               value={selected}
@@ -72,48 +96,31 @@ export default function CurrentProgram() {
               {selectList}
             </select>
           </div>
-          <div>
-            <button className="button is-light">
-              <Link to={`/programs/${id}/${selected}`}> Confirm </Link>
-            </button>
-          </div>
+        </div>
+        <div>
+          <button className="button is-light is-medium">
+            <Link to={`/programs/${id}/${selected}`} style={linkStyle}>
+              {" "}
+              Confirm{" "}
+            </Link>
+          </button>
         </div>
       </div>
-      <br />
-      <div className="subtitle is-5">
-        Current Program -
-        <br />
-        <div className="title is-4">
-          {selectedProgram ? selectedProgram.name : ""}
-        </div>
-      </div>
-      <div className="progress-container">
-        <div className="progress-content">Program Progress:</div>
-        <div className="progress-content">
-          {Math.ceil((actual.length / 36) * 100) + "%"}
-        </div>
-      </div>
-      <progress
-        className="progress is-info is-small"
-        value={Math.ceil((actual.length / 36) * 100)}
-        max="100"
-      ></progress>
-
       <Outlet context={[id]} />
-      <div className="graph-btns">
-        <Button
-          size="is-small"
-          word="Last 2 Weeks"
-          path={`/programs/${id}/14days`}
-        />
-        <Button
-          size="is-small"
-          word="Last Month"
-          path={`/programs/${id}/30days`}
-        />
-        <Button size="is-small" word="From Start" path={`/programs/${id}`} />
+
+      <div class="tabs is-fullwidth is-medium-small">
+        <ul>
+          <li>
+            <Link to={`/programs/${id}/14days`}>Last 2 Weeks</Link>
+          </li>
+          <li>
+            <Link to={`/programs/${id}/30days`}>Last Month</Link>
+          </li>
+          <li>
+            <Link to={`/programs/${id}`}>From Start</Link>
+          </li>
+        </ul>
       </div>
-      <br />
       <br />
       <br />
     </div>
