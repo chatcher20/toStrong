@@ -113,7 +113,7 @@ export default function Graph30(props) {
             legendData={legendData}
             legendPosition="bottom"
             height={400}
-            maxDomain={{ y: 350 }}
+            maxDomain={{ y: 400 }}
             minDomain={{ y: 150 }}
             padding={{
               bottom: 50, // Adjusted to accommodate legend
@@ -128,7 +128,7 @@ export default function Graph30(props) {
             <ChartAxis
               dependentAxis
               // showGrid
-              tickValues={[150, 200, 250, 300, 350]}
+              tickValues={[150, 200, 250, 300, 350, 400]}
             />
             <ChartGroup>{listItems}</ChartGroup>
           </Chart>
