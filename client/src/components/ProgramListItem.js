@@ -52,6 +52,7 @@ export default function ProgramListItem(props) {
               {tag(props.modality)}
               {tag(props.type)}
             </div>
+            <br/>
             <div>
               <strong>Duration</strong>:{` ${props.duration} workouts`}
             </div>

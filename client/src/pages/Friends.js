@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Badge from "../images/badges/1.png";
+import Badge20 from "../images/badges/20.png";
 import Badge2 from "../images/badges/2.png";
 import Badge3 from "../images/badges/3.png";
 import Badge5 from "../images/badges/5.png";
 import Badge7 from "../images/badges/7.png";
 import Badge10 from "../images/badges/10.png";
 import Badge15 from "../images/badges/15.png";
+
 import "../styles/Friends.scss";
 
 export default function Friends() {
@@ -38,7 +39,7 @@ export default function Friends() {
         <br />
         <li className="friend">
           <Link to="/users/Johnny"> Monkey Fuzz </Link>
-          <img src={Badge} alt="1" className="friend-badge" />
+          <img src={Badge20} alt="20" className="friend-badge" />
         </li>
         <br />
         <li className="friend">

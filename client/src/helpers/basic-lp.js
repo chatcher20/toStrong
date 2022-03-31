@@ -18,13 +18,13 @@
 //};
 
 const convertToWeights = (exercises, init, increment) => {
-  let weight = init;
+  let weight = Number(init);
   const weights = exercises.slice();
 
   for (let i = 0; i < exercises.length; i++) {
     if (exercises[i] === undefined) continue;
-    weights[i] = weight;
-    if (exercises[i]) weight += increment;
+    weights[i] = Number(weight);
+    if (exercises[i]) weight += Number(increment);
   }
 
   return weights;

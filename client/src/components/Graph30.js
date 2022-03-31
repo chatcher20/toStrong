@@ -20,13 +20,14 @@ export default function Graph30(props) {
   const [id] = useOutletContext();
   const selectedProgram = programs.find((x) => x.id === Number(id));
   const selectedProgramName = selectedProgram ? selectedProgram.name : "";
+  const selectedActual = actual.filter( x => x.program_name === selectedProgramName)
   const programInitWeightObj = initialWeight.find(
     (x) => x.program_name === selectedProgramName
   );
   const programInitWeight = programInitWeightObj
     ? programInitWeightObj.weights
     : "";
-  const trackWO = obtainObj(actual);
+  const trackWO = obtainObj(selectedActual);
 
   useEffect(() => {
     axios
@@ -59,7 +60,7 @@ export default function Graph30(props) {
 
   const results =
     trackWO && programInitWeight && actual
-      ? createGraphData(basicLP, trackWO, programInitWeight, actual.length)
+      ? createGraphData(basicLP, trackWO, programInitWeight, selectedActual.length)
       : "";
 
   const listItems = [];
@@ -112,8 +113,8 @@ export default function Graph30(props) {
             legendData={legendData}
             legendPosition="bottom"
             height={400}
-            maxDomain={{ y: 250 }}
-            minDomain={{ y: 100 }}
+            maxDomain={{ y: 350 }}
+            minDomain={{ y: 150 }}
             padding={{
               bottom: 50, // Adjusted to accommodate legend
               left: 50,
@@ -126,8 +127,8 @@ export default function Graph30(props) {
             <ChartAxis />
             <ChartAxis
               dependentAxis
-              showGrid
-              tickValues={[100, 125, 150, 175, 200, 225, 250]}
+              // showGrid
+              tickValues={[150, 200, 250, 300, 350]}
             />
             <ChartGroup>{listItems}</ChartGroup>
           </Chart>
