@@ -20,7 +20,7 @@ export default function New() {
     axios
       .post("/users", form)
       .then(() => {
-        navigate(`/users/${form.username}`);
+        navigate(`/programs`);
       })
       .catch((err) => {
         console.log(err.message);
@@ -119,9 +119,9 @@ export default function New() {
             <div className="select is-primary is-rounded is-medium input-bottom">
               <select name="weight_change" onChange={onChange}>
                 <option>Your goal is to...</option>
-                <option value="bulk">Gain Weight</option>
+                <option value="bulk">Gain Muscle</option>
                 <option value="maintain">Maintain</option>
-                <option value="cut">Lose Weight</option>
+                <option value="cut">Lose Fat</option>
               </select>
             </div>
           </div>

@@ -8,6 +8,8 @@ export default function ExerciseListItem(props) {
   const LinkStyle = {
     color: 'rgb(40, 40, 40)',
   }
+
+  console.log(props)
   return (
     <div className="notification exercise-item">
       <div className="exercise-item-header">

@@ -22,10 +22,15 @@ export default function Exercise() {
   const programInitWeightObj = initialWeight.find(
     (x) => x.program_name === selectedProgramName
   );
+
+  const selectedActual = actualWOs.filter( x => x.program_name === selectedProgramName)
+
   const programInitWeight = programInitWeightObj
     ? programInitWeightObj.weights
     : "";
-  const trackWO = obtainObj(actualWOs);
+  const trackWO = obtainObj(selectedActual);
+
+  console.log(programInitWeight)
 
   // for rendering what exercise the selected day contains
   useEffect(() => {
@@ -119,6 +124,8 @@ export default function Exercise() {
       onChange={onChange}
     />
   ));
+
+  console.log(basicLP(trackWO, programInitWeight, day))
 
   return (
     <div className="workout">

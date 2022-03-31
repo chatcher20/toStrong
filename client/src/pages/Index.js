@@ -19,7 +19,7 @@ export default function Front() {
         <div />
         <div className="root-btns buttons are-large">
           <Button word="Sign Up" path="/users/new" />
-          <Button word="Sign In" path="/signin" />
+          <Button word="Sign In" path="/programs/2" />
         </div>
       </div>
     </div>

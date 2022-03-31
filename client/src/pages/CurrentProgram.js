@@ -13,7 +13,16 @@ export default function CurrentProgram() {
   const { id } = useParams();
 
   const selectedProgram = programs.find((x) => x.id === Number(id));
+  const selectedProgramName = !selectedProgram ? "" : selectedProgram.name ;
+  const selectedActual = actual.filter( x => x.program_name === selectedProgramName)
+
   const uniqueDays = [];
+
+  console.log('actual', selectedActual)
+  console.log('1', actual)
+  console.log('2', selectedProgramName)
+  console.log('^%', Math.ceil((selectedActual.length / 36) * 100))
+
 
   plannedWorkouts.forEach((x) => {
     if (!uniqueDays.includes(x.day)) {
@@ -24,6 +33,7 @@ export default function CurrentProgram() {
   const selectList = uniqueDays.map((x) => {
     return <option value={x}>{formatDate(x)}</option>;
   });
+
 
   useEffect(() => {
     axios
@@ -61,9 +71,9 @@ export default function CurrentProgram() {
       
       <div className="current-program-header">
         <div>
-          <div className="subtitle is-4">Current Program -</div>
+          <div className="subtitle is-4">Current Program </div>
           <div className="title is-3">
-            {selectedProgram ? selectedProgram.name : ""}
+            {selectedProgram ? selectedProgram.name : "Basic LP"}
           </div>
         </div>
         <Button word="All Programs" path="/programs" />
@@ -71,14 +81,14 @@ export default function CurrentProgram() {
       <br />
       <br />
       <div className="progress-container">
-        <div className="progress-content">Program Progress:</div>
+        <div className="progress-content">Program Progress </div>
         <div className="progress-content">
-          <strong>{Math.ceil((actual.length / 36) * 100) + "%"}</strong>
+          <strong>{selectedActual ? Math.ceil((selectedActual.length / 36) * 100) + "%" : 0}</strong>
         </div>
       </div>
       <progress
         className="progress is-link is-small"
-        value={Math.ceil((actual.length / 36) * 100)}
+        value={selectedActual ? Math.ceil((selectedActual.length / 36) * 100) : 0}
         max="100"
       ></progress>
 

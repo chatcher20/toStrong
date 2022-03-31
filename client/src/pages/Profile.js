@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { bmi, macros } from "../helpers/bmi-macros";
 import Button from "../components/Button";
-import rankBadge from "../images/badges/20.png";
+import rankBadge3 from "../images/badges/1.png";
 import axios from "axios";
 import "../styles/Profile.scss";
 
@@ -131,17 +131,16 @@ export default function Profile() {
         <div className="profile-programs">
           <div>
             <div className="subtitle is-5">Completed Programs:</div>
-            <div className="title is-4">{completedPrograms(userprograms)}</div>
-            <br />
+            <div className="title is-6">{completedPrograms(userprograms)}</div>
           </div>
         </div>
       </div>
       <div className="badge">
         <hr />
         <div className="title is-6">Badges:</div>
-
-        <img src={rankBadge} alt="badge" />
+        <img src={rankBadge3} alt="badge3" />
       </div>
+      <br />
     </div>
   );
 }
