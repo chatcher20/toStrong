@@ -15,7 +15,8 @@ html {
   min-height: 975px;
   height: 812px;
   overflow: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
+  padding-right: 10px;
   margin: 0;
   background-color: white;
   font-family: 'Montserrat';

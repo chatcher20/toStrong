@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Button from "../components/Button";
 import InitWeightItem from "../components/InitWeightItem";
 
 export default function InitWeight() {
@@ -21,6 +20,7 @@ export default function InitWeight() {
       uniqueExercises.push(x.exercise_name);
     }
   });
+  console.log('data', data)
 
   useEffect(() => {
     axios

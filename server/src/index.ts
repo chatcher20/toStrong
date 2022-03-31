@@ -70,7 +70,7 @@ app.get("/auth/:id/", (req, res) => {
   const { id } = req.params;
   res.cookie("user_id", id);
   console.log("GET id: ", id); ////////////////////////////////////////
-  res.redirect(`/users/${id}`);
+  res.redirect(`/programs`);
 });
 
 // user

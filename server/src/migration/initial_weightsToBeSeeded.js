@@ -1,6 +1,6 @@
 const initial_weightsToBeSeeded = [
   {
-    weights: { "Squat": 250, "Bench Press": 180, "Overhead Press": 150, "Deadlift": 200, "Chin Up": 150 },
+    weights: { "Squat": 250, "Overhead Press": 160, "Deadlift": 275, "Bench Press": 200, "Chin Up": 150 },
     user_id: 1,
     program_name: "Heavy Light Medium (HLM)"
   },
