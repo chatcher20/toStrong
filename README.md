@@ -6,6 +6,11 @@
 
 We came up with a workout planning and tracking app, where the user selects from a list of workout programs, selects their beginning weights, and then for each workout in the program toggles whether they completed or did not complete each exercise. The business logic then decides for each program individually what the subsequent weights to select are for all the subsequent workouts.
 
+
+
+
+
+
 ## TODOs
 
 - Implement the logic for more programs than just the "Basic LP".
@@ -37,6 +42,7 @@ We came up with a workout planning and tracking app, where the user selects from
 - [Express](https://expressjs.com/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [TypeORM](https://typeorm.io/)
+
 
 
 
@@ -75,4 +81,5 @@ We came up with a workout planning and tracking app, where the user selects from
 
 #### Exercise Search Function
 ![Library Search Function](https://github.com/leepavelich/toStrong/blob/main/docs/gifs/search_func_library_gif.gif)
+
 
