@@ -6,7 +6,10 @@
 
 We came up with a workout planning and tracking app, where the user selects from a list of workout programs, selects their beginning weights, and then for each workout in the program toggles whether they completed or did not complete each exercise. The business logic then decides for each program individually what the subsequent weights to select are for all the subsequent workouts.
 
-## Screenshots
+
+
+
+
 
 ## TODOs
 
@@ -39,3 +42,44 @@ We came up with a workout planning and tracking app, where the user selects from
 - [Express](https://expressjs.com/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [TypeORM](https://typeorm.io/)
+
+
+
+
+#### Home Page
+![Home Page](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/homepage.png)
+
+#### Sign Up
+![Signup](https://github.com/leepavelich/toStrong/blob/main/docs/gifs/signup_gif.gif)
+
+#### Program Page
+![Program](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/homepage.png)
+
+#### Current Program Progress
+![Current Program Progress](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/homepage.png)
+
+#### Program -> Workout Page
+![Program Progress to Workout page](https://github.com/leepavelich/toStrong/blob/main/docs/gifs/program_progress_to_workout_gif.gif)
+
+#### Selecting a Workout
+![Selecting Workout Day](https://github.com/leepavelich/toStrong/blob/main/docs/gifs/selecting_workout_day_gif.gif)
+
+#### Completing a Workout
+![Completing a Workout](https://github.com/leepavelich/toStrong/blob/main/docs/gifs/workout_gif.gif)
+
+#### Workout Example A
+![Current Workout Example 1](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/homepage.png)
+
+#### Workout Example B
+![Current Workout Example 2](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/homepage.png)
+
+#### Exercise Library
+![Exercise Library](https://github.com/leepavelich/toStrong/blob/main/docs/gifs/library_example_gif.gif)
+
+#### Example: Lying Triceps Extensions
+![Lying Triceps Extension demo](https://github.com/leepavelich/toStrong/blob/main/docs/gifs/LTE_vid_library_gif.gif)
+
+#### Exercise Search Function
+![Library Search Function](https://github.com/leepavelich/toStrong/blob/main/docs/gifs/search_func_library_gif.gif)
+
+
