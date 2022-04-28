@@ -7,7 +7,7 @@
 We came up with a workout planning and tracking app, where the user selects from a list of workout programs, selects their beginning weights, and then for each workout in the program toggles whether they completed or did not complete each exercise. The business logic then decides for each program individually what the subsequent weights to select are for all the subsequent workouts.
 
 
-
+## Demo
 
 #### Home Page
 ![Home Page](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/homepage.png)
@@ -46,7 +46,7 @@ We came up with a workout planning and tracking app, where the user selects from
 ![Library Search Function](https://github.com/leepavelich/toStrong/blob/main/docs/gifs/search_func_library_gif.gif)
 
 
-<<<<<<< HEAD
+
 
 ## Using the app
 
