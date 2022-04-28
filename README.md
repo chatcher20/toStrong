@@ -18,10 +18,10 @@ We came up with a workout planning and tracking app, where the user selects from
 ![Signup](https://github.com/leepavelich/toStrong/blob/main/docs/gifs/signup_gif.gif)
 
 #### Program Page
-![Program](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/homepage.png)
+![Program](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/program.png)
 
 #### Current Program Progress
-![Current Program Progress](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/homepage.png)
+![Current Program Progress](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/current_program_progress.png)
 
 #### Program -> Workout Page
 ![Program Progress to Workout page](https://github.com/leepavelich/toStrong/blob/main/docs/gifs/program_progress_to_workout_gif.gif)
@@ -33,10 +33,10 @@ We came up with a workout planning and tracking app, where the user selects from
 ![Completing a Workout](https://github.com/leepavelich/toStrong/blob/main/docs/gifs/workout_gif.gif)
 
 #### Workout Example A
-![Current Workout Example 1](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/homepage.png)
+![Current Workout Example 1](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/current_workout_1.png)
 
 #### Workout Example B
-![Current Workout Example 2](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/homepage.png)
+![Current Workout Example 2](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/current_workout_2.png)
 
 #### Exercise Library
 ![Exercise Library](https://github.com/leepavelich/toStrong/blob/main/docs/gifs/library_example_gif.gif)
