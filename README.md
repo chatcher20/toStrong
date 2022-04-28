@@ -6,11 +6,6 @@
 
 We came up with a workout planning and tracking app, where the user selects from a list of workout programs, selects their beginning weights, and then for each workout in the program toggles whether they completed or did not complete each exercise. The business logic then decides for each program individually what the subsequent weights to select are for all the subsequent workouts.
 
-<<<<<<< HEAD
-=======
-
-
-
 
 
 ## TODOs
@@ -97,5 +92,5 @@ We came up with a workout planning and tracking app, where the user selects from
 - Implement the Friends and Badges feature (current app has placeholders for the demo).
 - Fix user authentication; right now you need to do a GET request to the `/auth/1` route of the server to generate a cookie to correctly do what's in the demo.
 - Refactor the database to be in first normal form.
-=======
+
 
