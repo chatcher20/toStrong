@@ -8,18 +8,6 @@ We came up with a workout planning and tracking app, where the user selects from
 
 
 
-## TODOs
-
-- Implement the logic for more programs than just the "Basic LP".
-- Add more exercises to the library.
-- Implement the Friends and Badges feature (current app has placeholders for the demo).
-- Fix user authentication; right now you need to do a GET request to the `/auth/1` route of the server to generate a cookie to correctly do what's in the demo.
-- Refactor the database to be in first normal form.
-
-
-
-
-
 
 #### Home Page
 ![Home Page](https://github.com/leepavelich/toStrong/blob/main/docs/screenshots/homepage.png)
