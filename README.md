@@ -20,7 +20,6 @@ We came up with a workout planning and tracking app, where the user selects from
 - Implement the Friends and Badges feature (current app has placeholders for the demo).
 - Fix user authentication; right now you need to do a GET request to the `/auth/1` route of the server to generate a cookie to correctly do what's in the demo.
 - Refactor the database to be in first normal form.
->>>>>>> 718ea53131e855576f47619fe4381916a3449c8b
 
 
 
@@ -99,4 +98,4 @@ We came up with a workout planning and tracking app, where the user selects from
 - Fix user authentication; right now you need to do a GET request to the `/auth/1` route of the server to generate a cookie to correctly do what's in the demo.
 - Refactor the database to be in first normal form.
 =======
->>>>>>> 718ea53131e855576f47619fe4381916a3449c8b
+
