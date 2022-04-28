@@ -6,6 +6,22 @@
 
 We came up with a workout planning and tracking app, where the user selects from a list of workout programs, selects their beginning weights, and then for each workout in the program toggles whether they completed or did not complete each exercise. The business logic then decides for each program individually what the subsequent weights to select are for all the subsequent workouts.
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+## TODOs
+
+- Implement the logic for more programs than just the "Basic LP".
+- Add more exercises to the library.
+- Implement the Friends and Badges feature (current app has placeholders for the demo).
+- Fix user authentication; right now you need to do a GET request to the `/auth/1` route of the server to generate a cookie to correctly do what's in the demo.
+- Refactor the database to be in first normal form.
+>>>>>>> 718ea53131e855576f47619fe4381916a3449c8b
+
 
 
 
@@ -48,6 +64,7 @@ We came up with a workout planning and tracking app, where the user selects from
 ![Library Search Function](https://github.com/leepavelich/toStrong/blob/main/docs/gifs/search_func_library_gif.gif)
 
 
+<<<<<<< HEAD
 
 ## Using the app
 
@@ -81,3 +98,5 @@ We came up with a workout planning and tracking app, where the user selects from
 - Implement the Friends and Badges feature (current app has placeholders for the demo).
 - Fix user authentication; right now you need to do a GET request to the `/auth/1` route of the server to generate a cookie to correctly do what's in the demo.
 - Refactor the database to be in first normal form.
+=======
+>>>>>>> 718ea53131e855576f47619fe4381916a3449c8b
